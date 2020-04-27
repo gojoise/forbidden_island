@@ -2,4 +2,8 @@ import java.util.Random;
 
 class truc {};
 
-class machin {};
+class machin {
+	public static void main(String[] args) {
+		
+	}
+}
