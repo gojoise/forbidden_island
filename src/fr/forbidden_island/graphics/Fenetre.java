@@ -1,6 +1,7 @@
 package fr.forbidden_island.graphics;
 
 import javax.swing.JFrame;
+import java.awt.Graphics;
 
 
 public class Fenetre extends JFrame {
@@ -12,8 +13,11 @@ public class Fenetre extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
 		this.setContentPane(pan);
-
+		
 		this.setVisible(true);
+		pan.setPosX(500);
+	    pan.setPosY(500);
+	    pan.repaint();
 
 	}
 }
