@@ -1,7 +1,11 @@
 package fr.forbidden_island.graphics;
 
+import java.awt.Color;
+import java.awt.FlowLayout;
+
 import javax.swing.JFrame;
-import java.awt.Graphics;
+
+import fr.forbidden_island.core.Model;
 
 /**
  * 
@@ -12,22 +16,32 @@ import java.awt.Graphics;
 
 
 public class Fenetre extends JFrame {
-	private IslandView pan = new IslandView();
+	private IslandView view ; // /!\
 	/**
 	 * Constructeur de la Fenetre
 	 */
-	public Fenetre(){
+	public Fenetre(Model mod){
+		this.view=new IslandView(mod);
 		this.setTitle("L'ile interdite");
 		this.setSize(1280, 720);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
-		this.setContentPane(pan);
-		
+		this.setLayout(new FlowLayout());
+		/*
+		*Fait une référence vers this.view => les updates via repain() font effet car on travaille sur view qui est référencé par setContentPane
+		*/
+		this.setContentPane(this.view); //Problématique pour ajouter d'autres composants
+		this.add(new PlayerView(mod));
+		this.add(new CommandsView(mod));
 		this.setVisible(true);
-		pan.setPosX(500);
-	    pan.setPosY(500);
-	    pan.repaint();
+		
+		//mets le rectangle plus bas
+		this.view.setPosX(500);
+	    this.view.setPosY(500);
+	    this.view.repaint(); //fais la mise à jour directement sur this.view
+	    
+
 
 	}
 }

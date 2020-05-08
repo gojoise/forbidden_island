@@ -12,28 +12,30 @@ import fr.forbidden_island.core.Model;
  * Correspond à VueGrille ou autre élement de la vue, nom à modifier pour être plus explicite*
  *
  */
-public class IslandView extends JPanel implements Observer{
+public class PlayerView extends JPanel implements Observer{
 	private int posX ;
 	private int posY ;
 	
 	private Model modele;
 	
-	public IslandView(Model mod) {
+	public PlayerView(Model mod) {
 		// TODO Auto-generated constructor stub
 		this.modele = mod;
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
 		modele.addObserver(this); //ajoute à observers 
-		this.posX=0;
-		this.posY=0;
+		this.posX=10;
+		this.posY=10;
+		this.setBackground(Color.yellow);
 		this.setPreferredSize(new Dimension(100, 100));
+		
 
 		
 	}
 
-	public void paintComponent(Graphics g){
+	public void paintComponent(Graphics g) {
 		super.repaint();
-		g.setColor(Color.red);
-		g.drawRect(posX, posY, 200, 40);
+		g.setColor(Color.BLUE);
+		g.drawString("Joueur :"+1, posX, posY);
 	}
 	
 
