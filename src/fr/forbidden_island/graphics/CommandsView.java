@@ -1,21 +1,29 @@
 package fr.forbidden_island.graphics;
 
+import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException; 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import fr.forbidden_island.Controls.Controler;
 import fr.forbidden_island.core.Model;
 
-public class CommandsView extends JPanel {
-	private Model modele;
-	public CommandsView(Model mod) {
-		this.modele = mod;
-		JButton boutonAvance = new JButton("Action !");
-		this.add(boutonAvance);
-		
-		Controler ctrl = new Controler(modele);
-		/** Le controler écoute le bouton */
-		boutonAvance.addActionListener(ctrl);
+public class CommandsView extends JButton {
+
+	public CommandsView(Model mod){
+		Controler ctrl = new Controler(mod);
+		/** Enregistrement du contrôleur comme auditeur du bouton. */
+		this.addActionListener(ctrl);
+		this.setText("Action!");
 	}
-	
+
+
+
+
 }

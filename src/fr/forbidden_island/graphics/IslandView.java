@@ -13,51 +13,23 @@ import fr.forbidden_island.core.Model;
  *
  */
 public class IslandView extends JPanel implements Observer{
-	private int posX ;
-	private int posY ;
-	
 	private Model modele;
 	
 	public IslandView(Model mod) {
-		// TODO Auto-generated constructor stub
 		this.modele = mod;
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
 		modele.addObserver(this); //ajoute à observers 
-		this.posX=0;
-		this.posY=0;
-		this.setPreferredSize(new Dimension(100, 100));
-
+		this.setPreferredSize(new Dimension(400, 400));
+		this.setBackground(Color.white);
 		
 	}
 
-	public void paintComponent(Graphics g){
-		super.repaint();
-		g.setColor(Color.red);
-		g.drawRect(posX, posY, 200, 40);
-	}
+
 	
-
-
-	public int getPosX() {
-		return posX;
-	}
-
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
-
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}
 
 
 
 	public void update() {
-		// TODO Auto-generated method stub
 		
 	}
 }
