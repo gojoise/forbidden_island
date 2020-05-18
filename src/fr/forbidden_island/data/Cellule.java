@@ -6,7 +6,8 @@ public class Cellule {
 	
 	private final int x, y; //position de la cellule sur la grille
 	private Model modele;
-	private boolean terrain;
+	public final static int size=15;
+	private boolean terrain=true;
 	/*classe cellule :
 	 *attribut terrain/joueur/special(artefact clef/element/heliport)
 	 * 
@@ -19,11 +20,17 @@ public class Cellule {
 	 */
 	
 	public Cellule(Model mod,int x,int y) {
-		// TODO Auto-generated constructor stub
 		this.x=x;
 		this.y=y;
 		this.modele=mod;
 	}
 	
+	public void setTerrain(boolean etat) {
+		this.terrain=etat;		
+	}
+	
+	public boolean getTerrain(){
+		return this.terrain;
+	}
 
 }

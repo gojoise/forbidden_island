@@ -3,7 +3,6 @@ package fr.forbidden_island.graphics;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-
 import javax.swing.JPanel;
 
 import fr.forbidden_island.core.Observer;
@@ -21,7 +20,10 @@ public class IslandView extends JPanel implements Observer{
 		modele.addObserver(this); //ajoute à observers 
 		this.setPreferredSize(new Dimension(400, 400));
 		this.setBackground(Color.white);
-		
+	}
+	
+	public void paintComponent() {
+		//TODO
 	}
 
 
