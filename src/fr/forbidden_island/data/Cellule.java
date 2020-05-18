@@ -20,14 +20,21 @@ public class Cellule {
 	 */
 	
 	public Cellule(Model mod,int x,int y) {
+		
 		this.x=x;
 		this.y=y;
+		
 		this.modele=mod;
 	}
 	
-	public void setTerrain(boolean etat) {
-		this.terrain=etat;		
-	}
+
+	public void setTerrain(boolean etat) { this.terrain = etat; }
+	public int getAbsc () {return this.x;}
+	
+	public int getOrd () {return this.y;}
+	
+	public int getSize () {return this.size;}
+	
 	
 	public boolean getTerrain(){
 		return this.terrain;

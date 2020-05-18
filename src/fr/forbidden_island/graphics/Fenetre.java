@@ -42,7 +42,7 @@ public class Fenetre extends JFrame {
 		
 		
 		//Init composants pour fenetre
-		container.setBackground(Color.gray);
+		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
 		PlayerInterface.setBackground(Color.gray);
 		PlayerInterface.setLayout(new BorderLayout());
