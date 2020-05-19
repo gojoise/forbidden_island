@@ -30,13 +30,13 @@ public class Cellule {
 	 * @param c une cellule non mer
 	 * @return
 	 */
-	public Cellule [] Voisines(Cellule c) {
-		if(!c.terrain)throw new IllegalArgumentException(); 
+	public Cellule [] voisines(Cellule [][] grille) {
+		//if(this.terrain)throw new IllegalArgumentException(); 
 		Cellule [] res=new Cellule[4];
-		res[0]=new Cellule(modele,c.getAbsc(),c.getOrd()-1);//haut
-		res[1]=new Cellule(modele,c.getAbsc()+1,c.getOrd());//droite
-		res[2]=new Cellule(modele,c.getAbsc(),c.getOrd()+1);//bas
-		res[3]=new Cellule(modele,c.getAbsc()-1,c.getOrd());//gauche
+		res[0]=grille[this.getAbsc()/size][(this.getOrd()-1)/size];//haut
+		res[1]=grille[(this.getAbsc()+1)/size][this.getOrd()/size];//droite
+		res[2]=grille[this.getAbsc()/size][(this.getOrd()+1)/size];//bas
+		res[3]=grille[(this.getAbsc()-1)/size][this.getOrd()/size];//gauche
 		return res;
 		}
 
