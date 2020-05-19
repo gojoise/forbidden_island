@@ -34,7 +34,7 @@ public class Model extends Observable{
 				grille[x][y]=new Cellule(this,x*Cellule.size,y*Cellule.size);
 				//donne un état  terre au cellules "centrales"
 				if(x>dimGrilleAbsc/4 && x<(dimGrilleAbsc*3)/4  && y>dimGrilleOrd/4 && y<(dimGrilleOrd*3)/4) {
-					grille[x][y].setTerrain(false);
+					grille[x][y].setMer(false);
 					float t=r.nextFloat();
 					for(float i=0;i<4;i++) {
 					if(!(x>(dimGrilleAbsc/4)+i && x<((dimGrilleAbsc*3)/4)-i  && y>(dimGrilleOrd/4)+i && y<((dimGrilleOrd*3)/4)-i))
@@ -42,32 +42,32 @@ public class Model extends Observable{
 						
 						int cpt = 0;
 						for(Cellule c : grille[x][y].voisines(grille)) {
-							if ( ! c.getTerrain())
+							if ( ! c.getMer())
 								cpt++;
 						}
 						if(cpt>(i+1))
 						{
-							 if(t<(0.2 +(1/(i+1)))) grille[x][y].setTerrain(true);
+							 if(t<(0.2 +(1/(i+1)))) grille[x][y].setMer(true);
 						
 						}
 						
-							 if(t<((1/(i+1)))) grille[x][y].setTerrain(true);
+							 if(t<((1/(i+1)))) grille[x][y].setMer(true);
 						
 					}
 					}
 					if(!(x>(dimGrilleAbsc/4) && x<((dimGrilleAbsc*3)/4)  && y>(dimGrilleOrd/4) && y<((dimGrilleOrd*3)/4))) {
 						int cpt = 0;
 						for(Cellule c : grille[x][y].voisines(grille)) {
-							if ( ! c.getTerrain())
+							if ( ! c.getMer())
 								cpt++;
 						}
-						if(cpt<2) grille[x][y].setTerrain(true);
+						if(cpt<2) grille[x][y].setMer(true);
 						cpt=0;
 						for(Cellule c : grille[x][y].voisines(grille)) {
-							if ( ! c.getTerrain())
+							if ( ! c.getMer())
 								cpt++;
 						}
-						if(cpt<2) grille[x][y].setTerrain(true);
+						if(cpt<2) grille[x][y].setMer(true);
 						
 						
 					}

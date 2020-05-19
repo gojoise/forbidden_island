@@ -31,13 +31,19 @@ public class IslandView extends JPanel implements Observer{
 		Cellule [][] cellules = modele.getGrille();
 		for(Cellule [] lignes: cellules) {
 			for(Cellule c : lignes) {
-				if(c.getTerrain()) {
+				if(c.getMer()) {
 				 g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 				 g.setColor(Color.blue);
 				}
 				else{
-				 g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
-				 g.setColor(Color.green);  }
+					if(c.getEstInonde()) {
+						 g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
+						 g.setColor(Color.CYAN);
+					}
+					else{
+						g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
+						g.setColor(Color.green);  }
+				}
 			}
 		}
 	}

@@ -7,7 +7,7 @@ public class Cellule {
 	private final int x, y; //position de la cellule sur la grille
 	private Model modele;
 	public final static int size=15;
-	private boolean terrain=true;
+	private boolean estMer=true;
 	private boolean inonde=false;
 	/*classe cellule :
 	 *attribut terrain/joueur/special(artefact clef/element/heliport)
@@ -49,21 +49,21 @@ public class Cellule {
 	
 	public int getOrd () {return this.y;}
 	
-	public int getSize () {return this.size;}
+	public int getSize () {return size;}
 	
-	public void setTerrain(boolean etat) { 
-		this.terrain = etat; 
+	public void setMer(boolean etat) { 
+		this.estMer = etat; 
 	}
 	
-	public boolean getTerrain(){
-		return this.terrain;
+	public boolean getMer(){
+		return this.estMer;
 	}
 	
-	public void setInonde(boolean etat) { 
+	public void setEstInonde(boolean etat) { 
 		this.inonde = etat; 
 	}
 	
-	public boolean getInonde(){
+	public boolean getEstInonde(){
 		return this.inonde;
 	}
 
