@@ -36,7 +36,7 @@ public class Model extends Observable{
 				if(x>dimGrilleAbsc/4 && x<(dimGrilleAbsc*3)/4  && y>dimGrilleOrd/4 && y<(dimGrilleOrd*3)/4) {
 					grille[x][y].setTerrain(false);
 					float t=r.nextFloat();
-					for(float i=0;i<5;i++) {
+					for(float i=0;i<4;i++) {
 					if(!(x>(dimGrilleAbsc/4)+i && x<((dimGrilleAbsc*3)/4)-i  && y>(dimGrilleOrd/4)+i && y<((dimGrilleOrd*3)/4)-i))
 				       {
 						
@@ -47,14 +47,31 @@ public class Model extends Observable{
 						}
 						if(cpt>(i+1))
 						{
-							 if(t<(0.10 +(1/(i+1)))) grille[x][y].setTerrain(true);
+							 if(t<(0.2 +(1/(i+1)))) grille[x][y].setTerrain(true);
 						
 						}
 						
 							 if(t<((1/(i+1)))) grille[x][y].setTerrain(true);
 						
-					}}
-				
+					}
+					}
+					if(!(x>(dimGrilleAbsc/4) && x<((dimGrilleAbsc*3)/4)  && y>(dimGrilleOrd/4) && y<((dimGrilleOrd*3)/4))) {
+						int cpt = 0;
+						for(Cellule c : grille[x][y].voisines(grille)) {
+							if ( ! c.getTerrain())
+								cpt++;
+						}
+						if(cpt<2) grille[x][y].setTerrain(true);
+						cpt=0;
+						for(Cellule c : grille[x][y].voisines(grille)) {
+							if ( ! c.getTerrain())
+								cpt++;
+						}
+						if(cpt<2) grille[x][y].setTerrain(true);
+						
+						
+					}
+						
 				}	
 			}
 		}
