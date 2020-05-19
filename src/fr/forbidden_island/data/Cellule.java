@@ -8,6 +8,7 @@ public class Cellule {
 	private Model modele;
 	public final static int size=15;
 	private boolean terrain=true;
+	private boolean inonde=false;
 	/*classe cellule :
 	 *attribut terrain/joueur/special(artefact clef/element/heliport)
 	 * 
@@ -43,16 +44,27 @@ public class Cellule {
 
 	
 
-	public void setTerrain(boolean etat) { this.terrain = etat; }
+	
 	public int getAbsc () {return this.x;}
 	
 	public int getOrd () {return this.y;}
 	
 	public int getSize () {return this.size;}
 	
+	public void setTerrain(boolean etat) { 
+		this.terrain = etat; 
+	}
 	
 	public boolean getTerrain(){
 		return this.terrain;
+	}
+	
+	public void setInonde(boolean etat) { 
+		this.inonde = etat; 
+	}
+	
+	public boolean getInonde(){
+		return this.inonde;
 	}
 
 }
