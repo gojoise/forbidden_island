@@ -6,9 +6,10 @@ public class Cellule {
 	
 	private final int x, y; //position de la cellule sur la grille
 	private Model modele;
-	public final static int size=15;
+	public final static int size=30;
 	private boolean estMer=true;
 	private boolean inonde=false;
+	private boolean Joueur=false;
 	/*classe cellule :
 	 *attribut terrain/joueur/special(artefact clef/element/heliport)
 	 * 
@@ -65,6 +66,14 @@ public class Cellule {
 	
 	public boolean getEstInonde(){
 		return this.inonde;
+	}
+	
+	public void setJoueur(boolean etat) { 
+		this.Joueur = etat; 
+	}
+	
+	public boolean getJoueur(){
+		return this.Joueur;
 	}
 
 }

@@ -18,6 +18,8 @@ zone est alors en sursis,
 « submerg´ee ».
 	 */
 	public void actionPerformed(ActionEvent e) {
+		modele.inonde3();
+		modele.notifyObservers();
 		System.out.println(42); // teste d'une action bidon pour notre bouton => affiche 42 sur la console et pas la fenetre.
 		
 	}

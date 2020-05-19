@@ -36,10 +36,14 @@ public class IslandView extends JPanel implements Observer{
 				 g.setColor(Color.blue);
 				}
 				else{
-					if(c.getEstInonde()) {
+					if(c.getJoueur()) {
+						 g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
+						 g.setColor(Color.BLACK);
+					}
+					else if(c.getEstInonde()) {
 						 g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 						 g.setColor(Color.CYAN);
-					}
+					} 
 					else{
 						g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 						g.setColor(Color.green);  }
@@ -54,7 +58,7 @@ public class IslandView extends JPanel implements Observer{
 
 
 	public void update() {
-		this.removeAll();
+		this.repaint();
 	}
 
 
