@@ -69,7 +69,7 @@ public class Model extends Observable {
 				}
 			}
 		}
-		grille[dimGrilleAbsc/2][dimGrilleOrd/2].setJoueur(true);
+		grille[(dimGrilleAbsc/2)][dimGrilleOrd/2].setJoueur(true);
 	}
 	
 	public void inonde3() {
