@@ -2,9 +2,12 @@ package fr.forbidden_island.graphics;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -24,6 +27,7 @@ public class Fenetre extends JFrame {
 	private JPanel container = new JPanel();
 	private PlayerView Pview;
 	private JPanel PlayerInterface= new JPanel();
+	private JPanel Game = new JPanel();
 	/**
 	 * Constructeur de la Fenetre
 	 */
@@ -44,10 +48,15 @@ public class Fenetre extends JFrame {
 		//Init composants pour fenetre
 		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
+		container.setPreferredSize(new Dimension(1280,720));
 		PlayerInterface.setBackground(Color.gray);
 		PlayerInterface.setLayout(new BorderLayout());
 		PlayerInterface.setPreferredSize(new Dimension(200, 200));
-		container.add(view,BorderLayout.CENTER);
+		Game.setBackground(Color.white);
+		Game.setLayout(new BorderLayout());
+		Game.setPreferredSize(new Dimension(1080, 620));
+		Game.add(view,BorderLayout.CENTER);
+		container.add(Game,BorderLayout.CENTER);
 		container.add(PlayerInterface,BorderLayout.EAST);
 		PlayerInterface.add(bouton,BorderLayout.SOUTH);
 		PlayerInterface.add(Pview,BorderLayout.CENTER);
@@ -59,4 +68,8 @@ public class Fenetre extends JFrame {
 
 
 	}
+	
+	public void update() {
+		
+		}
 }

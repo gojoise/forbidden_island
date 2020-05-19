@@ -4,7 +4,8 @@ import fr.forbidden_island.graphics.*;
 
 public class Main {
 	public static void main(String[] args) {
-		new Fenetre(new Model()); //new Vue
+		Fenetre window = new Fenetre(new Model()); //new Vue
+		window.update();
 		
 	}
 }

@@ -19,17 +19,15 @@ public class IslandView extends JPanel implements Observer{
 		this.modele = mod;
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
 		modele.addObserver(this); //ajoute à observers 
-		this.setPreferredSize(new Dimension(400, 400));
-		
-	
-	}
+		this.setPreferredSize(new Dimension(1080, 620));
+		}
 	
 	/**fonction pour dessiner la grille avec des couleurs différentes celon les propriétées des cellules de la grille.
 	 * 
 	 * 
 	 */
 	public void paintComponent(Graphics g) {
-		super.repaint();
+		//super.repaint();
 		Cellule [][] cellules = modele.getGrille();
 		for(Cellule [] lignes: cellules) {
 			for(Cellule c : lignes) {
@@ -50,6 +48,8 @@ public class IslandView extends JPanel implements Observer{
 
 
 	public void update() {
-		
+		this.removeAll();
 	}
+
+
 }
