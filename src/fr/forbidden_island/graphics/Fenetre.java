@@ -25,7 +25,7 @@ public class Fenetre extends JFrame {
 	private IslandView view ; 
 	private CommandsView bouton ;
 	private JPanel container = new JPanel();
-	private PlayerView Pview;
+	private PlayerInfo Pview;
 	private JPanel PlayerInterface= new JPanel();
 	private JPanel Game = new JPanel();
 	/**
@@ -35,7 +35,7 @@ public class Fenetre extends JFrame {
 		//Init des composants
 		this.view=new IslandView(mod);
 		this.bouton=new CommandsView(mod);
-		this.Pview=new PlayerView(mod, "Joueur1");
+		this.Pview=new PlayerInfo(mod, "Joueur1");
 		
 		//Init fenetre
 		this.setTitle("L'ile interdite");

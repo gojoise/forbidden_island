@@ -1,8 +1,9 @@
 package fr.forbidden_island.data;
 
+import fr.forbidden_island.Controls.Direction;
 import fr.forbidden_island.core.Model;
 
-public class Cellule {
+public class Cellule{
 	
 	private final int x, y; //position de la cellule sur la grille
 	private Model modele;

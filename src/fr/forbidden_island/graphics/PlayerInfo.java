@@ -13,11 +13,11 @@ import fr.forbidden_island.core.Model;
  * Correspond à VueGrille ou autre élement de la vue, nom à modifier pour être plus explicite*
  *
  */
-public class PlayerView extends JLabel implements Observer{
+public class PlayerInfo extends JLabel implements Observer{
 
 	private Model modele;
 	
-	public PlayerView(Model mod,String initial) {
+	public PlayerInfo(Model mod,String initial) {
 		this.modele = mod;
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
 		modele.addObserver(this); //ajoute à observers

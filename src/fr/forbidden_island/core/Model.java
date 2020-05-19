@@ -1,17 +1,18 @@
 package fr.forbidden_island.core;
 
+import fr.forbidden_island.Controls.Direction;
 import fr.forbidden_island.data.Cellule;
+import fr.forbidden_island.data.Joueur;
+
 import java.util.Random;
 
 public class Model extends Observable {
 	private final int dimGrilleAbsc = 35;
 	private final int dimGrilleOrd = 21;
 	private Cellule[][] grille;
+	public Joueur j1;
 	Random r = new Random();
 
-	// if(t<0.33)this.length=1;
-	// if(t>0.33 && t<0.66)this.length=2;
-	// if(t>0.66)this.length=3;
 
 	public Model() {
 
@@ -69,7 +70,9 @@ public class Model extends Observable {
 				}
 			}
 		}
+		j1= new Joueur(grille[(dimGrilleAbsc/2)][dimGrilleOrd/2]);
 		grille[(dimGrilleAbsc/2)][dimGrilleOrd/2].setJoueur(true);
+		
 	}
 	
 	public void inonde3() {
@@ -87,7 +90,16 @@ public class Model extends Observable {
 					if (t < 0.09)grille[x][y].setEstInonde(true);
 			}
 		}
-		
+	}
+	
+	public void joueur(Direction d) {
+		for (int x = (dimGrilleAbsc / 4)-1; x <= ((dimGrilleAbsc * 3) / 4); x++) {
+			for (int y = (dimGrilleOrd / 4)-1; y <= ((dimGrilleOrd * 3) / 4); y++) {
+				if (grille[x][y].getJoueur()) {
+					j1.move(d, grille);
+				}
+			}
+		}
 	}
 	
 	public int getDimGrilleAbsc() {
