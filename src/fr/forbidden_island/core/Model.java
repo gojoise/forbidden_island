@@ -32,40 +32,7 @@ public class Model extends Observable {
 				if (x > dimGrilleAbsc / 4 && x < (dimGrilleAbsc * 3) / 4 && y > dimGrilleOrd / 4
 						&& y < (dimGrilleOrd * 3) / 4) {
 					grille[x][y].setMer(false);
-					float t = r.nextFloat();
-					for (float i = 0; i < 2; i++) {
-						if (!(x > (dimGrilleAbsc / 4) + i && x < ((dimGrilleAbsc * 3) / 4) - i && y > (dimGrilleOrd / 4) + i && y < ((dimGrilleOrd * 3) / 4) - i)) {
-							int cpt = 0;
-							for (Cellule c : grille[x][y].voisines(grille)) {
-								if (!c.getMer())
-									cpt++;
-							}
-							if (cpt > (i + 1)) {
-								if (t < (0.2 + (1 / (i + 1))))
-									grille[x][y].setMer(true);
-							}
-							if (t < ((1 / (i + 1))))
-								grille[x][y].setMer(true);
-						}
-					}
-					if (!(x > (dimGrilleAbsc / 4) && x < ((dimGrilleAbsc * 3) / 4) && y > (dimGrilleOrd / 4)
-							&& y < ((dimGrilleOrd * 3) / 4))) {
-						int cpt = 0;
-						for (Cellule c : grille[x][y].voisines(grille)) {
-							if (!c.getMer())
-								cpt++;
-						}
-						if (cpt < 2)
-							grille[x][y].setMer(true);
-						cpt = 0;
-						for (Cellule c : grille[x][y].voisines(grille)) {
-							if (!c.getMer())
-								cpt++;
-						}
-						if (cpt < 2)
-							grille[x][y].setMer(true);
 
-					}
 
 				}
 			}
@@ -101,16 +68,12 @@ public class Model extends Observable {
 			break;
 		case right:
 			this.currentPlayer=v[1];
-			System.out.println("DROITE!");
-			System.out.println(this.currentPlayer.getAbsc());
 			break;
 		case down:
 			this.currentPlayer=v[2];
-			System.out.println("BAS!");
 			break;
 		case left:
 			this.currentPlayer=v[3];
-			System.out.println(this.currentPlayer.getAbsc());
 			break;
 		default:
 			break;
@@ -118,6 +81,9 @@ public class Model extends Observable {
 		this.currentPlayer.setJoueur(true);
 	}
 	
+	public void dry() {
+		currentPlayer.setEstInonde(false);
+	}
 
 	
 	public int getDimGrilleAbsc() {

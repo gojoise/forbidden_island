@@ -33,19 +33,20 @@ zone est alors en sursis,
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			modele.move(Direction.up);
+			modele.move(Direction.up); //aller en haut 
 			break;
 		case KeyEvent.VK_DOWN:
-			modele.move(Direction.down);
+			modele.move(Direction.down);//aller en bas
 			break;
 		case KeyEvent.VK_LEFT:
-			modele.move(Direction.left);
+			modele.move(Direction.left);//aller à gauche
 			break;
 		case KeyEvent.VK_RIGHT:
-			modele.move(Direction.right);
+			modele.move(Direction.right);//aller à droite
 			break;
-		case KeyEvent.VK_SPACE:	//assécher
-			//TODO
+		case KeyEvent.VK_ENTER:	//assécher
+			modele.dry();
+			break;
 		}
 		
 	}
