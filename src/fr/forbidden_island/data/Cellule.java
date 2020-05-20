@@ -30,7 +30,7 @@ public class Cellule{
 	
 	/**
 	 * 
-	 * @param c une cellule non mer
+	 * @param la grille !!
 	 * @return
 	 */
 	public Cellule [] voisines(Cellule [][] grille) {

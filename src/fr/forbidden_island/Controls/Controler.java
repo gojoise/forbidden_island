@@ -24,7 +24,6 @@ zone est alors en sursis,
 	public void actionPerformed(ActionEvent e) {
 		modele.inonde3();
 		modele.notifyObservers();
-		System.out.println(42); // teste d'une action bidon pour notre bouton => affiche 42 sur la console et pas la fenetre.
 		
 	}
 	public void keyTyped(KeyEvent e) {
@@ -34,16 +33,16 @@ zone est alors en sursis,
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			modele.joueur(Direction.up);
+			modele.move(Direction.up);
 			break;
 		case KeyEvent.VK_DOWN:
-			modele.joueur(Direction.down);
+			modele.move(Direction.down);
 			break;
 		case KeyEvent.VK_LEFT:
-			modele.joueur(Direction.left);
+			modele.move(Direction.left);
 			break;
 		case KeyEvent.VK_RIGHT:
-			modele.joueur(Direction.right);
+			modele.move(Direction.right);
 			break;
 		case KeyEvent.VK_SPACE:	//assécher
 			//TODO

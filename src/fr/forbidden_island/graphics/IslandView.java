@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import fr.forbidden_island.core.Observer;
+import fr.forbidden_island.Controls.Controler;
 import fr.forbidden_island.core.Model;
 import fr.forbidden_island.data.*;
 /*
@@ -20,6 +21,7 @@ public class IslandView extends JPanel implements Observer{
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
 		modele.addObserver(this); //ajoute à observers 
 		this.setPreferredSize(new Dimension(1080, 620));
+
 		}
 	
 	/**fonction pour dessiner la grille avec des couleurs différentes celon les propriétées des cellules de la grille.
@@ -27,7 +29,7 @@ public class IslandView extends JPanel implements Observer{
 	 * 
 	 */
 	public void paintComponent(Graphics g) {
-		//super.repaint();
+		super.repaint();
 		Cellule [][] cellules = modele.getGrille();
 		for(Cellule [] lignes: cellules) {
 			for(Cellule c : lignes) {
@@ -38,13 +40,13 @@ public class IslandView extends JPanel implements Observer{
 				else{
 					if(c.getJoueur()) {
 						
-						g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
+						g.fillOval(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 						g.setColor(Color.PINK);
 						
 					
 						
 					}
-					 if(c.getEstInonde()) {
+					else if(c.getEstInonde()) {
 						 g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 						 g.setColor(Color.CYAN);
 					} 

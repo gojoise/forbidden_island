@@ -20,6 +20,7 @@ public class CommandsView extends JButton {
 		Controler ctrl = new Controler(mod);
 		/** Enregistrement du contrôleur comme auditeur du bouton. */
 		this.addActionListener(ctrl);
+		this.addKeyListener(ctrl);
 		this.setText("fin de tour !");
 	}
 

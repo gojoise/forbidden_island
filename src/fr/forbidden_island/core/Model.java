@@ -10,7 +10,7 @@ public class Model extends Observable {
 	private final int dimGrilleAbsc = 35;
 	private final int dimGrilleOrd = 21;
 	private Cellule[][] grille;
-	public Joueur j1;
+	public Cellule currentPlayer;
 	Random r = new Random();
 
 
@@ -70,7 +70,7 @@ public class Model extends Observable {
 				}
 			}
 		}
-		j1= new Joueur(grille[(dimGrilleAbsc/2)][dimGrilleOrd/2]);
+		currentPlayer=grille[(dimGrilleAbsc/2)][dimGrilleOrd/2];
 		grille[(dimGrilleAbsc/2)][dimGrilleOrd/2].setJoueur(true);
 		
 	}
@@ -91,16 +91,34 @@ public class Model extends Observable {
 			}
 		}
 	}
-	
-	public void joueur(Direction d) {
-		for (int x = (dimGrilleAbsc / 4)-1; x <= ((dimGrilleAbsc * 3) / 4); x++) {
-			for (int y = (dimGrilleOrd / 4)-1; y <= ((dimGrilleOrd * 3) / 4); y++) {
-				if (grille[x][y].getJoueur()) {
-					j1.move(d, grille);
-				}
-			}
+	public void move(Direction d) {
+		
+		Cellule [] v=currentPlayer.voisines(grille); //on récupère les voisines !!
+		currentPlayer.setJoueur(false);
+		switch (d) {
+		case up:
+			this.currentPlayer=v[0];
+			break;
+		case right:
+			this.currentPlayer=v[1];
+			System.out.println("DROITE!");
+			System.out.println(this.currentPlayer.getAbsc());
+			break;
+		case down:
+			this.currentPlayer=v[2];
+			System.out.println("BAS!");
+			break;
+		case left:
+			this.currentPlayer=v[3];
+			System.out.println(this.currentPlayer.getAbsc());
+			break;
+		default:
+			break;
 		}
+		this.currentPlayer.setJoueur(true);
 	}
+	
+
 	
 	public int getDimGrilleAbsc() {
 		return this.dimGrilleAbsc;
