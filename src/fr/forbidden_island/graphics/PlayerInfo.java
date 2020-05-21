@@ -16,9 +16,11 @@ import fr.forbidden_island.core.Model;
 public class PlayerInfo extends JLabel implements Observer{
 
 	private Model modele;
+
 	
 	public PlayerInfo(Model mod,String initial) {
 		this.modele = mod;
+		
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
 		modele.addObserver(this); //ajoute à observers
 		//Construction du label
@@ -30,6 +32,6 @@ public class PlayerInfo extends JLabel implements Observer{
 	    this.setPreferredSize(new Dimension(220, 20));
 	}
 	public void update() {
-		// TODO Auto-generated method stub
+		this.setText(modele.currentPlayer.getJoueurInfo().getName());
 	}
 }

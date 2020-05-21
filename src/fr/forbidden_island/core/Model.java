@@ -11,6 +11,7 @@ public class Model extends Observable {
 	private final int dimGrilleOrd = 21;
 	private Cellule[][] grille;
 	public Cellule currentPlayer;
+	public int nbActions = 5;
 	Random r = new Random();
 
 
@@ -76,13 +77,14 @@ public class Model extends Observable {
 					if (t < 0.09)grille[x][y].setEstInonde(true);
 			}
 		}
+	nbActions=5;
 	}
 	/**
 	 * Change la case du currentplayer on récupère les vosines et on change la case selon la direction
 	 * @param d la direction récupérée dans le controler
 	 */
 	public void move(Direction d) {
-		
+		if(nbActions>0) {
 		Cellule [] v=currentPlayer.voisines(grille); //on récupère les voisines !!
 		currentPlayer.setJoueur(false);
 		switch (d) {
@@ -102,12 +104,19 @@ public class Model extends Observable {
 			break;
 		}
 		this.currentPlayer.setJoueur(true);
+		nbActions--;
+		System.out.println(nbActions);
+		}
 	}
 	/**
 	 * Asseche la cellule du currentPlayer
 	 */
 	public void dry() {
+		if(currentPlayer.getEstInonde()) {
 		currentPlayer.setEstInonde(false);
+		nbActions--;
+		}
+		// else met un message "vous pouvez pas assecher ici" ?
 	}
 	/**
 	 * Change le joueur en cours, i.e change le current player avec le nouveau joueur

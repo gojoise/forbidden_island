@@ -38,7 +38,8 @@ public class Fenetre extends JFrame implements Observer{
 		// Init des composants
 		this.view = new IslandView(mod);
 		this.bouton = new CommandsView(mod);
-		this.Pview = new PlayerInfo(mod, "Joueur1");
+		this.Pview = new PlayerInfo(mod, "");
+		this.Pview.update();
 		mod.addObserver(this);
 
 		// Init fenetre
@@ -47,6 +48,7 @@ public class Fenetre extends JFrame implements Observer{
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
+	
 
 		// Init composants pour fenetre
 		container.setBackground(Color.white);
