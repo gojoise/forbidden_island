@@ -19,5 +19,8 @@ public class Joueur {
 	public Cellule getCellule() {
 		return this.cellule;
 	}
+	public void setCellule(Cellule c) {
+		this.cellule=c;
+	}
 	
 }

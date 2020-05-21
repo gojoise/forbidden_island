@@ -108,11 +108,23 @@ public class Model extends Observable {
 			grille[x][y].setMer(true);
 		
 	}
+
+	public int getNumJoueur() {
+		for(int i=0;i<joueurs.length;i++) {
+			if(joueurs[i].getCellule()==currentPlayer) {
+			return i;
+			}
+		}
+		System.out.println("ya un bug dans getNumJoueur()");
+		return -1;
+		//attention		
+	}
 	/**
 	 * Change la case du currentplayer on récupère les vosines et on change la case selon la direction
 	 * @param d la direction récupérée dans le controler
 	 */
 	public void move(Direction d) {
+		int numJoueur=getNumJoueur();
 		if(nbActions>0) {
 		Cellule [] v=currentPlayer.voisines(grille); //on récupère les voisines !!
 		currentPlayer.setJoueur(false);
@@ -132,6 +144,7 @@ public class Model extends Observable {
 		case down:
 			if(!v[2].getMer() && !v[2].getJoueur()) {
 				this.currentPlayer=v[2];
+
 				nbActions--;
 			}
 			break;
@@ -145,7 +158,8 @@ public class Model extends Observable {
 			break;
 		}
 		this.currentPlayer.setJoueur(true);
-		System.out.println(nbActions);
+		this.joueurs[numJoueur].setCellule(currentPlayer);
+		//System.out.println(nbActions); //affiche le nb d'actions restantes
 		}
 	}
 	/**
@@ -193,13 +207,17 @@ public class Model extends Observable {
 	 */
 	public void changeJoueur() {
 		nbActions=nbActionsmax;
-		if(currentPlayer==joueurs[nbJoueurs-1].getCellule())
+		
+		if(currentPlayer==joueurs[nbJoueurs-1].getCellule()) {
 			this.currentPlayer=joueurs[0].getCellule();
+		System.out.println("42");
+		}
 		else {
-			for(int i=0;i<joueurs.length;i++) {
+			for(int i=0;i<joueurs.length-1;i++) {
 				if(joueurs[i].getCellule()==currentPlayer) {
 					this.currentPlayer=joueurs[i+1].getCellule();
-
+					System.out.println("43");
+					break;
 				}
 			}
 		}
