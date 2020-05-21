@@ -23,6 +23,7 @@ public class IslandView extends JPanel implements Observer{
 		this.setPreferredSize(new Dimension(1080, 620));
 
 		}
+	public Model getModele() {return this.modele;}
 	
 	/**fonction pour dessiner la grille avec des couleurs différentes celon les propriétées des cellules de la grille.
 	 * 
@@ -40,7 +41,7 @@ public class IslandView extends JPanel implements Observer{
 				else{
 					if(c.getJoueur()) {
 						
-						g.fillOval(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
+						g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 						g.setColor(Color.PINK);
 						
 					

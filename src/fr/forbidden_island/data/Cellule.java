@@ -34,15 +34,17 @@ public class Cellule{
 	 * @return
 	 */
 	public Cellule [] voisines(Cellule [][] grille) {
-		//if(this.terrain)throw new IllegalArgumentException(); 
+		//if(this.estMer)throw new IllegalArgumentException(); 
 		Cellule [] res=new Cellule[4];
-		res[0]=grille[this.getAbsc()/size][(this.getOrd()-1)/size];//haut
-		res[1]=grille[(this.getAbsc()+1)/size][this.getOrd()/size];//droite
-		res[2]=grille[this.getAbsc()/size][(this.getOrd()+1)/size];//bas
-		res[3]=grille[(this.getAbsc()-1)/size][this.getOrd()/size];//gauche
+		int x=this.getAbsc();
+		int y=this.getOrd();
+		res[0]=grille[x/size][(y-size)/size];//haut
+		res[1]=grille[((x+size)/size)][y/size];//droite
+		res[2]=grille[x/size][((y+size)/size)];//bas
+		res[3]=grille[(x-size)/size][y/size];//gauche
+
 		return res;
 		}
-
 
 	
 
