@@ -11,6 +11,7 @@ public class Model extends Observable {
 	private final int dimGrilleOrd = 21;
 	private Cellule[][] grille;
 	public Cellule currentPlayer;
+	private int nbJoueurs;
 	public int nbActions = 5;
 	Random r = new Random();
 
@@ -117,6 +118,28 @@ public class Model extends Observable {
 		nbActions--;
 		}
 		// else met un message "vous pouvez pas assecher ici" ?
+	}
+	
+	
+	private Cellule[] DepartJoueurs(int nbJ) {
+		Cellule[] casesDepart= new Cellule[nbJ];
+		if(nbJ<2)
+			casesDepart[0]=grille[(dimGrilleAbsc/2)][(dimGrilleOrd/2)-1];
+		if(nbJ<3)
+			casesDepart[1]=grille[(dimGrilleAbsc/2)][(dimGrilleOrd/2)+1];
+		if(nbJ<4)
+			casesDepart[2]=grille[(dimGrilleAbsc/2)+1][(dimGrilleOrd/2)];
+		if(nbJ<5)
+			casesDepart[3]=grille[(dimGrilleAbsc/2)-1][(dimGrilleOrd/2)];
+		if(nbJ<6)
+			casesDepart[4]=grille[(dimGrilleAbsc/2)+1][(dimGrilleOrd/2)+1];
+		if(nbJ<7)
+			casesDepart[5]=grille[(dimGrilleAbsc/2)-1][(dimGrilleOrd/2)-1];
+		if(nbJ<8)
+			casesDepart[6]=grille[(dimGrilleAbsc/2)-1][(dimGrilleOrd/2)+1];
+		if(nbJ<9)
+			casesDepart[7]=grille[(dimGrilleAbsc/2)+1][(dimGrilleOrd/2)-1];
+		return casesDepart;	
 	}
 	/**
 	 * Change le joueur en cours, i.e change le current player avec le nouveau joueur
