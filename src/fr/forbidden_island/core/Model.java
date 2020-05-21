@@ -58,7 +58,7 @@ public class Model extends Observable {
                 }
 			}
 		}
-		Cellule[] depart=DepartJoueurs(this.nbJoueurs);
+		Cellule[] depart=departJoueurs(this.nbJoueurs);
 		currentPlayer=depart[0];
 		for (Cellule d : depart) {
 			grille[d.getAbsc()/d.getSize()][d.getOrd()/d.getSize()].setJoueur(true);
@@ -69,33 +69,47 @@ public class Model extends Observable {
 		
 	}
 	/**
-	 * Innonde plusieurs cellules aléatoirement après clic sur le bouton fin de tour = Partie B
-	 * Submerge les cellules inondés = Partie A
-	 * Change de joueur ?
+	 *  
+	 * 
+	 * 
 	 */
 	public void endTurn() {
 		for (int x = (dimGrilleAbsc / 4)-1; x <= ((dimGrilleAbsc * 3) / 4); x++) {
 			for (int y = (dimGrilleOrd / 4)-1; y <= ((dimGrilleOrd * 3) / 4); y++) {
-				float t = r.nextFloat();
-				int cpt = 0;
-				/*
-				 * PARTIE A
-				 */
-				if(grille[x][y].getEstInonde() )
-					grille[x][y].setMer(true);
-				/*
-				 * PARTIE B
-				 */
-				for (Cellule c : grille[x][y].voisines(grille)) {
-					if (c.getMer())
-						cpt++;
-				}
-
-				if(!grille[x][y].getMer() && cpt>0)
-					if (t < 0.09)grille[x][y].setEstInonde(true);
+				
+				submerge(x, y);				
+				inonde(x, y);
+				
 			}
 		}
-	nbActions=nbActionsmax;
+		changeJoueur();
+	
+	}
+	/**
+	 * Inonde plusieurs cellules aléatoirement après clic sur le bouton fin de tour
+	 * @param x = coord Absc
+	 * @param y = coord Ord
+	 */
+	public void inonde(int x, int y) {
+		float t = r.nextFloat();
+		int cpt = 0;
+		for (Cellule c : grille[x][y].voisines(grille)) {
+			if (c.getMer())
+				cpt++;
+		}
+		if(!grille[x][y].getMer() && cpt>0)
+			if (t < 0.09)grille[x][y].setEstInonde(true);
+	}
+	
+	/**
+	 * Submerge les cellules inondés
+	 * @param x = coord Absc
+	 * @param y = coord Ord
+	 */
+	public void submerge(int x,int y) {
+		if(grille[x][y].getEstInonde() )
+			grille[x][y].setMer(true);
+		
 	}
 	/**
 	 * Change la case du currentplayer on récupère les vosines et on change la case selon la direction
@@ -153,7 +167,7 @@ public class Model extends Observable {
 	 * @param nbJ le nombre de joueurs à répartir
 	 * @return les cellules où sont répartis les joeuurs 
 	 */
-	private Cellule[] DepartJoueurs(int nbJ) {
+	private Cellule[] departJoueurs(int nbJ) {
 		Cellule[] casesDepart= new Cellule[nbJ];
 		if(nbJ>0)
 			casesDepart[0]=grille[(dimGrilleAbsc/2)][(dimGrilleOrd/2)-1];
@@ -180,8 +194,9 @@ public class Model extends Observable {
 	 * Change le joueur en cours, i.e change le current player avec le nouveau joueur
 	 * si on est au joueur 1 on passe au joueur 2 etc , dans l'ordre croissant en revenant au premier une fois au dernier
 	 */
-	public void ChangeJoueur() {
-		joueurs[]
+	public void changeJoueur() {
+	//joueurs[]
+		nbActions=nbActionsmax;
 	}
 	
 	public int getDimGrilleAbsc() {
