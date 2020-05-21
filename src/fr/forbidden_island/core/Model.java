@@ -17,7 +17,7 @@ public class Model extends Observable {
 	public Model() {
 
 		this.grille = new Cellule[dimGrilleAbsc][dimGrilleOrd];
-		init();
+		init();//Lance l'initialisation
 	}
 	/**
 	 * Fonction utilitaire pour le constructeur:
