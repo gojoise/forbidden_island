@@ -11,6 +11,7 @@ public class Cellule{
 	private boolean estMer=true;
 	private boolean inonde=false;
 	private boolean Joueur=false;
+	private Joueur jx;
 	/*classe cellule :
 	 *attribut terrain/joueur/special(artefact clef/element/heliport)
 	 * 
@@ -72,11 +73,16 @@ public class Cellule{
 	}
 	
 	public void setJoueur(boolean etat) { 
-		this.Joueur = etat; 
+		this.Joueur = etat;
+		this.jx = new Joueur(this);
 	}
 	
 	public boolean getJoueur(){
 		return this.Joueur;
 	}
+	public Joueur getJoueurInfo(){
+		return this.jx;
+	}
+	
 
 }
