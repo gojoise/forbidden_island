@@ -1,7 +1,14 @@
-Demain :
+Demain:
+A->3 : limit nombre actions ! rapide 
+B -> ∞ : info player loooong
+C -> 4 plus de joueurs long
+D : bonus:écran de fin en fct du joueur
 
-1.terre inond�/submerg� 1H
-+ forme ile
-2.Affichage (temps long) 2-3H
+3. Etendre le contrˆoleur pour que le joueur puisse r´ealiser au maximum trois actions avant de ´
+cliquer sur le bouton « fin de tour ».
+4. Etendre l’ensemble pour permettre plusieurs joueurs. Le contrˆoleur doit faire agir les joueurs ´
+`a tour de rˆole, en ins´erant une phase d’inondation (« fin de tour ») `a la fin du tour de
+chaque joueur.
 
-3.update ?H-?H
+∞. Faire que la vue indique le joueur dont c’est le tour et le nombre d’actions auxquelles il a
+encore droit.
