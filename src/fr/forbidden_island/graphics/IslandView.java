@@ -15,16 +15,16 @@ import fr.forbidden_island.data.*;
  */
 public class IslandView extends JPanel implements Observer{
 	private Model modele;
-	
+
 	public IslandView(Model mod) {
 		this.modele = mod;
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
 		modele.addObserver(this); //ajoute à observers 
 		this.setPreferredSize(new Dimension(1080, 620));
 
-		}
+	}
 	public Model getModele() {return this.modele;}
-	
+
 	/**fonction pour dessiner la grille avec des couleurs différentes celon les propriétées des cellules de la grille.
 	 * 
 	 * 
@@ -35,39 +35,52 @@ public class IslandView extends JPanel implements Observer{
 		for(Cellule [] lignes: cellules) {
 			for(Cellule c : lignes) {
 				if(c.getMer()) {
-				 g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
-				 g.setColor(Color.blue);
+					g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
+					g.setColor(Color.blue);
 				}
 				else{
-					if(c.getJoueur()) {
-						
+					if(c.getJoueur()) { 
 						g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
-						g.setColor(Color.PINK);
-						
-					
-						
+					for(int i=0;i<modele.getNbJoueurs();i++) {
+						if(i==0)
+							g.setColor(Color.magenta);
+						if(i==1)
+							g.setColor(Color.black);
+						if(i==2)
+							g.setColor(Color.darkGray);
+						if(i==3)
+							g.setColor(Color.lightGray);
+						if(i==4)
+							g.setColor(Color.RED);
+						if(i==5)
+							g.setColor(Color.orange);
+						if(i==6)
+							g.setColor(Color.yellow);
+						if(i==7)
+							g.setColor(Color.PINK);
 					}
-					else if(c.getEstInonde()) {
-						 g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
-						 g.setColor(Color.CYAN);
-					} 
-					else{
-						g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
-						g.setColor(Color.green);  
-					}
+				}
+				else if(c.getEstInonde()) {
+					g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
+					g.setColor(Color.CYAN);
+				} 
+				else{
+					g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
+					g.setColor(Color.green);  
 				}
 			}
 		}
 	}
+}
 
 
-	
 
 
 
-	public void update() {
-		this.repaint();
-	}
+
+public void update() {
+	this.repaint();
+}
 
 
 }

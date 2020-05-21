@@ -32,6 +32,7 @@ public class PlayerInfo extends JLabel implements Observer{
 	    this.setPreferredSize(new Dimension(220, 20));
 	}
 	public void update() {
-		this.setText(modele.currentPlayer.getJoueurInfo().getName());
+		int num=modele.getNumJoueur();
+		this.setText(modele.joueurs[num].getName());
 	}
 }

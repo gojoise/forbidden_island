@@ -11,13 +11,13 @@ public class Model extends Observable {
 	private final int dimGrilleOrd = 21;
 	private Cellule[][] grille;
 	public Cellule currentPlayer;
-	private int nbJoueurs=4;
+	private int nbJoueurs=8;
 	public final int nbActionsmax=5;
 	public int nbActions = nbActionsmax;
 	public Joueur[] joueurs = new Joueur[this.nbJoueurs];
 	Random r = new Random();
 
-
+	
 	public Model() {
 
 		this.grille = new Cellule[dimGrilleAbsc][dimGrilleOrd];
@@ -198,6 +198,9 @@ public class Model extends Observable {
 			casesDepart[7]=grille[(dimGrilleAbsc/2)+1][(dimGrilleOrd/2)-1];
 		for(int i=0;i<nbJ;i++) {
 			joueurs[i]=new Joueur(casesDepart[i]);
+			
+			joueurs[i].setName("joueur n°"+(i+1));
+			System.out.println(joueurs[i].getName());
 		}
 	}
 	/**
@@ -234,6 +237,9 @@ public class Model extends Observable {
 
 	public Cellule[][] getGrille() {
 		return this.grille;
+	}
+	public int getNbJoueurs() {
+		return this.nbJoueurs;
 	}
 	/*
 	 * création d'une ile (tableau de cellules)
