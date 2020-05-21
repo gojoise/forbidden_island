@@ -107,16 +107,16 @@ public class Model extends Observable {
 		currentPlayer.setJoueur(false);
 		switch (d) {
 		case up:
-			if(!v[0].getMer())this.currentPlayer=v[0];
+			if(!v[0].getMer() && !v[0].getJoueur())this.currentPlayer=v[0];
 			break;
 		case right:
-			if(!v[1].getMer())this.currentPlayer=v[1];
+			if(!v[1].getMer() && !v[1].getJoueur())this.currentPlayer=v[1];
 			break;
 		case down:
-			if(!v[2].getMer())this.currentPlayer=v[2];
+			if(!v[2].getMer() && !v[2].getJoueur())this.currentPlayer=v[2];
 			break;
 		case left:
-			if(!v[3].getMer())this.currentPlayer=v[3];
+			if(!v[3].getMer() && !v[3].getJoueur())this.currentPlayer=v[3];
 			break;
 		default:
 			break;
