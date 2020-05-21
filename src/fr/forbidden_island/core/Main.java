@@ -6,7 +6,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Fenetre window = new Fenetre(new Model()); //new Vue
-			window.update();			
+			window.update();//test game over			
 		
 		
 	}
