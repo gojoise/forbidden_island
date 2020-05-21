@@ -16,4 +16,8 @@ public class Joueur {
 		//TODO
 	}
 	
+	public Cellule getCellule() {
+		return this.cellule;
+	}
+	
 }

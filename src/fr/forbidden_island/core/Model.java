@@ -58,14 +58,11 @@ public class Model extends Observable {
                 }
 			}
 		}
-		Cellule[] depart=departJoueurs(this.nbJoueurs);
-		currentPlayer=depart[0];
-		for (Cellule d : depart) {
-			grille[d.getAbsc()/d.getSize()][d.getOrd()/d.getSize()].setJoueur(true);
+		initJoueurs(this.nbJoueurs);
+		currentPlayer=joueurs[0].getCellule();
+		for (Joueur j : joueurs) {
+			grille[j.getCellule().getAbsc()/j.getCellule().getSize()][j.getCellule().getOrd()/j.getCellule().getSize()].setJoueur(true);
 		}
-		//_________________________________________________________
-//		currentPlayer=grille[(dimGrilleAbsc/2)][dimGrilleOrd/2];
-//		grille[(dimGrilleAbsc/2)][dimGrilleOrd/2].setJoueur(true);
 		
 	}
 	/**
@@ -167,7 +164,7 @@ public class Model extends Observable {
 	 * @param nbJ le nombre de joueurs à répartir
 	 * @return les cellules où sont répartis les joeuurs 
 	 */
-	private Cellule[] departJoueurs(int nbJ) {
+	private void initJoueurs(int nbJ) {
 		Cellule[] casesDepart= new Cellule[nbJ];
 		if(nbJ>0)
 			casesDepart[0]=grille[(dimGrilleAbsc/2)][(dimGrilleOrd/2)-1];
@@ -188,16 +185,26 @@ public class Model extends Observable {
 		for(int i=0;i<nbJ;i++) {
 			joueurs[i]=new Joueur(casesDepart[i]);
 		}
-		return casesDepart;	
 	}
 	/**
 	 * Change le joueur en cours, i.e change le current player avec le nouveau joueur
 	 * si on est au joueur 1 on passe au joueur 2 etc , dans l'ordre croissant en revenant au premier une fois au dernier
+	 * ON recherche quel est le joueur (son numéro) en currentplayer
 	 */
 	public void changeJoueur() {
-	//joueurs[]
 		nbActions=nbActionsmax;
+		if(currentPlayer==joueurs[nbJoueurs-1].getCellule())
+			this.currentPlayer=joueurs[0].getCellule();
+		else {
+			for(int i=0;i<joueurs.length;i++) {
+				if(joueurs[i].getCellule()==currentPlayer) {
+					this.currentPlayer=joueurs[i+1].getCellule();
+
+				}
+			}
+		}
 	}
+	
 	
 	public int getDimGrilleAbsc() {
 		return this.dimGrilleAbsc;
