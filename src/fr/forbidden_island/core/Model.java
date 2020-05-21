@@ -107,22 +107,33 @@ public class Model extends Observable {
 		currentPlayer.setJoueur(false);
 		switch (d) {
 		case up:
-			if(!v[0].getMer() && !v[0].getJoueur())this.currentPlayer=v[0];
+			if(!v[0].getMer() && !v[0].getJoueur()) {
+				this.currentPlayer=v[0];
+				nbActions--;
+		    }
 			break;
 		case right:
-			if(!v[1].getMer() && !v[1].getJoueur())this.currentPlayer=v[1];
+			if(!v[1].getMer() && !v[1].getJoueur()) {
+				this.currentPlayer=v[1];
+			    nbActions--;
+			}
 			break;
 		case down:
-			if(!v[2].getMer() && !v[2].getJoueur())this.currentPlayer=v[2];
+			if(!v[2].getMer() && !v[2].getJoueur()) {
+				this.currentPlayer=v[2];
+				nbActions--;
+			}
 			break;
 		case left:
-			if(!v[3].getMer() && !v[3].getJoueur())this.currentPlayer=v[3];
+			if(!v[3].getMer() && !v[3].getJoueur()) {
+				this.currentPlayer=v[3];
+				nbActions--;
+			}
 			break;
 		default:
 			break;
 		}
 		this.currentPlayer.setJoueur(true);
-		nbActions--;
 		System.out.println(nbActions);
 		}
 	}
