@@ -78,7 +78,7 @@ public class Model extends Observable {
 		}
 	}
 	/**
-	 * Change la case du currentplayer on récupère les vosines et on change la case selon la driection
+	 * Change la case du currentplayer on récupère les vosines et on change la case selon la direction
 	 * @param d la direction récupérée dans le controler
 	 */
 	public void move(Direction d) {
