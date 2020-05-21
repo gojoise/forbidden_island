@@ -11,8 +11,10 @@ public class Model extends Observable {
 	private final int dimGrilleOrd = 21;
 	private Cellule[][] grille;
 	public Cellule currentPlayer;
-	private int nbJoueurs;
-	public int nbActions = 5;
+	private int nbJoueurs=4;
+	public final int nbActionsmax=5;
+	public int nbActions = nbActionsmax;
+	public Joueur[] joueurs = new Joueur[this.nbJoueurs];
 	Random r = new Random();
 
 
@@ -56,29 +58,44 @@ public class Model extends Observable {
                 }
 			}
 		}
-		currentPlayer=grille[(dimGrilleAbsc/2)][dimGrilleOrd/2];
-		grille[(dimGrilleAbsc/2)][dimGrilleOrd/2].setJoueur(true);
+		Cellule[] depart=DepartJoueurs(this.nbJoueurs);
+		currentPlayer=depart[0];
+		for (Cellule d : depart) {
+			grille[d.getAbsc()/d.getSize()][d.getOrd()/d.getSize()].setJoueur(true);
+		}
+		//_________________________________________________________
+//		currentPlayer=grille[(dimGrilleAbsc/2)][dimGrilleOrd/2];
+//		grille[(dimGrilleAbsc/2)][dimGrilleOrd/2].setJoueur(true);
 		
 	}
 	/**
-	 * Innonde plusieurs cellules aléatoirement après clic sur le bouton fin de tour
+	 * Innonde plusieurs cellules aléatoirement après clic sur le bouton fin de tour = Partie B
+	 * Submerge les cellules inondés = Partie A
+	 * Change de joueur ?
 	 */
-	public void inonde3() {
+	public void endTurn() {
 		for (int x = (dimGrilleAbsc / 4)-1; x <= ((dimGrilleAbsc * 3) / 4); x++) {
 			for (int y = (dimGrilleOrd / 4)-1; y <= ((dimGrilleOrd * 3) / 4); y++) {
 				float t = r.nextFloat();
 				int cpt = 0;
+				/*
+				 * PARTIE A
+				 */
 				if(grille[x][y].getEstInonde() )
 					grille[x][y].setMer(true);
+				/*
+				 * PARTIE B
+				 */
 				for (Cellule c : grille[x][y].voisines(grille)) {
 					if (c.getMer())
 						cpt++;
 				}
+
 				if(!grille[x][y].getMer() && cpt>0)
 					if (t < 0.09)grille[x][y].setEstInonde(true);
 			}
 		}
-	nbActions=5;
+	nbActions=nbActionsmax;
 	}
 	/**
 	 * Change la case du currentplayer on récupère les vosines et on change la case selon la direction
@@ -120,25 +137,32 @@ public class Model extends Observable {
 		// else met un message "vous pouvez pas assecher ici" ?
 	}
 	
-	
+	/**
+	 * 
+	 * @param nbJ le nombre de joueurs à répartir
+	 * @return les cellules où sont répartis les joeuurs 
+	 */
 	private Cellule[] DepartJoueurs(int nbJ) {
 		Cellule[] casesDepart= new Cellule[nbJ];
-		if(nbJ<2)
+		if(nbJ>0)
 			casesDepart[0]=grille[(dimGrilleAbsc/2)][(dimGrilleOrd/2)-1];
-		if(nbJ<3)
+		if(nbJ>1)
 			casesDepart[1]=grille[(dimGrilleAbsc/2)][(dimGrilleOrd/2)+1];
-		if(nbJ<4)
+		if(nbJ>2)
 			casesDepart[2]=grille[(dimGrilleAbsc/2)+1][(dimGrilleOrd/2)];
-		if(nbJ<5)
+		if(nbJ>3)
 			casesDepart[3]=grille[(dimGrilleAbsc/2)-1][(dimGrilleOrd/2)];
-		if(nbJ<6)
+		if(nbJ>4)
 			casesDepart[4]=grille[(dimGrilleAbsc/2)+1][(dimGrilleOrd/2)+1];
-		if(nbJ<7)
+		if(nbJ>5)
 			casesDepart[5]=grille[(dimGrilleAbsc/2)-1][(dimGrilleOrd/2)-1];
-		if(nbJ<8)
+		if(nbJ>6)
 			casesDepart[6]=grille[(dimGrilleAbsc/2)-1][(dimGrilleOrd/2)+1];
-		if(nbJ<9)
+		if(nbJ>7)
 			casesDepart[7]=grille[(dimGrilleAbsc/2)+1][(dimGrilleOrd/2)-1];
+		for(int i=0;i<nbJ;i++) {
+			joueurs[i]=new Joueur(casesDepart[i]);
+		}
 		return casesDepart;	
 	}
 	/**

@@ -22,7 +22,7 @@ zone est alors en sursis,
 « submerg´ee ».
 	 */
 	public void actionPerformed(ActionEvent e) {
-		modele.inonde3();
+		modele.endTurn();
 		modele.notifyObservers();
 		
 	}
