@@ -180,8 +180,8 @@ public class Model extends Observable {
 	 * Change le joueur en cours, i.e change le current player avec le nouveau joueur
 	 * si on est au joueur 1 on passe au joueur 2 etc , dans l'ordre croissant en revenant au premier une fois au dernier
 	 */
-	public void ChangePlayer() {
-		//TODO
+	public void ChangeJoueur() {
+		joueurs[]
 	}
 	
 	public int getDimGrilleAbsc() {
