@@ -43,8 +43,7 @@ public class Model extends Observable {
                     if (!(x > ((dimGrilleAbsc / 4) + i) && x < (((dimGrilleAbsc * 3) / 4) - i) && y > ((dimGrilleOrd / 4) + i) && y < (((dimGrilleOrd * 3) / 4) - i))) {
                         
 //                    	int cpt = 0; 
-//                        for(Cellule c : grille[x][y].voisines(grille)) {
-//                        //for(int v=0;v<4;v++) {                   
+//                        for(Cellule c : grille[x][y].voisines(grille)) {                   
 //                            if (c.getMer())
 //                                cpt++;
 //                        }
@@ -53,12 +52,13 @@ public class Model extends Observable {
 //                        }
 //                         else {
                             if (t < (0.2 + (1 / (i + 1))))
-                                grille[x][y].setMer(true);
+                                grille[x][y].setMer(true); // redessine aléatoirement les contours de l'ile
                          // }
                     }
                 }
 			}
 		}
+		//initialise les joueurs en les mettant dans les cellules de la grille et les rajoutant dans un tab joueurs[] avec leurs positions respectives.
 		initJoueurs(this.nbJoueurs);
 		currentPlayer=joueurs[0].getCellule();
 		for (Joueur j : joueurs) {
@@ -67,9 +67,10 @@ public class Model extends Observable {
 		
 	}
 	/**
-	 *  
-	 * 
-	 * 
+	 *  pour tout la partie ile de la grille appelle a la fin du tour:
+	 * inonde
+	 * submerge
+	 * changeJoueur
 	 */
 	public void endTurn() {
 		for (int x = (dimGrilleAbsc / 4)-1; x <= ((dimGrilleAbsc * 3) / 4); x++) {
