@@ -56,7 +56,7 @@ public class Fenetre extends JFrame implements Observer{
 		container.setPreferredSize(new Dimension(1280, 720));
 		PlayerInterface.setBackground(Color.gray);
 		PlayerInterface.setLayout(new BorderLayout());
-		PlayerInterface.setPreferredSize(new Dimension(200, 200));
+		PlayerInterface.setPreferredSize(new Dimension(212, 200));
 		Game.setBackground(Color.white);
 		Game.setLayout(new BorderLayout());
 		Game.setPreferredSize(new Dimension(1080, 620));

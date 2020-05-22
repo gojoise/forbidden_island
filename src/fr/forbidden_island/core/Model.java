@@ -111,6 +111,10 @@ public class Model extends Observable {
 		
 	}
 
+	/**
+	 * Recherche dans la liste quel est le joueur correspondant à currentPlayer
+	 * @return le numéro du joueur en cours
+	 */
 	public int getNumJoueur() {
 		for(int i=0;i<joueurs.length;i++) {
 			if(joueurs[i].getCellule()==currentPlayer) {
@@ -161,6 +165,7 @@ public class Model extends Observable {
 		}
 		this.currentPlayer.setJoueur(true);
 		this.joueurs[numJoueur].setCellule(currentPlayer);
+		notifyObservers();
 		//System.out.println(nbActions); //affiche le nb d'actions restantes
 		}
 	}
