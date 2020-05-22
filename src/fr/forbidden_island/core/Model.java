@@ -11,7 +11,7 @@ public class Model extends Observable {
 	private final int dimGrilleOrd = 21;
 	private Cellule[][] grille;
 	public Cellule currentPlayer;
-	private int nbJoueurs=8;
+	private int nbJoueurs=4;
 	public final int nbActionsmax=5;
 	public int nbActions = nbActionsmax;
 	public Joueur[] joueurs = new Joueur[this.nbJoueurs];
@@ -41,19 +41,20 @@ public class Model extends Observable {
 			    float t = r.nextFloat();
                 for (float i = 2; i >= 0; i--) {
                     if (!(x > ((dimGrilleAbsc / 4) + i) && x < (((dimGrilleAbsc * 3) / 4) - i) && y > ((dimGrilleOrd / 4) + i) && y < (((dimGrilleOrd * 3) / 4) - i))) {
-//                        int cpt = 0;
-//                        Cellule[] tabvoisines = grille[x][y].voisines(grille);
-//                        for(int v=0;v<5;v++) {
-//                            if (tabvoisines[v].getMer())
+                        
+//                    	int cpt = 0; 
+//                        for(Cellule c : grille[x][y].voisines(grille)) {
+//                        //for(int v=0;v<4;v++) {                   
+//                            if (c.getMer())
 //                                cpt++;
 //                        }
-//                        if (cpt ==0) {
+//                        if (cpt ==4) {
 //                            grille[x][y].setMer(true);
 //                        }
 //                         else {
                             if (t < (0.2 + (1 / (i + 1))))
                                 grille[x][y].setMer(true);
-                        //}
+                         // }
                     }
                 }
 			}
@@ -241,10 +242,11 @@ public class Model extends Observable {
 	public int getNbJoueurs() {
 		return this.nbJoueurs;
 	}
-	/*
-	 * création d'une ile (tableau de cellules)
-	 *
-	 * récup toutes les cellules (avec leur états)
-	 */
+	
+	public String getNbActionsString() {
+		return  Integer.toString(this.nbActions);
+	}
+	
+	
 
 }

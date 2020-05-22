@@ -33,6 +33,8 @@ public class PlayerInfo extends JLabel implements Observer{
 	}
 	public void update() {
 		int num=modele.getNumJoueur();
-		this.setText(modele.joueurs[num].getName());
+		this.setText(modele.joueurs[num].getName()); //change le "nom" du joueur à chaque fin de tour.
+		
+		//this.setText(modele.getNbActionsString()); //affiche le nbActions du joueur (BUGGé car mal placé.. ou getNbActionsString() mal faite)
 	}
 }

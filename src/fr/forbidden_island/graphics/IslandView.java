@@ -44,7 +44,7 @@ public class IslandView extends JPanel implements Observer{
 					for(int i=0;i<modele.getNbJoueurs();i++) {
 						if(i==0)
 							g.setColor(Color.magenta);
-						if(i==1)
+						if(i==1 && i>0)
 							g.setColor(Color.black);
 						if(i==2)
 							g.setColor(Color.darkGray);
