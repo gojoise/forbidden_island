@@ -177,6 +177,7 @@ public class Model extends Observable {
 		currentPlayer.setEstInonde(false);
 		nbActions--;
 		}
+		notifyObservers();
 		// else met un message "vous pouvez pas assecher ici" ?
 	}
 	
