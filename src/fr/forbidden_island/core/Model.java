@@ -323,7 +323,7 @@ public class Model extends Observable {
 		}
 	}
 	
-	//ne place pas au bon endroit celon la carte..
+	//ne place pas au bon endroit selon la carte..
 	private void initJoueursV2(int nbJ) {
 		
 		if(nbJ>0)

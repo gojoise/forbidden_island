@@ -1,12 +1,13 @@
 package fr.forbidden_island.data;
 
-
+//enlever "private Cellule cellule";
 public class Joueur {
 	private Cellule cellule;
 	private String nom;
 	private int absc;
 	private int ord;
 	
+	//enlever constructeur (ou juste la partie "Cellule c" et "this.cellule=c;"
 	public Joueur(Cellule c) {
 		this.cellule=c;
 		
