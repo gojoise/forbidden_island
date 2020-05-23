@@ -1,14 +1,6 @@
-Demain:
-A->3 : limit nombre actions ! rapide 
-B -> ∞ : info player loooong
-C -> 4 plus de joueurs long
-D : bonus:écran de fin en fct du joueur
+Pour aujourdhui 
 
-3. Etendre le contrˆoleur pour que le joueur puisse r´ealiser au maximum trois actions avant de ´
-cliquer sur le bouton « fin de tour ».
-4. Etendre l’ensemble pour permettre plusieurs joueurs. Le contrˆoleur doit faire agir les joueurs ´
-`a tour de rˆole, en ins´erant une phase d’inondation (« fin de tour ») `a la fin du tour de
-chaque joueur.
+Mathieu: Résoudre Island view avec la nouvelle size
 
-∞. Faire que la vue indique le joueur dont c’est le tour et le nombre d’actions auxquelles il a
-encore droit.
+=> Objectif d'aujourdhui passer tout en V2 i.e c'est le joueur qui change de cellule
+=> init model load le fichier de l'ile créé
