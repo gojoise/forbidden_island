@@ -90,7 +90,7 @@ public class IslandView extends JPanel implements Observer{
 		for(Cellule [] lignes: cellules) {
 			for(Cellule c : lignes) {
 				if(c.getTypeTerrain()==typeTerrain.mer) {
-					g.drawImage(r.getImage(0), c.getAbsc(), c.getOrd(), c.getSize(), c.getSize(),null);
+					g.drawImage(r.getImage(0), c.getAbsc(), c.getOrd(), c.getSize(), c.getSize(),this);
 						
 
 				}
