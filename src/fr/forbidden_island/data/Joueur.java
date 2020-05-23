@@ -4,6 +4,8 @@ package fr.forbidden_island.data;
 public class Joueur {
 	private Cellule cellule;
 	private String nom;
+	private int absc;
+	private int ord;
 	
 	public Joueur(Cellule c) {
 		this.cellule=c;
@@ -21,6 +23,20 @@ public class Joueur {
 	}
 	public void setCellule(Cellule c) {
 		this.cellule=c;
+	}
+	
+	public int getAbsc() {
+		return this.absc;
+	}
+	public void setAbsc(int x) {
+		this.absc=x;
+	}
+	
+	public int getOrd() {
+		return this.ord;
+	}
+	public void setOrd(int y) {
+		this.absc=y;
 	}
 	
 }
