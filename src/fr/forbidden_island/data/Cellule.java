@@ -8,9 +8,9 @@ public class Cellule{
 	private final int x, y; //position de la cellule sur la grille
 	private Model modele;
 	public final static int size=30;
-	private boolean estMer=true;
-	private boolean inonde=false;
+	private typeTerrain typeTerrainC;
 	private boolean Joueur=false;
+	//attribut image;
 	private Joueur jx;
 	/*classe cellule :
 	 *attribut terrain/joueur/special(artefact clef/element/heliport)
@@ -24,6 +24,8 @@ public class Cellule{
 	 */
 	
 	public Cellule(Model mod,int x,int y) {
+		//charge l' images depuis classe image dans cette cellule
+		//ce
 		this.x=x;
 		this.y=y;
 		this.modele=mod;
@@ -39,10 +41,10 @@ public class Cellule{
 		Cellule [] res=new Cellule[4];
 		int x=this.getAbsc();
 		int y=this.getOrd();
-		res[0]=grille[x/size][(y-size)/size];//haut
-		res[1]=grille[((x+size)/size)][y/size];//droite
-		res[2]=grille[x/size][((y+size)/size)];//bas
-		res[3]=grille[(x-size)/size][y/size];//gauche
+		res[0]=grille[x][y-1];//haut
+		res[1]=grille[(x+1)][y];//droite
+		res[2]=grille[x][y+1];//bas
+		res[3]=grille[x-1][y];//gauche
 
 		return res;
 		}
@@ -55,22 +57,10 @@ public class Cellule{
 	public int getOrd () {return this.y;}
 	
 	public int getSize () {return size;}
+
+	public void setTypeTerrain (typeTerrain t) {this.typeTerrainC=t;}
 	
-	public void setMer(boolean etat) { 
-		this.estMer = etat; 
-	}
-	
-	public boolean getMer(){
-		return this.estMer;
-	}
-	
-	public void setEstInonde(boolean etat) { 
-		this.inonde = etat; 
-	}
-	
-	public boolean getEstInonde(){
-		return this.inonde;
-	}
+	public typeTerrain getTypeTerrain () {return this.typeTerrainC;}
 	
 	public void setJoueur(boolean etat) { 
 		this.Joueur = etat;
@@ -80,6 +70,9 @@ public class Cellule{
 	public boolean getJoueur(){
 		return this.Joueur;
 	}
+	
+	//faire getImage()
+	
 	public Joueur getJoueurInfo(){
 		return this.jx;
 	}

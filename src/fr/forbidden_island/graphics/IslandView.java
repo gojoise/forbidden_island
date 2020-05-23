@@ -34,12 +34,14 @@ public class IslandView extends JPanel implements Observer{
 		Cellule [][] cellules = modele.getGrille();
 		for(Cellule [] lignes: cellules) {
 			for(Cellule c : lignes) {
-				if(c.getMer()) {
+				if(c.getTypeTerrain()==typeTerrain.mer) {
+					g.drawRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 					g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 					g.setColor(Color.blue);
 				}
 				else{
 					if(c.getJoueur()) { 
+						g.drawRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 						g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 					for(int i=0;i<modele.getNbJoueurs();i++) {
 						if(i==0)
@@ -60,11 +62,13 @@ public class IslandView extends JPanel implements Observer{
 							g.setColor(Color.PINK);
 					}
 				}
-				else if(c.getEstInonde()) {
+				else if(c.getTypeTerrain()==typeTerrain.inonde) {
+					g.drawRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 					g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 					g.setColor(Color.CYAN);
 				} 
 				else{
+					g.drawRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 					g.fillRect(c.getAbsc(), c.getOrd(), c.getSize(), c.getSize());
 					g.setColor(Color.green);  
 				}

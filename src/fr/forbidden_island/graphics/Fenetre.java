@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 
 import fr.forbidden_island.core.Model;
 import fr.forbidden_island.core.Observer;
+import fr.forbidden_island.data.typeTerrain;
 
 /**
  * 
@@ -90,7 +91,7 @@ public class Fenetre extends JFrame implements Observer{
 	
 	
 	public void update() {
-		if(view.getModele().currentPlayer.getMer())
+		if(view.getModele().currentPlayer.getTypeTerrain()==typeTerrain.mer)
 		gameOver();
 		this.repaint();
 	}

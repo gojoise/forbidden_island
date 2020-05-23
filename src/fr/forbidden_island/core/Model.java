@@ -3,6 +3,7 @@ package fr.forbidden_island.core;
 import fr.forbidden_island.Controls.Direction;
 import fr.forbidden_island.data.Cellule;
 import fr.forbidden_island.data.Joueur;
+import fr.forbidden_island.data.typeTerrain;
 
 import java.util.Random;
 
@@ -32,11 +33,11 @@ public class Model extends Observable {
 		for (int x = 0; x < dimGrilleAbsc; x++) {
 			for (int y = 0; y < dimGrilleOrd; y++) {
 				// donne des coords aux cellules
-				grille[x][y] = new Cellule(this, x * Cellule.size, y * Cellule.size);
+				grille[x][y] = new Cellule(this, x , y );
 				// donne un état terre au cellules "centrales"
 				if (x > dimGrilleAbsc / 4 && x < (dimGrilleAbsc * 3) / 4 && y > dimGrilleOrd / 4
 						&& y < (dimGrilleOrd * 3) / 4) {
-					grille[x][y].setMer(false);
+					grille[x][y].setTypeTerrain(typeTerrain.terre);
 				}
 			    float t = r.nextFloat();
                 for (float i = 2; i >= 0; i--) {
@@ -52,7 +53,7 @@ public class Model extends Observable {
 //                        }
 //                         else {
                             if (t < (0.2 + (1 / (i + 1))))
-                                grille[x][y].setMer(true); // redessine aléatoirement les contours de l'ile
+                                grille[x][y].setTypeTerrain(typeTerrain.mer); // redessine aléatoirement les contours de l'ile
                          // }
                     }
                 }
@@ -62,7 +63,7 @@ public class Model extends Observable {
 		initJoueurs(this.nbJoueurs);
 		currentPlayer=joueurs[0].getCellule();
 		for (Joueur j : joueurs) {
-			grille[j.getCellule().getAbsc()/j.getCellule().getSize()][j.getCellule().getOrd()/j.getCellule().getSize()].setJoueur(true);
+			grille[j.getCellule().getAbsc()][j.getCellule().getOrd()].setJoueur(true);
 		}
 		
 	}
@@ -93,11 +94,11 @@ public class Model extends Observable {
 		float t = r.nextFloat();
 		int cpt = 0;
 		for (Cellule c : grille[x][y].voisines(grille)) {
-			if (c.getMer())
+			if (c.getTypeTerrain()== typeTerrain.mer )
 				cpt++;
 		}
-		if(!grille[x][y].getMer() && cpt>0)
-			if (t < 0.09)grille[x][y].setEstInonde(true);
+		if(grille[x][y].getTypeTerrain() != typeTerrain.mer && cpt>0)
+			if (t < 0.09)grille[x][y].setTypeTerrain(typeTerrain.inonde);
 	}
 	
 	/**
@@ -106,8 +107,8 @@ public class Model extends Observable {
 	 * @param y = coord Ord
 	 */
 	public void submerge(int x,int y) {
-		if(grille[x][y].getEstInonde() )
-			grille[x][y].setMer(true);
+		if(grille[x][y].getTypeTerrain() == typeTerrain.inonde)
+			grille[x][y].setTypeTerrain(typeTerrain.mer);
 		
 	}
 
@@ -136,26 +137,26 @@ public class Model extends Observable {
 		currentPlayer.setJoueur(false);
 		switch (d) {
 		case up:
-			if(!v[0].getMer() && !v[0].getJoueur()) {
+			if(v[0].getTypeTerrain()!=typeTerrain.mer && !v[0].getJoueur()) {
 				this.currentPlayer=v[0];
 				nbActions--;
 		    }
 			break;
 		case right:
-			if(!v[1].getMer() && !v[1].getJoueur()) {
+			if(v[1].getTypeTerrain()!=typeTerrain.mer && !v[1].getJoueur()) {
 				this.currentPlayer=v[1];
 			    nbActions--;
 			}
 			break;
 		case down:
-			if(!v[2].getMer() && !v[2].getJoueur()) {
+			if(v[2].getTypeTerrain()!=typeTerrain.mer && !v[2].getJoueur()) {
 				this.currentPlayer=v[2];
 
 				nbActions--;
 			}
 			break;
 		case left:
-			if(!v[3].getMer() && !v[3].getJoueur()) {
+			if(v[3].getTypeTerrain()!=typeTerrain.mer && !v[3].getJoueur()) {
 				this.currentPlayer=v[3];
 				nbActions--;
 			}
@@ -173,8 +174,8 @@ public class Model extends Observable {
 	 * Asseche la cellule du currentPlayer
 	 */
 	public void dry() {
-		if(currentPlayer.getEstInonde()) {
-		currentPlayer.setEstInonde(false);
+		if(currentPlayer.getTypeTerrain()==typeTerrain.inonde) {
+		currentPlayer.setTypeTerrain(typeTerrain.terre);
 		nbActions--;
 		}
 		notifyObservers();
