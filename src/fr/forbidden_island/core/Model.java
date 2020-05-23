@@ -279,6 +279,7 @@ public class Model extends Observable {
 	/**
 	 * Asseche la cellule du currentPlayer
 	 */
+	//remplacer currentPlayer par currentPlayerV2
 	public void dry() {
 		if(currentPlayer.getTypeTerrain()==typeTerrain.inonde) {
 		currentPlayer.setTypeTerrain(typeTerrain.terre);
@@ -287,6 +288,8 @@ public class Model extends Observable {
 		notifyObservers();
 		// else met un message "vous pouvez pas assecher ici" ?
 	}
+	
+	
 	
 	/**
 	 * 
@@ -319,6 +322,7 @@ public class Model extends Observable {
 		}
 	}
 	
+	//ne place pas au bon endroit celon la carte..
 	private void initJoueursV2(int nbJ) {
 		
 		if(nbJ>0)
