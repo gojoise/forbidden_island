@@ -5,12 +5,20 @@ import fr.forbidden_island.data.Cellule;
 import fr.forbidden_island.data.Joueur;
 import fr.forbidden_island.data.typeTerrain;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.Random;
 
 public class Model extends Observable {
+	
 	private final int dimGrilleAbsc = 35;
+	private final int dimGrilleAbscV2;
 	private final int dimGrilleOrd = 21;
+	private final int dimGrilleOrdV2;
 	private Cellule[][] grille;
+	private static final String FILENAME = new File("carte_ileX.txt").getAbsolutePath();
+	private BufferedReader fluxFichier = new BufferedReader(new FileReader("C:\\Users\\Arthur\\Desktop\\forbidden_island\\src\\carte_ileX.txt"));
 	public Cellule currentPlayer;
 	public Joueur currentPlayerV2;
 	private int nbJoueurs=1;
@@ -21,10 +29,20 @@ public class Model extends Observable {
 
 	
 	public Model() {
-
 		this.grille = new Cellule[dimGrilleAbsc][dimGrilleOrd];
+		
+		 String  DimAbscCarteFile;
+		 DimAbscCarteFile = fluxFichier.readLine();
+		 this.dimGrilleAbscV2= Integer.parseInt(DimAbscCarteFile);
+		 
+		 String  DimOrdCarteFile;
+		 DimOrdCarteFile = fluxFichier.readLine();
+		 this.dimGrilleOrdV2= Integer.parseInt(DimOrdCarteFile);		
 		init();//Lance l'initialisation
+		//initV2();//Lance l'initialisation
+		fluxFichier.close();
 	}
+	
 	/**
 	 * Fonction utilitaire pour le constructeur:
 	 * initialise la grille du modèle plus particulièrement le modèle entier
@@ -71,6 +89,39 @@ public class Model extends Observable {
 		
 	}
 	/**
+	 * Fonction utilitaire pour le constructeur:
+	 * initialise la grille de cellules du modèle en récuperant:
+	 *  -les positions des joueurs(depuis la classe Joueur)
+	 *  -la taille de la grille dans dimGrilleAbsc et dimGrilleOrd (depuis un fichier carte_ileX.txt)
+	 *  -le type de terrain de chacune des cases (depuis un fichier carte_ileX.txt) 
+	 */
+	private void initV2() {
+		
+		
+		 int typeTerrainCelFile;
+		 
+		
+		for (int x = 0; x < dimGrilleAbscV2; x++) {
+			for (int y = 0; y < dimGrilleOrdV2; y++) {
+				typeTerrainCelFile = fluxFichier.read();
+				// crée et donne des coords à une cellule
+				grille[x][y] = new Cellule(this, x , y );
+				// donne sont type de terrain initial à la cellule
+				if(typeTerrainCelFile==0)
+				grille[x][y].setTypeTerrain(typeTerrain.mer);
+				if(typeTerrainCelFile==1)
+					grille[x][y].setTypeTerrain(typeTerrain.terre);
+				if(typeTerrainCelFile==2)
+					grille[x][y].setTypeTerrain(typeTerrain.inonde);
+				// donne un état terre au cellules "centrales"					
+			}
+		}
+		//initialise les joueurs en les mettant dans les cellules de la grille et les rajoutant dans un tab joueurs[] avec leurs positions respectives.		
+		initJoueursV2(this.nbJoueurs);
+		currentPlayerV2=joueurs[0];
+	}
+	
+	/**
 	 *  pour tout la partie ile de la grille appelle a la fin du tour:
 	 * inonde
 	 * submerge
@@ -86,6 +137,7 @@ public class Model extends Observable {
 			}
 		}
 		changeJoueur();
+		//changeJoueurV2();
 	
 	}
 	/**
@@ -132,7 +184,7 @@ public class Model extends Observable {
 	
 	public int getNumJoueurV2() {
 		for(int i=0;i<joueurs.length;i++) {
-			if(joueurs[i].getAbsc()==currentPlayer.getAbsc() && joueurs[i].getOrd()==currentPlayer.getOrd()) {
+			if(joueurs[i].getAbsc()==currentPlayerV2.getAbsc() && joueurs[i].getOrd()==currentPlayerV2.getOrd()) {
 			return i;
 			}
 		}
