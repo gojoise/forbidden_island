@@ -12,7 +12,8 @@ public class Model extends Observable {
 	private final int dimGrilleOrd = 21;
 	private Cellule[][] grille;
 	public Cellule currentPlayer;
-	private int nbJoueurs=4;
+	public Joueur currentPlayerV2;
+	private int nbJoueurs=1;
 	public final int nbActionsmax=5;
 	public int nbActions = nbActionsmax;
 	public Joueur[] joueurs = new Joueur[this.nbJoueurs];
@@ -61,10 +62,12 @@ public class Model extends Observable {
 		}
 		//initialise les joueurs en les mettant dans les cellules de la grille et les rajoutant dans un tab joueurs[] avec leurs positions respectives.
 		initJoueurs(this.nbJoueurs);
-		currentPlayer=joueurs[0].getCellule();
+		currentPlayer=joueurs[0].getCellule();		
 		for (Joueur j : joueurs) {
 			grille[j.getCellule().getAbsc()][j.getCellule().getOrd()].setJoueur(true);
 		}
+		//initJoueursV2(this.nbJoueurs);
+		//currentPlayerV2=joueurs[0];
 		
 	}
 	/**
@@ -126,6 +129,18 @@ public class Model extends Observable {
 		return -1;
 		//attention		
 	}
+	
+	public int getNumJoueurV2() {
+		for(int i=0;i<joueurs.length;i++) {
+			if(joueurs[i].getAbsc()==currentPlayer.getAbsc() && joueurs[i].getOrd()==currentPlayer.getOrd()) {
+			return i;
+			}
+		}
+		System.out.println("ya un bug dans getNumJoueur()");
+		return -1;
+		//attention		
+	}
+	
 	/**
 	 * Change la case du currentplayer on récupère les vosines et on change la case selon la direction
 	 * @param d la direction récupérée dans le controler
@@ -166,6 +181,44 @@ public class Model extends Observable {
 		}
 		this.currentPlayer.setJoueur(true);
 		this.joueurs[numJoueur].setCellule(currentPlayer);
+		notifyObservers();
+		//System.out.println(nbActions); //affiche le nb d'actions restantes
+		}
+	}
+	
+	public void moveV2(Direction d) {
+		int numJoueur=getNumJoueur();
+		if(nbActions>0) {
+		Cellule [] v=currentPlayer.voisines(grille); //on récupère les voisines !!
+		switch (d) {
+		case up:
+			if(v[0].getTypeTerrain()!=typeTerrain.mer && !v[0].getJoueur()) {
+				this.currentPlayerV2.setOrd(currentPlayerV2.getOrd()-1);
+				nbActions--;
+		    }
+			break;
+		case right:
+			if(v[1].getTypeTerrain()!=typeTerrain.mer && !v[1].getJoueur()) {
+				this.currentPlayerV2.setAbsc(currentPlayerV2.getAbsc()+1);
+			    nbActions--;
+			}
+			break;
+		case down:
+			if(v[2].getTypeTerrain()!=typeTerrain.mer && !v[2].getJoueur()) {
+				this.currentPlayerV2.setOrd(currentPlayerV2.getOrd()+1);
+				nbActions--;
+			}
+			break;
+		case left:
+			if(v[3].getTypeTerrain()!=typeTerrain.mer && !v[3].getJoueur()) {
+				this.currentPlayerV2.setAbsc(currentPlayerV2.getAbsc()-1);
+				nbActions--;
+			}
+			break;
+		default:
+			break;
+		}
+		//this.joueurs[numJoueur]==currentPlayerV2; //inutile non ?..
 		notifyObservers();
 		//System.out.println(nbActions); //affiche le nb d'actions restantes
 		}
@@ -212,6 +265,40 @@ public class Model extends Observable {
 			System.out.println(joueurs[i].getName());
 		}
 	}
+	
+	private void initJoueursV2(int nbJ) {
+		
+		if(nbJ>0)
+			joueurs[0].setAbsc(dimGrilleAbsc/2);
+			joueurs[0].setOrd((dimGrilleOrd/2)-1);
+		if(nbJ>1)
+			joueurs[1].setAbsc(dimGrilleAbsc/2);
+			joueurs[1].setOrd((dimGrilleOrd/2)+1);
+		if(nbJ>2)
+			joueurs[2].setAbsc((dimGrilleAbsc/2)+1);
+			joueurs[2].setOrd(dimGrilleOrd/2);
+		if(nbJ>3)
+			joueurs[3].setAbsc((dimGrilleAbsc/2)-1);
+			joueurs[3].setOrd(dimGrilleOrd/2);
+		if(nbJ>4)
+			joueurs[4].setAbsc((dimGrilleAbsc/2)+1);
+			joueurs[4].setOrd((dimGrilleOrd/2)+1);
+		if(nbJ>5)
+			joueurs[5].setAbsc((dimGrilleAbsc/2)-1);
+			joueurs[5].setOrd((dimGrilleOrd/2)-1);
+		if(nbJ>6)
+			joueurs[6].setAbsc((dimGrilleAbsc/2)-1);
+			joueurs[6].setOrd((dimGrilleOrd/2)+1);
+		if(nbJ>7)
+			joueurs[7].setAbsc((dimGrilleAbsc/2)+1);
+			joueurs[7].setOrd((dimGrilleOrd/2)-1);
+		for(int i=0;i<nbJ;i++) {
+			//joueurs[i]=new Joueur();
+			
+			joueurs[i].setName("joueur n°"+(i+1));
+			System.out.println(joueurs[i].getName());
+		}
+	}
 	/**
 	 * Change le joueur en cours, i.e change le current player avec le nouveau joueur
 	 * si on est au joueur 1 on passe au joueur 2 etc , dans l'ordre croissant en revenant au premier une fois au dernier
@@ -234,6 +321,24 @@ public class Model extends Observable {
 			}
 		}
 	}
+		
+		public void changeJoueurV2() {
+			nbActions=nbActionsmax;
+			
+			if(currentPlayerV2==joueurs[nbJoueurs-1]) {
+				this.currentPlayerV2=joueurs[0];
+			System.out.println("42");
+			}
+			else {
+				for(int i=0;i<joueurs.length-1;i++) {
+					if(joueurs[i]==currentPlayerV2) {
+						this.currentPlayerV2=joueurs[i+1];
+						System.out.println("43");
+						break;
+					}
+				}
+			}
+		}
 	
 	
 	public int getDimGrilleAbsc() {

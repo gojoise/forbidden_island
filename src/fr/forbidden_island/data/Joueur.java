@@ -24,7 +24,6 @@ public class Joueur {
 	public void setCellule(Cellule c) {
 		this.cellule=c;
 	}
-	
 	public int getAbsc() {
 		return this.absc;
 	}
