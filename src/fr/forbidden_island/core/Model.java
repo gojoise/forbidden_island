@@ -27,7 +27,7 @@ public class Model extends Observable {
 	public Joueur[] joueurs = new Joueur[this.nbJoueurs];
 	Random r = new Random();
 
-	
+	//remplacer par initV2
 	public Model() {
 		this.grille = new Cellule[dimGrilleAbsc][dimGrilleOrd];
 		
@@ -127,6 +127,7 @@ public class Model extends Observable {
 	 * submerge
 	 * changeJoueur
 	 */
+	//remplacer par change joueurV2
 	public void endTurn() {
 		for (int x = (dimGrilleAbsc / 4)-1; x <= ((dimGrilleAbsc * 3) / 4); x++) {
 			for (int y = (dimGrilleOrd / 4)-1; y <= ((dimGrilleOrd * 3) / 4); y++) {
@@ -239,7 +240,7 @@ public class Model extends Observable {
 	}
 	
 	public void moveV2(Direction d) {
-		int numJoueur=getNumJoueur();
+		int numJoueur=getNumJoueurV2();
 		Cellule currentP = new Cellule(this, currentPlayerV2.getAbsc(), currentPlayerV2.getOrd());
 		if(nbActions>0) {
 		Cellule [] v=currentP.voisines(grille); //on récupère les voisines !!
