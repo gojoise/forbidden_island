@@ -27,7 +27,6 @@ public class IslandView extends JPanel implements Observer{
 
 	/**fonction pour dessiner la grille avec des couleurs différentes celon les propriétées des cellules de la grille.
 	 * 
-	 * 
 	 */
 	public void paintComponent(Graphics g) {
 		super.repaint();
