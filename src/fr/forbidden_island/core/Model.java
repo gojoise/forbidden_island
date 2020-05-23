@@ -240,29 +240,30 @@ public class Model extends Observable {
 	
 	public void moveV2(Direction d) {
 		int numJoueur=getNumJoueur();
+		Cellule currentP = new Cellule(this, currentPlayerV2.getAbsc(), currentPlayerV2.getOrd());
 		if(nbActions>0) {
-		Cellule [] v=currentPlayer.voisines(grille); //on récupère les voisines !!
+		Cellule [] v=currentP.voisines(grille); //on récupère les voisines !!
 		switch (d) {
 		case up:
-			if(v[0].getTypeTerrain()!=typeTerrain.mer && !v[0].getJoueur()) {
+			if(v[0].getTypeTerrain()!=typeTerrain.mer && !v[0].getJoueurV2()) {
 				this.currentPlayerV2.setOrd(currentPlayerV2.getOrd()-1);
 				nbActions--;
 		    }
 			break;
 		case right:
-			if(v[1].getTypeTerrain()!=typeTerrain.mer && !v[1].getJoueur()) {
+			if(v[1].getTypeTerrain()!=typeTerrain.mer && !v[1].getJoueurV2()) {
 				this.currentPlayerV2.setAbsc(currentPlayerV2.getAbsc()+1);
 			    nbActions--;
 			}
 			break;
 		case down:
-			if(v[2].getTypeTerrain()!=typeTerrain.mer && !v[2].getJoueur()) {
+			if(v[2].getTypeTerrain()!=typeTerrain.mer && !v[2].getJoueurV2()) {
 				this.currentPlayerV2.setOrd(currentPlayerV2.getOrd()+1);
 				nbActions--;
 			}
 			break;
 		case left:
-			if(v[3].getTypeTerrain()!=typeTerrain.mer && !v[3].getJoueur()) {
+			if(v[3].getTypeTerrain()!=typeTerrain.mer && !v[3].getJoueurV2()) {
 				this.currentPlayerV2.setAbsc(currentPlayerV2.getAbsc()-1);
 				nbActions--;
 			}

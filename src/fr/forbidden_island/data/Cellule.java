@@ -71,6 +71,14 @@ public class Cellule{
 		return this.Joueur;
 	}
 	
+	public boolean getJoueurV2(){
+		for(Joueur joueur : modele.joueurs) {
+			if(joueur.getAbsc()==this.x && joueur.getOrd()==this.y)			
+				return true;
+		}
+		return false;
+	}
+	
 	//faire getImage()
 	
 	public Joueur getJoueurInfo(){
