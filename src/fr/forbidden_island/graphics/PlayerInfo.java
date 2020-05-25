@@ -42,8 +42,10 @@ public class PlayerInfo extends JPanel implements Observer{
 	    this.add(info2,BorderLayout.CENTER);
 	    this.setPreferredSize(new Dimension(220, 30));
 	}
+	//remplace par "int num=modele.getNumJoueurV2();"
 	public void update() {
-		int num=modele.getNumJoueur();
+		//int num=modele.getNumJoueur();
+		int num=modele.getNumJoueurV2();
 		this.info1.setText(modele.joueurs[num].getName()); //change le "nom" du joueur à chaque fin de tour.
 		
 		this.info2.setText("Mouvement restants: "+ modele.getNbActionsString()); //affiche le nbActions du joueur corigé ;)

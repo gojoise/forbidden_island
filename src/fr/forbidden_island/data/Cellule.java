@@ -1,6 +1,6 @@
 package fr.forbidden_island.data;
 
-import fr.forbidden_island.Controls.Direction;
+
 import fr.forbidden_island.core.Model;
 
 public class Cellule{
@@ -9,7 +9,6 @@ public class Cellule{
 	private Model modele;
 	public final static int size=30;
 	private typeTerrain typeTerrainC;
-	private boolean Joueur=false;
 	//attribut image;
 	private Joueur jx;
 	/*classe cellule :
@@ -42,7 +41,7 @@ public class Cellule{
 		int x=this.getAbsc();
 		int y=this.getOrd();
 		res[0]=grille[x][y-1];//haut
-		res[1]=grille[(x+1)][y];//droite
+		res[1]=grille[x+1][y];//droite
 		res[2]=grille[x][y+1];//bas
 		res[3]=grille[x-1][y];//gauche
 
@@ -62,15 +61,6 @@ public class Cellule{
 	
 	public typeTerrain getTypeTerrain () {return this.typeTerrainC;}
 	
-	public void setJoueur(boolean etat) { 
-		this.Joueur = etat;
-		this.jx = new Joueur(this);
-	}
-	
-	public boolean getJoueur(){
-		return this.Joueur;
-	}
-	
 	public boolean getJoueurV2(){
 		for(Joueur joueur : modele.joueurs) {
 			if(joueur.getAbsc()==this.x && joueur.getOrd()==this.y)			
@@ -79,9 +69,11 @@ public class Cellule{
 		return false;
 	}
 	
-	//faire getImage()
+	//faire getImage() non ?
 	
+	// je ne sais plus à quoi devait servir cette fonction ...
 	public Joueur getJoueurInfo(){
+		//TODO
 		return this.jx;
 	}
 	
