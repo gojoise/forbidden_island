@@ -36,49 +36,8 @@ public class IslandView extends JPanel implements Observer{
 	/**fonction pour dessiner la grille avec des couleurs différentes celon les propriétées des cellules de la grille.
 	 * 
 	 */
-	public void pre_paintComponent(Graphics g) {
-		super.repaint();
-		//Cellule [][] cellules = modele.getGrille();
-		for(int x=0;x<modele.getDimGrilleAbsc();x++) {
-			for(int y=0;y<modele.getDimGrilleOrd();y++) {
-		
-				if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.mer) {
-					g.drawImage(r.getImage(0), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
-				}
-				else if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.inonde) {
-					g.drawImage(r.getImage(2), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
-				} 
-				else if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.terre){
-					g.drawImage(r.getImage(1), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
-				}
-			}
-			for(int i=0;i<modele.getNbJoueurs();i++) {
-				g.drawImage(r.getImage(3), modele.joueurs[i].getAbsc()*modele.getSize(), modele.joueurs[i].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
-					if(i==0)
-						g.setColor(Color.magenta);
-					if(i==1 )
-						g.setColor(Color.black);
-					if(i==2)
-						g.setColor(Color.darkGray);
-					if(i==3)
-						g.setColor(Color.lightGray);
-					if(i==4)
-						g.setColor(Color.RED);
-					if(i==5)
-						g.setColor(Color.orange);
-					if(i==6)
-						g.setColor(Color.yellow);
-					if(i==7)
-						g.setColor(Color.PINK);
-			}
-		}
-		
-	
-}
-	
 	public void paintComponent(Graphics g) {
 		super.repaint();
-		
 		for(int x=0;x<modele.getDimGrilleAbsc();x++) {
 			for(int y=0;y<modele.getDimGrilleOrd();y++) {
 				if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.mer) {
@@ -90,14 +49,12 @@ public class IslandView extends JPanel implements Observer{
 				else if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.inonde) {
 					g.drawImage(r.getImage(2), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
-				else {
 					for(int i=0;i<modele.getNbJoueurs();i++) {
 						g.drawImage(r.getImage(3), modele.joueurs[i].getAbsc()*modele.getSize(), modele.joueurs[i].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 					}
 				}
 			}
 		}
-	}
 
 
 
