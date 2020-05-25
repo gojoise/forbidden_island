@@ -1,6 +1,7 @@
 package fr.forbidden_island.data;
 
 
+//
 public class Joueur {
 	private String nom;
 	private int absc;

@@ -12,6 +12,7 @@ import java.io.FileReader;
 //pour l'ile aleatoire et inonde aléatoire..
 import java.util.Random;
 
+//
 public class Model extends Observable {
 	
 	private final int dimGrilleAbsc = 35;

@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import fr.forbidden_island.core.Observer;
 import fr.forbidden_island.core.Model;
+import fr.forbidden_island.data.Ressources;
 import fr.forbidden_island.data.typeTerrain;;
 /*
  * Correspond à VueGrille ou autre élement de la vue, nom à modifier pour être plus explicite*
@@ -42,24 +43,17 @@ public class IslandView extends JPanel implements Observer{
 			for(int y=0;y<modele.getDimGrilleOrd();y++) {
 		
 				if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.mer) {
-					g.drawRect(x, y, modele.getSize(), modele.getSize());
-					g.fillRect(x, y, modele.getSize(), modele.getSize());
-					g.setColor(Color.blue);
+					g.drawImage(r.getImage(0), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
-				if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.inonde) {
-					g.drawRect(x, y, modele.getSize(), modele.getSize());
-					g.fillRect(x, y, modele.getSize(), modele.getSize());
-					g.setColor(Color.CYAN);
+				else if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.inonde) {
+					g.drawImage(r.getImage(2), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				} 
-				if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.terre){
-					g.drawRect(x, y, modele.getSize(), modele.getSize());
-					g.fillRect(x, y, modele.getSize(), modele.getSize());
-					g.setColor(Color.green);  
+				else if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.terre){
+					g.drawImage(r.getImage(1), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
 			}
 			for(int i=0;i<modele.getNbJoueurs();i++) {
-					g.drawRect(modele.joueurs[i].getAbsc(), modele.joueurs[i].getOrd(), modele.getSize(), modele.getSize());
-					g.fillRect(modele.joueurs[i].getAbsc(), modele.joueurs[i].getOrd(), modele.getSize(), modele.getSize());
+				g.drawImage(r.getImage(3), modele.joueurs[i].getAbsc()*modele.getSize(), modele.joueurs[i].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 					if(i==0)
 						g.setColor(Color.magenta);
 					if(i==1 )
@@ -84,21 +78,21 @@ public class IslandView extends JPanel implements Observer{
 	
 	public void paintComponent(Graphics g) {
 		super.repaint();
-		Cellule [][] cellules = modele.getGrille();
-		for(Cellule [] lignes: cellules) {
-			for(Cellule c : lignes) {
-				if(c.getTypeTerrain()==typeTerrain.mer) {
-					g.drawImage(r.getImage(0), c.getAbsc()*c.getSize(), c.getOrd()*c.getSize(), c.getSize(), c.getSize(),this);
+		
+		for(int x=0;x<modele.getDimGrilleAbsc();x++) {
+			for(int y=0;y<modele.getDimGrilleOrd();y++) {
+				if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.mer) {
+					g.drawImage(r.getImage(0), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
-				else if(c.getTypeTerrain()==typeTerrain.terre) {
-					g.drawImage(r.getImage(1), c.getAbsc()*c.getSize(), c.getOrd()*c.getSize(), c.getSize(), c.getSize(),this);
+				else if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.terre) {
+					g.drawImage(r.getImage(1), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
-				else if(c.getTypeTerrain()==typeTerrain.inonde) {
-					g.drawImage(r.getImage(2), c.getAbsc()*c.getSize(), c.getOrd()*c.getSize(), c.getSize(), c.getSize(),this);
+				else if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.inonde) {
+					g.drawImage(r.getImage(2), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
 				else {
-					if(c.getJoueur()) {
-						g.drawImage(r.getImage(3), c.getAbsc()*c.getSize(), c.getOrd()*c.getSize(), c.getSize(), c.getSize(),this);
+					for(int i=0;i<modele.getNbJoueurs();i++) {
+						g.drawImage(r.getImage(3), modele.joueurs[i].getAbsc()*modele.getSize(), modele.joueurs[i].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 					}
 				}
 			}

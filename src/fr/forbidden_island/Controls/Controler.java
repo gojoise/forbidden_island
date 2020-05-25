@@ -10,7 +10,7 @@ import fr.forbidden_island.data.Joueur;
 
 public class Controler implements ActionListener,KeyListener{
 	Model modele;
-	
+	//
 	public Controler(Model mod) {
 		this.modele=mod;
 	}
