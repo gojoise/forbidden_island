@@ -90,9 +90,18 @@ public class IslandView extends JPanel implements Observer{
 		for(Cellule [] lignes: cellules) {
 			for(Cellule c : lignes) {
 				if(c.getTypeTerrain()==typeTerrain.mer) {
-					g.drawImage(r.getImage(0), c.getAbsc(), c.getOrd(), c.getSize(), c.getSize(),this);
-						
-
+					g.drawImage(r.getImage(0), c.getAbsc()*c.getSize(), c.getOrd()*c.getSize(), c.getSize(), c.getSize(),this);
+				}
+				else if(c.getTypeTerrain()==typeTerrain.terre) {
+					g.drawImage(r.getImage(1), c.getAbsc()*c.getSize(), c.getOrd()*c.getSize(), c.getSize(), c.getSize(),this);
+				}
+				else if(c.getTypeTerrain()==typeTerrain.inonde) {
+					g.drawImage(r.getImage(2), c.getAbsc()*c.getSize(), c.getOrd()*c.getSize(), c.getSize(), c.getSize(),this);
+				}
+				else {
+					if(c.getJoueur()) {
+						g.drawImage(r.getImage(3), c.getAbsc()*c.getSize(), c.getOrd()*c.getSize(), c.getSize(), c.getSize(),this);
+					}
 				}
 			}
 		}
