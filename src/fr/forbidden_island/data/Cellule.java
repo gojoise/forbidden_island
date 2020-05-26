@@ -73,6 +73,7 @@ public class Cellule{
 	//faire getImage() non ?
 	
 	// je ne sais plus à quoi devait servir cette fonction ...
+	//>> Récupère l'objet joueur sur une cellule :)
 	public Joueur getJoueurInfo(){
 		//TODO
 		return this.jx;
