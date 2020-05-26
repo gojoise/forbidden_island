@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -75,20 +76,13 @@ public class Fenetre extends JFrame implements Observer{
 		}
 	
 	
-	public void gameOver() {
-		this.getContentPane().removeAll();// Utile pour supprimer l'ancien écran de fin pour éviter de supperposer les textes
-		this.remove(this);
-		JLabel label = new JLabel("Game over *_*");
-		JLabel label2 = new JLabel("Press Space to continue"); // On définit un nouveau message
-		label.setFont(new Font("Verdana", 1, 20));
-		label2.setFont(new Font("Verdana", 1, 20));
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label2.setVerticalAlignment(SwingConstants.BOTTOM); // on le place en bas
-		label.setSize(this.getSize());
-		label2.setSize(this.getSize());
-		this.getContentPane().add(label);
-		this.getContentPane().add(label2);// on l'ajoute à l'interface graphique
-		this.repaint();
+	public void gameOver(String nbJ) {
+		JOptionPane jop1;
+		jop1 = new JOptionPane();
+		jop1.showMessageDialog(null, "Le joueur N°"+nbJ+" a perdu, RIP !", "Un joueur a perdu !", JOptionPane.INFORMATION_MESSAGE);
+
+		
+		
 		}
 	
 	
@@ -102,7 +96,7 @@ public class Fenetre extends JFrame implements Observer{
 			Cellule [][] grille=modeleTest.getGrille();
 			Cellule c=grille[joueurTest.getAbsc()][joueurTest.getOrd()];
 			if(c.getTypeTerrain()==typeTerrain.mer)
-			gameOver();
+			gameOver(Integer.toString(i+1));
 		}
 		this.repaint();
 	}
