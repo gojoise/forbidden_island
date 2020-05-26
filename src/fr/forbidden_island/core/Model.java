@@ -25,7 +25,7 @@ public class Model extends Observable {
 	private final int CarreCentralOrdMin =dimGrilleOrd / 4;
 //	private final int dimGrilleOrdV2;
 	private Cellule[][] grille;
-	private  String FILENAME = "/forbidden_island/src/carte_ileX.txt";
+	private  String FILENAME = "/forbidden_island/src/carte_ileX.txt";// essaie plutôt "src/carte_ileX.txt"
 //  private BufferedReader fluxFichier = new BufferedReader(new FileReader(FILENAME));
 	public Cellule currentPlayer;
 	public int currentPlayerV2;
@@ -139,7 +139,7 @@ public class Model extends Observable {
 				
 			}
 		}
-		
+		purgePlayers();
 		nbActions=nbActionsmax;		
 		currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;
 	
@@ -175,8 +175,10 @@ public class Model extends Observable {
 	 */
 	private void purgePlayers() {
 		for(Joueur j : joueurs) {
-			if(grille[j.getAbsc()][j.getOrd()].getTypeTerrain()==typeTerrain.mer)
+			if(grille[j.getAbsc()][j.getOrd()].getTypeTerrain()==typeTerrain.mer && !(j.estElimine())) {
 				j.setOut();
+				System.out.println("Un joueur a été éliminé!");
+			}
 		}
 	}
 	/**

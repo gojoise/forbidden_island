@@ -25,7 +25,6 @@ public class Cellule{
 	
 	public Cellule(Model mod,int x,int y) {
 		//charge l' images depuis classe image dans cette cellule
-		//ce
 		this.x=x;
 		this.y=y;
 		this.modele=mod;

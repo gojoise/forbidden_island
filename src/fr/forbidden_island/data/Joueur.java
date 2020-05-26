@@ -43,4 +43,8 @@ public class Joueur {
 		this.isOut=true;
 	}
 	
+	public boolean estElimine() {
+		return isOut;
+	}
+	
 }
