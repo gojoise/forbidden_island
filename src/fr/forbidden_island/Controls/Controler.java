@@ -23,8 +23,6 @@ zone est alors en sursis,
 	 */
 	public void actionPerformed(ActionEvent e) {
 		modele.endTurn();
-		modele.notifyObservers();
-		
 	}
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub

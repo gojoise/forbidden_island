@@ -138,11 +138,13 @@ public class Model extends Observable {
 				inonde(x, y);
 				
 			}
-		}
-		purgePlayers();
+		}		
 		nbActions=nbActionsmax;		
 		currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;
-	
+		notifyObservers();	
+		purgePlayers();
+
+		
 	}
 	/**
 	 * Inonde plusieurs cellules aléatoirement après clic sur le bouton fin de tour, fonction utilitaire à endTurn
