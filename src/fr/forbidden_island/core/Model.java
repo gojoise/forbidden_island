@@ -27,7 +27,6 @@ public class Model extends Observable {
 	private Cellule[][] grille;
 	private  String FILENAME = "/forbidden_island/src/carte_ileX.txt";// essaie plutôt "src/carte_ileX.txt"
 //  private BufferedReader fluxFichier = new BufferedReader(new FileReader(FILENAME));
-	public Cellule currentPlayer;
 	public int currentPlayerV2;
 	private int nbJoueurs=4;
 	public final int nbActionsmax=5;
@@ -127,7 +126,8 @@ public class Model extends Observable {
 	 *  pour tout la partie ile de la grille appelle a la fin du tour:
 	 * inonde
 	 * submerge
-	 * changeJoueur
+	 * changePlayer
+	 * purgePlayer
 	 */
 	
 	public void endTurn() {
@@ -140,7 +140,8 @@ public class Model extends Observable {
 			}
 		}		
 		nbActions=nbActionsmax;		
-		currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;
+		//currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;
+		currentPlayerV2=changePlayer(currentPlayerV2);
 		notifyObservers();	
 		purgePlayers();
 
@@ -172,6 +173,33 @@ public class Model extends Observable {
 			grille[x][y].setTypeTerrain(typeTerrain.mer);
 		
 	}
+	/**
+	 * si le joueur en cours est le dernier (nbJoueur-1)
+	 *   si le suivant càd le premier est eliminé
+	 *    alors return Changeplayer(0)
+	 *   sinon return 0
+	 * sinon
+	 * 	si le suivant est eliminé
+	 *    alors return changePlayer(current+1)
+	 *  sinon return current++;
+	 * @param current le joueur en cours
+	 * @return le nouveau joueur courant
+	 */
+	private int changePlayer(int current) {
+			if(current==nbJoueurs-1) {
+				if(joueurs[0].estElimine()) {
+					return changePlayer(0);
+				}else {
+					return 0;
+				}
+			}else {
+				if(joueurs[current+1].estElimine()) {
+					return changePlayer(current+1);
+				}else {
+					return current++;
+				}
+			}
+		}
 	/**
 	 * fonction utilitaire à endTurn, rend tout les joueurs dans la mer éliminés
 	 */
