@@ -145,11 +145,11 @@ public class Model extends Observable {
 	
 	}
 	/**
-	 * Inonde plusieurs cellules aléatoirement après clic sur le bouton fin de tour
+	 * Inonde plusieurs cellules aléatoirement après clic sur le bouton fin de tour, fonction utilitaire à endTurn
 	 * @param x = coord Absc
 	 * @param y = coord Ord
 	 */
-	public void inonde(int x, int y) {
+	private void inonde(int x, int y) {
 		float t = r.nextFloat();
 		int cpt = 0;
 		for (Cellule c : grille[x][y].voisines(grille)) {
@@ -161,22 +161,28 @@ public class Model extends Observable {
 	}
 	
 	/**
-	 * Submerge les cellules inondés
+	 * Submerge les cellules inondés, fonction utilitaire à endTurn
 	 * @param x = coord Absc
 	 * @param y = coord Ord
 	 */
-	public void submerge(int x,int y) {
+	private void submerge(int x,int y) {
 		if(grille[x][y].getTypeTerrain() == typeTerrain.inonde)
 			grille[x][y].setTypeTerrain(typeTerrain.mer);
 		
 	}
-
+	/**
+	 * fonction utilitaire à endTurn, rend tout les joueurs dans la mer éliminés
+	 */
+	private void purgePlayers() {
+		for(Joueur j : joueurs) {
+			if(grille[j.getAbsc()][j.getOrd()].getTypeTerrain()==typeTerrain.mer)
+				j.setOut();
+		}
+	}
 	/**
 	 * Recherche dans la liste quel est le joueur correspondant à currentPlayer
 	 * @return le numéro du joueur en cours
 	 */
-
-	
 	public int getNumJoueurV2() {
 		
 			return this.currentPlayerV2;

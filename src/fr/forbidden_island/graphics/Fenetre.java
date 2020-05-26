@@ -79,7 +79,7 @@ public class Fenetre extends JFrame implements Observer{
 	public void gameOver(String nbJ) {
 		JOptionPane jop1;
 		jop1 = new JOptionPane();
-		jop1.showMessageDialog(null, "Le joueur N°"+nbJ+" a perdu, RIP !", "Un joueur a perdu !", JOptionPane.INFORMATION_MESSAGE);
+		jop1.showMessageDialog(null, "Le joueur N°"+nbJ+" a perdu RIP !", "Un joueur a perdu !", JOptionPane.INFORMATION_MESSAGE);
 
 		
 		
@@ -95,7 +95,7 @@ public class Fenetre extends JFrame implements Observer{
 			Joueur joueurTest=modeleTest.joueurs[i];
 			Cellule [][] grille=modeleTest.getGrille();
 			Cellule c=grille[joueurTest.getAbsc()][joueurTest.getOrd()];
-			if(c.getTypeTerrain()==typeTerrain.mer)
+			if(c.getTypeTerrain()==typeTerrain.mer)//Rajouter une condition pour ne pas tester les joueurs éliminés
 			gameOver(Integer.toString(i+1));
 		}
 		this.repaint();

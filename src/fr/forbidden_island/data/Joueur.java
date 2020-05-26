@@ -7,10 +7,13 @@ public class Joueur {
 	private int absc;
 	private int ord;
 	
+	private boolean isOut; //pour savoir si il est éliminé
+	
 	
 	public Joueur(int x,int y) {
 		this.absc=x;
 		this.ord=y;
+		this.isOut=false;
 	}
 	
 	public String getName() {
@@ -34,6 +37,10 @@ public class Joueur {
 	
 	public void setOrd(int y) {
 		this.absc=y;
+	}
+	
+	public void setOut() {
+		this.isOut=true;
 	}
 	
 }
