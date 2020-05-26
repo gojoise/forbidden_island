@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import fr.forbidden_island.core.Model;
 import fr.forbidden_island.core.Observer;
 import fr.forbidden_island.data.Cellule;
+import fr.forbidden_island.data.Joueur;
 import fr.forbidden_island.data.typeTerrain;
 
 /**
@@ -78,7 +79,7 @@ public class Fenetre extends JFrame implements Observer{
 		this.getContentPane().removeAll();// Utile pour supprimer l'ancien écran de fin pour éviter de supperposer les textes
 		this.remove(this);
 		JLabel label = new JLabel("Game over *_*");
-		JLabel label2 = new JLabel("Press Space to reset"); // On définit un nouveau message
+		JLabel label2 = new JLabel("Press Space to continue"); // On définit un nouveau message
 		label.setFont(new Font("Verdana", 1, 20));
 		label2.setFont(new Font("Verdana", 1, 20));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -92,9 +93,17 @@ public class Fenetre extends JFrame implements Observer{
 	
 	
 	public void update() {
-		Cellule c = new Cellule(view.getModele(), view.getModele().joueurs[view.getModele().getNumJoueurV2()].getAbsc(), view.getModele().joueurs[view.getModele().currentPlayerV2].getOrd());
-		if(c.getTypeTerrain()==typeTerrain.mer)
-		gameOver();
+		Model modeleTest=view.getModele();
+		int nbJ=modeleTest.getNbJoueurs();
+		
+		
+		for(int i=0;i<nbJ;i++) {
+			Joueur joueurTest=modeleTest.joueurs[i];
+			Cellule [][] grille=modeleTest.getGrille();
+			Cellule c=grille[joueurTest.getAbsc()][joueurTest.getOrd()];
+			if(c.getTypeTerrain()==typeTerrain.mer)
+			gameOver();
+		}
 		this.repaint();
 	}
 }
