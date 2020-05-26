@@ -314,7 +314,7 @@ public class Model extends Observable {
 	}
 	
 	public int getSize() {
-		return Cellule.size;
+		return Cellule.getSize();
 	}
 	
 

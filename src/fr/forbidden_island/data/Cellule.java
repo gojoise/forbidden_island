@@ -55,7 +55,7 @@ public class Cellule{
 	
 	public int getOrd () {return this.y;}
 	
-	public int getSize () {return size;}
+	public static int getSize () {return size;}
 
 	public void setTypeTerrain (typeTerrain t) {this.typeTerrainC=t;}
 	
