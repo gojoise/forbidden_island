@@ -76,13 +76,19 @@ public class Fenetre extends JFrame implements Observer{
 	}
 
 
-	public void gameOver(String nbJ) {
+	private void purgeInfo(String nbJ) {
 		JOptionPane jop1;
 		jop1 = new JOptionPane();
 		jop1.showMessageDialog(null, "Le joueur N°"+nbJ+" a perdu RIP !", "Un joueur a perdu !", JOptionPane.INFORMATION_MESSAGE);
-
-
-
+	}
+	
+	private void endInfo() {
+		Model modele=view.getModele();
+		if (modele.ending()) {
+			JOptionPane jop1;
+			jop1 = new JOptionPane();
+			jop1.showMessageDialog(null, "La partie est terminée !!", "Partie terminée", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 
 
@@ -97,9 +103,10 @@ public class Fenetre extends JFrame implements Observer{
 			Cellule c=grille[joueurTest.getAbsc()][joueurTest.getOrd()];
 			if(!(joueurTest.estElimine())) {
 				if(c.getTypeTerrain()==typeTerrain.mer )//Rajouter une condition pour ne pas tester les joueurs éliminés
-					gameOver(Integer.toString(i+1));
+					purgeInfo(Integer.toString(i+1));
 			}
 		}
+		endInfo();
 		this.repaint();
 	}
 }
