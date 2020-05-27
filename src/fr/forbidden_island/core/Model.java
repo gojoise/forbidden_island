@@ -142,6 +142,7 @@ public class Model extends Observable {
 		nbActions=nbActionsmax;		
 		//currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;
 		currentPlayerV2=changePlayer(currentPlayerV2);
+		System.out.println("Le nouveau joueur est :"+ (currentPlayerV2+1));
 		notifyObservers();	
 		purgePlayers();
 
@@ -196,7 +197,7 @@ public class Model extends Observable {
 				if(joueurs[current+1].estElimine()) {
 					return changePlayer(current+1);
 				}else {
-					return current++;
+					return (current+1);
 				}
 			}
 		}
