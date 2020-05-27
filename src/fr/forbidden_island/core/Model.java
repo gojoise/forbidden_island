@@ -85,9 +85,8 @@ public class Model extends Observable {
 		//initialise les joueurs en les mettant dans les cellules de la grille et les rajoutant dans un tab joueurs[] avec leurs positions respectives.		
 		initJoueursV2(this.nbJoueurs);
 		currentPlayerV2=0;
-		System.out.println("le j0 absc:"+joueurs[0].getAbsc());
-		System.out.println("ord:"+joueurs[0].getOrd());
-		//System.out.println();
+		//System.out.println("le j0 absc:"+joueurs[0].getAbsc());
+		//System.out.println("ord:"+joueurs[0].getOrd());
 
 	}
 	/**
@@ -231,18 +230,17 @@ public class Model extends Observable {
 
 		if(nbActions>0) {
 			Cellule [] v=grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()].voisines(grille); //on récupère les voisines !!
+			
+			System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
+			
 			switch (d) {
 			case up:
-				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()-1].getTypeTerrain()!=typeTerrain.mer) {  
-					//				for(int i=0;i<nbJoueurs;i++) {
-					//					if(currentPlayerV2!=i){
-					//						if(joueurs[currentPlayerV2].getAbsc()!=joueurs[i].getAbsc() && joueurs[currentPlayerV2].getOrd()-1!=joueurs[i].getOrd()) {
+				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()-1].getTypeTerrain()!=typeTerrain.mer && !v[1].getJoueurV2()) {  
 					this.joueurs[currentPlayerV2].setOrd(joueurs[currentPlayerV2].getOrd()-1);
+					
+					System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
+					
 					nbActions--;
-
-					//}	
-					//}					
-					//} 
 				}	
 
 				break;
@@ -250,11 +248,17 @@ public class Model extends Observable {
 				if(grille[joueurs[currentPlayerV2].getAbsc()+1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=typeTerrain.mer && !v[1].getJoueurV2()) {
 					this.joueurs[currentPlayerV2].setAbsc(joueurs[currentPlayerV2].getAbsc()+1);
 					nbActions--;
+					
+					System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
+					
 				}
 				break;
 			case down:
 				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()+1].getTypeTerrain()!=typeTerrain.mer && !v[2].getJoueurV2()) {
 					this.joueurs[currentPlayerV2].setOrd(joueurs[currentPlayerV2].getOrd()+1);
+					
+					System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
+					
 					nbActions--;
 				}
 				break;
@@ -262,6 +266,9 @@ public class Model extends Observable {
 				if(grille[joueurs[currentPlayerV2].getAbsc()-1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=typeTerrain.mer && !v[3].getJoueurV2()) {
 					this.joueurs[currentPlayerV2].setAbsc(joueurs[currentPlayerV2].getAbsc()-1);
 					nbActions--;
+					
+					System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
+					
 				}
 				break;
 			default:
@@ -275,9 +282,8 @@ public class Model extends Observable {
 	 * Asseche la cellule du currentPlayer
 	 */
 	public void dry() {
-		Cellule celluleJoueur = new Cellule(this, joueurs[currentPlayerV2].getAbsc(), joueurs[currentPlayerV2].getOrd());
-		if(celluleJoueur.getTypeTerrain()==typeTerrain.inonde) {
-			celluleJoueur.setTypeTerrain(typeTerrain.terre);
+		if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()==typeTerrain.inonde && nbActions>0) {
+			grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()].setTypeTerrain(typeTerrain.terre);
 			nbActions--;
 		}
 		notifyObservers();
