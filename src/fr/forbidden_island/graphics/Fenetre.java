@@ -77,7 +77,7 @@ public class Fenetre extends JFrame implements Observer{
 	private void purgeInfo(String nbJ) {
 		JOptionPane jop1;
 		jop1 = new JOptionPane();
-		jop1.showMessageDialog(null, "Le joueur N:"+nbJ+" a perdu RIP !", "Un joueur a perdu !", JOptionPane.INFORMATION_MESSAGE);
+		jop1.showMessageDialog(null, "Le joueur N°"+nbJ+" a perdu RIP !", "Un joueur a perdu !", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	private void endInfo() {

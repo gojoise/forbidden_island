@@ -317,7 +317,7 @@ public class Model extends Observable {
 			this.joueurs[3]=new Joueur((dimGrilleAbsc/2)+1,(dimGrilleOrd/2)-1);	
 		}
 		for(int i=0;i<nbJ;i++) {
-			this.joueurs[i].setName("joueur n:"+(i+1));
+			this.joueurs[i].setName("joueur n°"+(i+1));
 			//System.out.println(joueurs[i].getName());
 		}
 	}
