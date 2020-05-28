@@ -21,7 +21,7 @@ import fr.forbidden_island.data.typeTerrain;
 
 /**
  * 
- * @author Mathieu & Arthur Correspond à CVue de Conway.java
+ * @author Mathieu & Arthur Correspond a' CVue de Conway.java
  *
  */
 

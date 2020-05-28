@@ -7,7 +7,7 @@ public class Joueur {
 	private int absc;
 	private int ord;
 	
-	private boolean isOut; //pour savoir si il est éliminé
+	private boolean isOut; //pour savoir si il est e'limine'
 	
 	
 	public Joueur(int x,int y) {

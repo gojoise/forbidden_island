@@ -16,7 +16,7 @@ import fr.forbidden_island.core.Model;
 import fr.forbidden_island.data.Ressources;
 import fr.forbidden_island.data.typeTerrain;;
 /*
- * Correspond à VueGrille ou autre élement de la vue, nom à modifier pour être plus explicite*
+ * Correspond a' VueGrille ou autre e'lement de la vue, nom a' modifier pour e'tre plus explicite*
  *
  */
 public class IslandView extends JPanel implements Observer{
@@ -26,14 +26,14 @@ public class IslandView extends JPanel implements Observer{
 	public IslandView(Model mod) {
 		this.modele = mod;
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
-		modele.addObserver(this); //ajoute à observers 
+		modele.addObserver(this); //ajoute a' observers 
 		this.setPreferredSize(new Dimension(1080, 620));
 		r=new Ressources();
 	}
 	
 	public Model getModele() {return this.modele;}
 
-	/**fonction pour dessiner la grille avec des couleurs différentes celon les propriétées des cellules de la grille.
+	/**fonction pour dessiner la grille avec des couleurs diffe'rentes celon les proprie'te'es des cellules de la grille.
 	 * 
 	 */
 	public void paintComponent(Graphics g) {

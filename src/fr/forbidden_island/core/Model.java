@@ -25,7 +25,7 @@ public class Model extends Observable {
 	private final int CarreCentralOrdMin =dimGrilleOrd / 4;
 	//	private final int dimGrilleOrdV2;
 	private Cellule[][] grille;
-	private  String FILENAME = "/forbidden_island/src/carte_ileX.txt";// essaie plutôt "src/carte_ileX.txt"
+	private  String FILENAME = "/forbidden_island/src/carte_ileX.txt";// essaie pluto't "src/carte_ileX.txt"
 	//  private BufferedReader fluxFichier = new BufferedReader(new FileReader(FILENAME));
 	public int currentPlayerV2;
 	private int nbJoueurs=4;
@@ -54,7 +54,7 @@ public class Model extends Observable {
 
 	/**
 	 * Fonction utilitaire pour le constructeur:
-	 * initialise la grille du modèle plus particulièrement le modèle entier
+	 * initialise la grille du mode'le plus particulie'rement le mode'le entier
 	 */
 	private void init() {
 
@@ -67,7 +67,7 @@ public class Model extends Observable {
 					grille[x][y].setTypeTerrain(typeTerrain.terre);
 				}
 				else grille[x][y].setTypeTerrain(typeTerrain.mer);
-				// rend plus "aleatoire les contours de l'ile  (carré central)
+				// rend plus "aleatoire les contours de l'ile  (carre' central)
 				//			    float t = r.nextFloat();
 				//                for (float i = 2; i >= 0; i--) {
 				//                    if (!(x > (CarreCentralAbscMin + i) && x < (CarreCentralAbscMax - i) && y > (CarreCentralOrdMin + i) && y < (CarreCentralOrdMax - i))) {
@@ -90,7 +90,7 @@ public class Model extends Observable {
 	}
 	/**
 	 * Fonction utilitaire pour le constructeur:
-	 * initialise la grille de cellules du modèle en récuperant:
+	 * initialise la grille de cellules du mode'le en re'cuperant:
 	 *  -les positions des joueurs(depuis la classe Joueur)
 	 *  -la taille de la grille dans dimGrilleAbsc et dimGrilleOrd (depuis un fichier carte_ileX.txt)
 	 *  -le type de terrain de chacune des cases (depuis un fichier carte_ileX.txt) 
@@ -147,7 +147,7 @@ public class Model extends Observable {
 		}
 	}
 	/**
-	 * Inonde plusieurs cellules aléatoirement après clic sur le bouton fin de tour, fonction utilitaire à endTurn
+	 * Inonde plusieurs cellules ale'atoirement apre's clic sur le bouton fin de tour, fonction utilitaire a' endTurn
 	 * @param x = coord Absc
 	 * @param y = coord Ord
 	 */
@@ -163,7 +163,7 @@ public class Model extends Observable {
 	}
 
 	/**
-	 * Submerge les cellules inondés, fonction utilitaire à endTurn
+	 * Submerge les cellules inonde's, fonction utilitaire à endTurn
 	 * @param x = coord Absc
 	 * @param y = coord Ord
 	 */
@@ -174,11 +174,11 @@ public class Model extends Observable {
 	}
 	/**
 	 * si le joueur en cours est le dernier (nbJoueur-1)
-	 *   si le suivant càd le premier est eliminé
+	 *   si le suivant ca'd le premier est elimine'
 	 *    alors return Changeplayer(0)
 	 *   sinon return 0
 	 * sinon
-	 * 	si le suivant est eliminé
+	 * 	si le suivant est elimine'
 	 *    alors return changePlayer(current+1)
 	 *  sinon return current++;
 	 * @param current le joueur en cours
@@ -200,19 +200,19 @@ public class Model extends Observable {
 		}
 	}
 	/**
-	 * fonction utilitaire à endTurn, rend tout les joueurs dans la mer éliminés
+	 * fonction utilitaire a' endTurn, rend tout les joueurs dans la mer e'limine's
 	 */
 	private void purgePlayers() {
 		for(Joueur j : joueurs) {
 			if(grille[j.getAbsc()][j.getOrd()].getTypeTerrain()==typeTerrain.mer && !(j.estElimine())) {
 				j.setOut();
-				System.out.println("Un joueur a été éliminé!");
+				System.out.println("Un joueur a e'te' e'limine'!");
 			}
 		}
 	}
 	/**
-	 * Recherche dans la liste quel est le joueur correspondant à currentPlayer
-	 * @return le numéro du joueur en cours
+	 * Recherche dans la liste quel est le joueur correspondant a' currentPlayer
+	 * @return le nume'ro du joueur en cours
 	 */
 	public int getNumJoueurV2() {
 
@@ -220,8 +220,8 @@ public class Model extends Observable {
 	}
 
 	/**
-	 * Change la case du currentplayer on récupère les vosines et on change la case selon la direction
-	 * @param d la direction récupérée dans le controler
+	 * Change la case du currentplayer on re'cupe're les vosines et on change la case selon la direction
+	 * @param d la direction re'cupe're'e dans le controler
 	 */
 
 	// attention !! les joueurs peuvent se passer dessus les uns les autres
@@ -229,16 +229,11 @@ public class Model extends Observable {
 
 		if(nbActions>0) {
 			Cellule [] v=grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()].voisines(grille); //on récupère les voisines !!
-			
 			//System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"   ord joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
-			
 			switch (d) {
 			case up:
 				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()-1].getTypeTerrain()!=typeTerrain.mer && !v[0].getJoueurV2()) {  
 					this.joueurs[currentPlayerV2].setOrd(joueurs[currentPlayerV2].getOrd()-1);
-					
-					//System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"   ord joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
-					
 					nbActions--;
 				}	
 
@@ -247,17 +242,11 @@ public class Model extends Observable {
 				if(grille[joueurs[currentPlayerV2].getAbsc()+1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=typeTerrain.mer && !v[1].getJoueurV2()) {
 					this.joueurs[currentPlayerV2].setAbsc(joueurs[currentPlayerV2].getAbsc()+1);
 					nbActions--;
-					
-					//System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"   ord joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
-					
 				}
 				break;
 			case down:
 				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()+1].getTypeTerrain()!=typeTerrain.mer && !v[2].getJoueurV2()) {
 					this.joueurs[currentPlayerV2].setOrd(joueurs[currentPlayerV2].getOrd()+1);
-					
-					//System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"   ord joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
-					
 					nbActions--;
 				}
 				break;
@@ -265,9 +254,6 @@ public class Model extends Observable {
 				if(grille[joueurs[currentPlayerV2].getAbsc()-1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=typeTerrain.mer && !v[3].getJoueurV2()) {
 					this.joueurs[currentPlayerV2].setAbsc(joueurs[currentPlayerV2].getAbsc()-1);
 					nbActions--;
-					
-					//System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"  ord joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
-					
 				}
 				break;
 			default:

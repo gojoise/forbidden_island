@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import fr.forbidden_island.core.Observer;
 import fr.forbidden_island.core.Model;
 /*
- * Correspond à VueGrille ou autre élement de la vue, nom à modifier pour être plus explicite*
+ * Correspond à VueGrille ou autre e'lement de la vue, nom a' modifier pour e'tre plus explicite*
  *
  */
 public class PlayerInfo extends JPanel implements Observer{
@@ -25,7 +25,7 @@ public class PlayerInfo extends JPanel implements Observer{
 		this.modele = mod;
 		this.setLayout(new BorderLayout());
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
-		modele.addObserver(this); //ajoute à observers
+		modele.addObserver(this); //ajoute a' observers
 		//Construction du label
 		Font police = new Font("Arial", Font.BOLD, 30);
 		Font police2 = new Font("Arial", Font.BOLD, 18);
@@ -46,7 +46,7 @@ public class PlayerInfo extends JPanel implements Observer{
 	public void update() {
 		//int num=modele.getNumJoueur();
 		int num=modele.getNumJoueurV2();
-		this.info1.setText(modele.joueurs[num].getName()); //change le "nom" du joueur à chaque fin de tour.
+		this.info1.setText(modele.joueurs[num].getName()); //change le "nom" du joueur a' chaque fin de tour.
 		
 		this.info2.setText("Mouvement restants: "+ modele.getNbActionsString()); //affiche le nbActions du joueur 
 	}

@@ -28,7 +28,7 @@ public class Ressources {
 	}
 	/**fonction getImage(x) du tableau
 	 * @param x 
-	 * @return L'image désirée
+	 * @return L'image de'sire'e
 	 */
 	public Image getImage(int x) {
 		return images[x];
