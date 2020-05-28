@@ -9,7 +9,7 @@ import fr.forbidden_island.data.typeTerrain;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-//pour l'ile aleatoire et inonde aléatoire..
+//pour l'ile aleatoire et inonde ale'atoire..
 import java.util.Random;
 
 //
@@ -62,7 +62,7 @@ public class Model extends Observable {
 			for (int y = 0; y < dimGrilleOrd; y++) {
 				// donne des coords aux cellules
 				grille[x][y] = new Cellule(this, x , y );
-				// donne un état terre au cellules "centrales" (l'ile)
+				// donne un e'tat terre au cellules "centrales" (l'ile)
 				if (x > CarreCentralAbscMin && x < CarreCentralAbscMax && y > CarreCentralOrdMin && y < CarreCentralOrdMax) {
 					grille[x][y].setTypeTerrain(typeTerrain.terre);
 				}
@@ -74,7 +74,7 @@ public class Model extends Observable {
 				//                        
 				//
 				//                            if (t < (0.2 + (1 / (i + 1))))
-				//                                grille[x][y].setTypeTerrain(typeTerrain.mer); // redessine aléatoirement les contours de l'ile
+				//                                grille[x][y].setTypeTerrain(typeTerrain.mer); // redessine ale'atoirement les contours de l'ile
 				//                    
 				//                    }
 				//                }
@@ -104,16 +104,16 @@ public class Model extends Observable {
 	//		for (int x = 0; x < dimGrilleAbscV2; x++) {
 	//			for (int y = 0; y < dimGrilleOrdV2; y++) {
 	//				typeTerrainCelFile = fluxFichier.read();
-	//				// crée et donne des coords à une cellule
+	//				// cre'e et donne des coords a' une cellule
 	//				grille[x][y] = new Cellule(this, x , y );
-	//				// donne sont type de terrain initial à la cellule
+	//				// donne sont type de terrain initial a' la cellule
 	//				if(typeTerrainCelFile==0)
 	//				grille[x][y].setTypeTerrain(typeTerrain.mer);
 	//				if(typeTerrainCelFile==1)
 	//					grille[x][y].setTypeTerrain(typeTerrain.terre);
 	//				if(typeTerrainCelFile==2)
 	//					grille[x][y].setTypeTerrain(typeTerrain.inonde);
-	//				// donne un état terre au cellules "centrales"					
+	//				// donne un e'tat terre au cellules "centrales"					
 	//			}
 	//		}
 	//		//initialise les joueurs en les mettant dans les cellules de la grille et les rajoutant dans un tab joueurs[] avec leurs positions respectives.		
@@ -122,7 +122,7 @@ public class Model extends Observable {
 	//	}
 	//	
 	/**
-	 *  pour tout la partie ile de la grille appelle a la fin du tour:
+	 *  pour tout la partie ile de la grille appelle a' la fin du tour:
 	 * inonde
 	 * submerge
 	 * changePlayer
@@ -163,7 +163,7 @@ public class Model extends Observable {
 	}
 
 	/**
-	 * Submerge les cellules inonde's, fonction utilitaire à endTurn
+	 * Submerge les cellules inonde's, fonction utilitaire a' endTurn
 	 * @param x = coord Absc
 	 * @param y = coord Ord
 	 */
@@ -228,7 +228,7 @@ public class Model extends Observable {
 	public void moveV2(Direction d) {
 
 		if(nbActions>0) {
-			Cellule [] v=grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()].voisines(grille); //on récupère les voisines !!
+			Cellule [] v=grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()].voisines(grille); //on re'cupe're les voisines !!
 			//System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"   ord joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
 			switch (d) {
 			case up:
@@ -284,8 +284,8 @@ public class Model extends Observable {
 	}
 
 	/** 
-	 * @param nbJ le nombre de joueurs à répartir
-	 * @return les cellules où sont répartis les joeuurs 
+	 * @param nbJ le nombre de joueurs a' ré'partir
+	 * @return les cellules ou' sont re'partis les joueurs 
 	 */
 	//ne place pas au bon endroit selon la carte..
 	//remplacer "dimGrille..." par "dimGrille...V2" quand initV2 sera pret..
@@ -317,7 +317,7 @@ public class Model extends Observable {
 			this.joueurs[3]=new Joueur((dimGrilleAbsc/2)+1,(dimGrilleOrd/2)-1);	
 		}
 		for(int i=0;i<nbJ;i++) {
-			this.joueurs[i].setName("joueur n°"+(i+1));
+			this.joueurs[i].setName("joueur n:"+(i+1));
 			//System.out.println(joueurs[i].getName());
 		}
 	}

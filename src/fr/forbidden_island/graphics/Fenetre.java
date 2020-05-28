@@ -77,7 +77,7 @@ public class Fenetre extends JFrame implements Observer{
 	private void purgeInfo(String nbJ) {
 		JOptionPane jop1;
 		jop1 = new JOptionPane();
-		jop1.showMessageDialog(null, "Le joueur N°"+nbJ+" a perdu RIP !", "Un joueur a perdu !", JOptionPane.INFORMATION_MESSAGE);
+		jop1.showMessageDialog(null, "Le joueur N:"+nbJ+" a perdu RIP !", "Un joueur a perdu !", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	private void endInfo() {
@@ -85,7 +85,7 @@ public class Fenetre extends JFrame implements Observer{
 		if (modele.ending()) {
 			JOptionPane jop1;
 			jop1 = new JOptionPane();
-			jop1.showMessageDialog(null, "La partie est terminée !!", "Partie terminée", JOptionPane.INFORMATION_MESSAGE);
+			jop1.showMessageDialog(null, "La partie est finie !!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
@@ -95,7 +95,7 @@ public class Fenetre extends JFrame implements Observer{
 		int nbJ=modeleTest.getNbJoueurs();
 		for(int i=0;i<nbJ;i++) {
 			if(!(modeleTest.joueurs[i].estElimine())) {
-				if(modeleTest.getGrille()[modeleTest.joueurs[i].getAbsc()][modeleTest.joueurs[i].getOrd()].getTypeTerrain()==typeTerrain.mer )//Rajouter une condition pour ne pas tester les joueurs éliminés
+				if(modeleTest.getGrille()[modeleTest.joueurs[i].getAbsc()][modeleTest.joueurs[i].getOrd()].getTypeTerrain()==typeTerrain.mer )//Rajouter une condition pour ne pas tester les joueurs e'limine's
 					purgeInfo(Integer.toString(i+1));
 			}
 		}

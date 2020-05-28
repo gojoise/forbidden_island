@@ -15,11 +15,11 @@ public class Controler implements ActionListener,KeyListener{
 		this.modele=mod;
 	}
 	/*
-	 *Bouton : Inonder trois zones tir´ees au hasard, avec deux cas `a consid´erer :
-— Si la zone correspondante est dans la situation « normale », elle devient « inond´ee ». Cette
+	 *Bouton : Inonder trois zones tire'es au hasard, avec deux cas a' conside'rer :
+— Si la zone correspondante est dans la situation « normale », elle devient « inonde'e ». Cette
 zone est alors en sursis, 
-— Si la zone correspondante est d´ej`a dans l’´etat « inond´ee » ou « submerg´ee », elle devient
-« submerg´ee ».
+— Si la zone correspondante est de'ja' dans l’e'tat « inonde'e » ou « submerge'e », elle devient
+« submerge'e ».
 	 */
 	public void actionPerformed(ActionEvent e) {
 		modele.endTurn();
@@ -37,12 +37,12 @@ zone est alors en sursis,
 			modele.moveV2(Direction.down);//aller en bas
 			break;
 		case KeyEvent.VK_LEFT:
-			modele.moveV2(Direction.left);//aller à gauche
+			modele.moveV2(Direction.left);//aller a' gauche
 			break;
 		case KeyEvent.VK_RIGHT:
-			modele.moveV2(Direction.right);//aller à droite
+			modele.moveV2(Direction.right);//aller a' droite
 			break;
-		case KeyEvent.VK_ENTER:	//assécher
+		case KeyEvent.VK_ENTER:	//asse'cher
 			modele.dry();
 			break;
 		}

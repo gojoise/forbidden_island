@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import fr.forbidden_island.core.Observer;
 import fr.forbidden_island.core.Model;
 /*
- * Correspond à VueGrille ou autre e'lement de la vue, nom a' modifier pour e'tre plus explicite*
+ * Correspond a' VueGrille ou autre e'lement de la vue, nom a' modifier pour e'tre plus explicite*
  *
  */
 public class PlayerInfo extends JPanel implements Observer{

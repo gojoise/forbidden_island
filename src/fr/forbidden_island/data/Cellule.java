@@ -17,7 +17,7 @@ public class Cellule{
 	 * 
 	 * sous classe terrain:
 	 * attribut  (booleen) terre/mer . (mer definitif)
-	 * attribut booleen (avec condition terre) inondé/normal submerge' (deviens mer) .
+	 * attribut booleen (avec condition terre) inonde'/normal submerge' (deviens mer) .
 	 * 
 	 * sous classe special
 	 * artefacts / clef/element/heliport )
@@ -74,7 +74,7 @@ public class Cellule{
 	
 	
 	// je ne sais plus a' quoi devait servir cette fonction ...
-	//>> Récupère l'objet joueur sur une cellule :)
+	//>> Re'cupe're l'objet joueur sur une cellule :)
 	public Joueur getJoueurInfo(){
 		//TODO
 		return this.jx;
