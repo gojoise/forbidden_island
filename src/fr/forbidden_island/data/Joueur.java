@@ -36,7 +36,7 @@ public class Joueur {
 	}
 	
 	public void setOrd(int y) {
-		this.absc=y;
+		this.ord=y;
 	}
 	
 	public void setOut() {

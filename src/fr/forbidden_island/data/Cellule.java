@@ -41,8 +41,10 @@ public class Cellule{
 		int x=this.getAbsc();
 		int y=this.getOrd();
 		res[0]=grille[x][y-1];//haut
+		System.out.println("voisine haut" + (y-1));
 		res[1]=grille[x+1][y];//droite
 		res[2]=grille[x][y+1];//bas
+		System.out.println("voisine bas" + (y+1));
 		res[3]=grille[x-1][y];//gauche
 
 		return res;
@@ -69,7 +71,7 @@ public class Cellule{
 		return false;
 	}
 	
-	//faire getImage() non ?
+	
 	
 	// je ne sais plus à quoi devait servir cette fonction ...
 	//>> Récupère l'objet joueur sur une cellule :)
