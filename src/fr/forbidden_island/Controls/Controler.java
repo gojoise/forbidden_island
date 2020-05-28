@@ -16,10 +16,10 @@ public class Controler implements ActionListener,KeyListener{
 	}
 	/*
 	 *Bouton : Inonder trois zones tire'es au hasard, avec deux cas a' conside'rer :
-— Si la zone correspondante est dans la situation « normale », elle devient « inonde'e ». Cette
+- Si la zone correspondante est dans la situation "normale" , elle devient "inonde'e". Cette
 zone est alors en sursis, 
-— Si la zone correspondante est de'ja' dans l’e'tat « inonde'e » ou « submerge'e », elle devient
-« submerge'e ».
+- Si la zone correspondante est de'ja' dans l'e'tat "inonde'e" ou "submerge'e", elle devient
+"submerge'e".
 	 */
 	public void actionPerformed(ActionEvent e) {
 		modele.endTurn();

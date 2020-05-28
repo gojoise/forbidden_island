@@ -284,7 +284,7 @@ public class Model extends Observable {
 	}
 
 	/** 
-	 * @param nbJ le nombre de joueurs a' ré'partir
+	 * @param nbJ le nombre de joueurs a' re'partir
 	 * @return les cellules ou' sont re'partis les joueurs 
 	 */
 	//ne place pas au bon endroit selon la carte..
