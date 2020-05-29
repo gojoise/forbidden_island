@@ -4,6 +4,11 @@ public class Artefact {
 
 	private int absc;
 	private int ord;
+	
+	public Artefact(int x,int y) {
+		this.absc=x;
+		this.ord=y;
+	}
 
 	public int getAbsc() {
 		return this.absc;
