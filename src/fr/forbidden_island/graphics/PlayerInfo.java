@@ -53,6 +53,6 @@ public class PlayerInfo extends JPanel implements Observer{
 		int num=modele.getNumJoueurV2();
 		this.info1.setText(modele.joueurs[num].getName()); //change le "nom" du joueur a' chaque fin de tour.
 		
-		this.info2.setText("Mouvement restants: "+ modele.getNbActionsString()); //affiche le nbActions du joueur 
+		this.info2.setText("Actions restantes: "+ modele.getNbActionsString()); //affiche le nbActions du joueur 
 	}
 }

@@ -5,6 +5,22 @@ ARTHUR : rendre opérationelle la lecture du fichier
 
 Mathieu : Tests unitaires  (sur le long terme)
 
+
+-WARNING ! corriger bug "Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException" qui arrive de temps en temps..
+
+-condition mer sur heliport= perdu ! game over
+
+-transparence artefacts
+
+-ramasser artefacts !!!!!!!!
+
+-info sur joueur, nb artefacts poss�d�
+
+-joueurs avec gueules de bg (differentes)!
+
+
+
+
 PARTIE 3
 
 Pour finir de rendre le jeu opérationnel, nous allons ajouter les zones spéciales, la recherche de clé
