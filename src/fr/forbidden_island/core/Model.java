@@ -1,6 +1,7 @@
 package fr.forbidden_island.core;
 
 import fr.forbidden_island.Controls.Direction;
+import fr.forbidden_island.data.Artefact;
 import fr.forbidden_island.data.Cellule;
 import fr.forbidden_island.data.Joueur;
 import fr.forbidden_island.data.typeTerrain;
@@ -29,10 +30,12 @@ public class Model extends Observable {
 
 	public int currentPlayerV2;
 	private int nbJoueurs=4;
+	private int nbArtefacts=4;
 	private boolean endOfTheGame=false;
 	public final int nbActionsmax=5;
 	public int nbActions = nbActionsmax;
 	public Joueur[] joueurs = new Joueur[this.nbJoueurs];
+	public Artefact[] artefacts = new Artefact[this.nbArtefacts];
 	Random r = new Random();
 
 	//remplacer par initV2
@@ -81,8 +84,10 @@ public class Model extends Observable {
 		}
 
 		//initialise les joueurs en les mettant dans les cellules de la grille et les rajoutant dans un tab joueurs[] avec leurs positions respectives.		
+		
 		initJoueursV2(this.nbJoueurs);
 		currentPlayerV2=0;
+		initArtefacts(nbArtefacts);
 		//System.out.println("le j0 absc:"+joueurs[0].getAbsc());
 		//System.out.println("ord:"+joueurs[0].getOrd());
 
@@ -320,6 +325,20 @@ public class Model extends Observable {
 			//System.out.println(joueurs[i].getName());
 		}
 	}
+	
+	private void initArtefacts(int nbA) {
+				
+		for(int i= 0;i<nbA;i++) {		
+			int x = r.nextInt((CarreCentralAbscMax-1)-(CarreCentralAbscMin+1));
+			int absc = (x+(CarreCentralAbscMin+1));		
+			int y = r.nextInt((CarreCentralOrdMax-1)-(CarreCentralOrdMin+1));
+			int ord = (y+(CarreCentralOrdMin+1));					
+			if((absc!=dimGrilleAbsc/2 || ord!=dimGrilleOrd/2) && !grille[absc][ord].getJoueurV2() && grille[absc][ord].getTypeTerrain()==typeTerrain.terre)			
+				this.artefacts[i]=new Artefact(absc,ord);	
+		}
+			
+		
+	}
 
 	public int getDimGrilleAbsc() {
 		return this.dimGrilleAbsc;
@@ -334,6 +353,10 @@ public class Model extends Observable {
 	}
 	public int getNbJoueurs() {
 		return this.nbJoueurs;
+	}
+	
+	public int getNbArtefacts() {
+		return this.nbArtefacts;
 	}
 
 	public String getNbActionsString() {

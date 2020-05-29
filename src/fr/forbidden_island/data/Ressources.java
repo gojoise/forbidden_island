@@ -10,16 +10,16 @@ import javax.imageio.ImageIO;
 
 public class Ressources {
 	private Image[] images; //attribut tableau d'image
-	private  String FILENAME = "src/carte_ileX.txt";
-	private FileOutputStream fOutpout;
+//	private  String FILENAME = "src/carte_ileX.txt";
+//	private FileOutputStream fOutpout;
 	
 	/**
 	 * CONSTRUCT: charge les images dans un tableau a partir des fichiers.
 	 */
 	public Ressources() {
 		Image image = null;
-		images = new Image[4];
-		for(int i=0;i<4;i++) {
+		images = new Image[9];
+		for(int i=0;i<9;i++) {
 			try {
 				File fichier = new File("src/images/"+i+".png");
 				image = ImageIO.read(fichier);
@@ -31,15 +31,15 @@ public class Ressources {
 			
 			
 			
-			File f2 = new File(FILENAME);
-		       try {
-				f2.createNewFile();
-				fOutpout = new FileOutputStream(f2);
-			    //fOutpout.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		       
+//			File f2 = new File(FILENAME);
+//		       try {
+//				f2.createNewFile();
+//				fOutpout = new FileOutputStream(f2);
+//			    //fOutpout.close();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		       
 
 		}
 	}
@@ -51,7 +51,7 @@ public class Ressources {
 		return images[x];
 	}
 	
-//	public static FileOutputStream getOutpout() {
+//	public  FileOutputStream getOutpout() {
 //		return fOutpout;
 //	}
 //	
