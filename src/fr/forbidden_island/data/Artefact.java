@@ -8,6 +8,7 @@ public class Artefact {
 	public Artefact(int x,int y) {
 		this.absc=x;
 		this.ord=y;
+		//ajouter des arrtibuts pour différenciers les artefacts
 	}
 
 	public int getAbsc() {
