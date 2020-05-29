@@ -44,7 +44,6 @@ public class PlayerInfo extends JPanel implements Observer{
 	}
 	//remplace par "int num=modele.getNumJoueurV2();"
 	public void update() {
-		//int num=modele.getNumJoueur();
 		int num=modele.getNumJoueurV2();
 		this.info1.setText(modele.joueurs[num].getName()); //change le "nom" du joueur a' chaque fin de tour.
 		
