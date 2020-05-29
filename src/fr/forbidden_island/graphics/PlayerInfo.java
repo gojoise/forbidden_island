@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -40,6 +42,7 @@ public class PlayerInfo extends JPanel implements Observer{
 	    this.info2.setText(initial);
 	    this.add(info1,BorderLayout.NORTH);
 	    this.add(info2,BorderLayout.CENTER);
+	    this.setBorder(BorderFactory.createTitledBorder("Informations du personnage"));
 	    this.setPreferredSize(new Dimension(220, 30));
 	}
 	//remplace par "int num=modele.getNumJoueurV2();"
