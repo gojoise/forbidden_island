@@ -2,18 +2,12 @@ package fr.forbidden_island.graphics;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics;
 
-import javax.swing.JComponent;
+
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import fr.forbidden_island.core.Model;
 import fr.forbidden_island.core.Observer;
@@ -75,27 +69,21 @@ public class Fenetre extends JFrame implements Observer{
 
 
 	private void purgeInfo(String nbJ) {
-		JOptionPane jop1;
-		jop1 = new JOptionPane();
-		jop1.showMessageDialog(null, "Le joueur N°"+nbJ+" a perdu RIP !", "Un joueur a perdu !", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Le joueur N°"+nbJ+" a perdu RIP !", "Un joueur a perdu !", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	private void endInfo() {
-		Model modele=view.getModele();
-		if (modele.ending()) {
-			JOptionPane jop1;
-			jop1 = new JOptionPane();
-			jop1.showMessageDialog(null, "La partie est finie !!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+		if (view.getModele().ending()) {
+			JOptionPane.showMessageDialog(null, "La partie est finie !!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
 
 	public void update() {
-		Model modeleTest=view.getModele();
-		int nbJ=modeleTest.getNbJoueurs();
+		int nbJ=view.getModele().getNbJoueurs();
 		for(int i=0;i<nbJ;i++) {
-			if(!(modeleTest.joueurs[i].estElimine())) {
-				if(modeleTest.getGrille()[modeleTest.joueurs[i].getAbsc()][modeleTest.joueurs[i].getOrd()].getTypeTerrain()==typeTerrain.mer )//Rajouter une condition pour ne pas tester les joueurs e'limine's
+			if(!(view.getModele().joueurs[i].estElimine())) {
+				if(view.getModele().getGrille()[view.getModele().joueurs[i].getAbsc()][view.getModele().joueurs[i].getOrd()].getTypeTerrain()==typeTerrain.mer )//Rajouter une condition pour ne pas tester les joueurs e'limine's
 					purgeInfo(Integer.toString(i+1));
 			}
 		}

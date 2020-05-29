@@ -2,12 +2,16 @@ package fr.forbidden_island.data;
 
 import java.awt.Image;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+
 public class Ressources {
 	private Image[] images; //attribut tableau d'image
+	private  String FILENAME = "src/carte_ileX.txt";
+	private FileOutputStream fOutpout;
 	
 	/**
 	 * CONSTRUCT: charge les images dans un tableau a partir des fichiers.
@@ -24,6 +28,19 @@ public class Ressources {
 			} catch (IOException e) {
 				System.out.println("pop");
 			}
+			
+			
+			
+			File f2 = new File(FILENAME);
+		       try {
+				f2.createNewFile();
+				fOutpout = new FileOutputStream(f2);
+			    //fOutpout.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		       
+
 		}
 	}
 	/**fonction getImage(x) du tableau
@@ -34,6 +51,9 @@ public class Ressources {
 		return images[x];
 	}
 	
-	
+//	public static FileOutputStream getOutpout() {
+//		return fOutpout;
+//	}
+//	
 	
 }

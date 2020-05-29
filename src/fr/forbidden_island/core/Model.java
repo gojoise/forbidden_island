@@ -4,6 +4,7 @@ import fr.forbidden_island.Controls.Direction;
 import fr.forbidden_island.data.Cellule;
 import fr.forbidden_island.data.Joueur;
 import fr.forbidden_island.data.typeTerrain;
+import fr.forbidden_island.data.Ressources;
 
 //pour la partie lecture fichier
 import java.io.BufferedReader;
@@ -25,8 +26,7 @@ public class Model extends Observable {
 	private final int CarreCentralOrdMin =dimGrilleOrd / 4;
 	//	private final int dimGrilleOrdV2;
 	private Cellule[][] grille;
-	private  String FILENAME = "/forbidden_island/src/carte_ileX.txt";// essaie pluto't "src/carte_ileX.txt"
-	//  private BufferedReader fluxFichier = new BufferedReader(new FileReader(FILENAME));
+
 	public int currentPlayerV2;
 	private int nbJoueurs=4;
 	private boolean endOfTheGame=false;
@@ -38,14 +38,13 @@ public class Model extends Observable {
 	//remplacer par initV2
 	public Model() {
 		this.grille = new Cellule[dimGrilleAbsc][dimGrilleOrd];
-
-		//		 String  DimAbscCarteFile;
-		//		 DimAbscCarteFile = fluxFichier.readLine();
-		//		 this.dimGrilleAbscV2= Integer.parseInt(DimAbscCarteFile);
-		//		 
-		//		 String  DimOrdCarteFile;
-		//		 DimOrdCarteFile = fluxFichier.readLine();
-		//		 this.dimGrilleOrdV2= Integer.parseInt(DimOrdCarteFile);	
+//		Ressources.getOutpout()
+//		String  DimAbscCarteFile;
+//		DimAbscCarteFile = fluxFichier.readLine();
+//		this.dimGrilleAbscV2= Integer.parseInt(DimAbscCarteFile);	 
+//		String  DimOrdCarteFile;
+//		DimOrdCarteFile = fluxFichier.readLine();
+//		this.dimGrilleOrdV2= Integer.parseInt(DimOrdCarteFile);	
 
 		init();//Lance l'initialisation
 		//initV2();//Lance l'initialisation
