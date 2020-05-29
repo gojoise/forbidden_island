@@ -25,7 +25,7 @@ public class PlayerInfo extends JPanel implements Observer{
 	
 	public PlayerInfo(Model mod,String initial) {
 		this.modele = mod;
-		this.setLayout(new BorderLayout());
+		this.setLayout(new FlowLayout());
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
 		modele.addObserver(this); //ajoute a' observers
 		//Construction du label
@@ -40,8 +40,11 @@ public class PlayerInfo extends JPanel implements Observer{
 	    this.info2.setForeground(Color.blue); 
 	    this.info2.setHorizontalAlignment(JLabel.CENTER);
 	    this.info2.setText(initial);
-	    this.add(info1,BorderLayout.NORTH);
-	    this.add(info2,BorderLayout.CENTER);
+	    /*
+	     * Créer une sous boite où on y met les infos des artéfacts que possède le joueur
+	     */
+	    this.add(info1);
+	    this.add(info2);
 	    this.setBorder(BorderFactory.createTitledBorder("Informations du personnage"));
 	    this.setPreferredSize(new Dimension(220, 30));
 	}

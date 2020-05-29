@@ -6,6 +6,7 @@ public class Joueur {
 	private String nom;
 	private int absc;
 	private int ord;
+	private Artefact [] artefactList;
 	
 	private boolean isOut; //pour savoir si il est e'limine'
 	
