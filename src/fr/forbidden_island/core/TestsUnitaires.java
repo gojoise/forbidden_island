@@ -11,6 +11,8 @@ public class TestsUnitaires {
 	
 	public Model modele;
 	/**
+	 * 
+	 * 
 	 * Tests de Cellule
 	 */
 	public Cellule c = new Cellule(modele, 15, 51);
