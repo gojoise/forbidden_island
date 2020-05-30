@@ -144,11 +144,14 @@ public class Model extends Observable {
 			nbActions=nbActionsmax;		
 			//currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;
 			winGame();
+			
 			currentPlayerV2=changePlayer(currentPlayerV2);
 			notifyObservers();	
 			purgePlayers();
 			endGame();
+			winOfTheGame=false;
 			notifyObservers();
+			
 		}
 	}
 	/**
