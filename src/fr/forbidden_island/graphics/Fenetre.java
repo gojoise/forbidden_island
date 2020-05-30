@@ -79,6 +79,12 @@ public class Fenetre extends JFrame implements Observer{
 			JOptionPane.showMessageDialog(null, "La partie est finie !!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
+	
+	private void winInfo() {
+		if (view.getModele().winning()) {
+			JOptionPane.showMessageDialog(null, "Le joueur n°"+view.getModele().currentPlayerV2+" s'en est sorti !", "Game Over pour les autres ?", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
 
 
 	public void update() {
@@ -90,6 +96,7 @@ public class Fenetre extends JFrame implements Observer{
 			}
 		}
 		endInfo();
+		winInfo();
 		this.repaint();
 	}
 }
