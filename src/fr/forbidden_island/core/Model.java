@@ -345,14 +345,13 @@ public class Model extends Observable {
 		if(v.getArtefact() && nbActions>0) {
 			for (Artefact a : artefacts) {
 				if(a.getAbsc()==joueurs[currentPlayerV2].getAbsc() && a.getOrd()==joueurs[currentPlayerV2].getOrd()){
-					joueurs[currentPlayerV2].getArtefacts()[joueurs[currentPlayerV2].getArtefacts().length]= a;				
+					a.setProprio(joueurs[currentPlayerV2]);					
 					nbActions--;	
 				}
-			}
-			
-			
+			}			
 		}
 	}
+	
 	public int getDimGrilleAbsc() {
 		return this.dimGrilleAbsc;
 	}

@@ -4,6 +4,7 @@ public class Artefact {
 
 	private int absc;
 	private int ord;
+	private Joueur proprio;
 	
 	public Artefact(int x,int y) {
 		this.absc=x;
@@ -24,5 +25,16 @@ public class Artefact {
 
 	public void setOrd(int y) {
 		this.ord=y;
+	}
+	
+	public void setProprio(Joueur joueur) {
+		this.proprio=joueur;
+	}
+	
+	public boolean getProprio() {
+		if(this.proprio==null)
+			return false;
+		else
+			return true;
 	}
 }

@@ -45,7 +45,7 @@ zone est alors en sursis,
 		case KeyEvent.VK_ENTER:	//asse'cher
 			modele.dry();
 			break;
-		case KeyEvent.VK_SHIFT:	//asse'cher
+		case KeyEvent.VK_E:	//ramasseArtefact
 			modele.ramasseArtefact();
 			break;
 		}
