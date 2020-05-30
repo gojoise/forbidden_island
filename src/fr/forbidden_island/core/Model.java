@@ -32,6 +32,7 @@ public class Model extends Observable {
 	private int nbJoueurs=4;
 	private int nbArtefacts=4;
 	private boolean endOfTheGame=false;
+	private boolean winOfTheGame=false;
 	public final int nbActionsmax=5;
 	public int nbActions = nbActionsmax;
 	public Joueur[] joueurs = new Joueur[this.nbJoueurs];
@@ -132,7 +133,6 @@ public class Model extends Observable {
 	 * changePlayer
 	 * purgePlayer
 	 */
-
 	public void endTurn() {
 		if(!endOfTheGame) {
 			for (int x = CarreCentralAbscMin-1; x <= CarreCentralAbscMax; x++) {
@@ -286,7 +286,19 @@ public class Model extends Observable {
 		}
 		if(count==nbJoueurs)endOfTheGame=true;
 	}
-
+	/**
+	 * booleen vrai si les conditions pour gagner la partie sont réunies:
+	 * avoir (au moins) 1 artefact et etre sur la case de l'heliport.
+	 */
+	private void winGame() {		
+		if(joueurs[currentPlayerV2].getAbsc()==dimGrilleAbsc/2 && joueurs[currentPlayerV2].getOrd()==dimGrilleOrd/2) {
+			for(Artefact a : artefacts) {
+			if(joueurs[currentPlayerV2]==a.getProprio())	
+				winOfTheGame=true;
+			}
+		}		
+	}
+	
 	/** 
 	 * @param nbJ le nombre de joueurs a' re'partir
 	 * @return les cellules ou' sont re'partis les joueurs 
