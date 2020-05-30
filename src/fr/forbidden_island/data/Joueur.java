@@ -9,6 +9,7 @@ public class Joueur {
 	private Artefact [] artefactList;
 	
 	private boolean isOut; //pour savoir si il est e'limine'
+	private boolean isIn; //pour savoir si il a gagne'
 	
 	
 	public Joueur(int x,int y) {
@@ -48,6 +49,13 @@ public class Joueur {
 		return isOut;
 	}
 	
+	public void setIn() {
+		this.isIn=true;
+	}
+	
+	public boolean aGagne() {
+		return isIn;
+	}
 	public Artefact[] getArtefacts() {
 		return this.artefactList;
 	}

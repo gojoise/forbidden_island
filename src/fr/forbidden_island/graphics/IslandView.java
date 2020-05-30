@@ -60,7 +60,7 @@ public class IslandView extends JPanel implements Observer{
 			g.drawImage(ress.getImage(j+5), modele.artefacts[j].getAbsc()*modele.getSize(), modele.artefacts[j].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 		}
 		for(int i=0;i<modele.getNbJoueurs();i++) {
-			if(modele.getGrille()[modele.joueurs[i].getAbsc()][modele.joueurs[i].getOrd()].getTypeTerrain()!=typeTerrain.mer)
+			if(!modele.joueurs[i].aGagne() && modele.getGrille()[modele.joueurs[i].getAbsc()][modele.joueurs[i].getOrd()].getTypeTerrain()!=typeTerrain.mer)
 				g.drawImage(ress.getImage(i+9), modele.joueurs[i].getAbsc()*modele.getSize(), modele.joueurs[i].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);	
 		}
 	}

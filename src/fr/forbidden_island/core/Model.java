@@ -180,6 +180,7 @@ public class Model extends Observable {
 			grille[x][y].setTypeTerrain(typeTerrain.mer);
 
 	}
+	
 	/**
 	 * si le joueur en cours est le dernier (nbJoueur-1)
 	 *   si le suivant ca'd le premier est elimine'
@@ -194,13 +195,13 @@ public class Model extends Observable {
 	 */
 	private int changePlayer(int current) {
 		if(current==nbJoueurs-1) {
-			if(joueurs[0].estElimine()) {
+			if(joueurs[0].estElimine() || joueurs[0].aGagne()) {
 				return changePlayer(0);
 			}else {
 				return 0;
 			}
 		}else {
-			if(joueurs[current+1].estElimine()) {
+			if(joueurs[current+1].estElimine() || joueurs[current+1].aGagne()) {
 				return changePlayer(current+1);
 			}else {
 				return (++current);
@@ -297,7 +298,8 @@ public class Model extends Observable {
 	private void winGame() {		
 		if(joueurs[currentPlayerV2].getAbsc()==dimGrilleAbsc/2 && joueurs[currentPlayerV2].getOrd()==dimGrilleOrd/2) {
 			for(Artefact a : artefacts) {
-			if(joueurs[currentPlayerV2]==a.getProprio())	
+			if(joueurs[currentPlayerV2]==a.getProprio())
+				joueurs[currentPlayerV2].setIn();
 				winOfTheGame=true;
 			}
 		}		
