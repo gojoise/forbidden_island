@@ -93,5 +93,4 @@ public class Cellule{
 		return this.jx;
 	}
 	
-
 }

@@ -124,7 +124,7 @@ public class Model extends Observable {
 	//		initJoueursV2(this.nbJoueurs);
 	//		currentPlayerV2=joueurs[0];
 	//	}
-	//	
+
 	/**
 	 *  pour tout la partie ile de la grille appelle a' la fin du tour:
 	 * inonde
