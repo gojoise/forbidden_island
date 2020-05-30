@@ -32,7 +32,6 @@ public class Model extends Observable {
 	private int nbJoueurs=4;
 	private int nbArtefacts=4;
 	private boolean endOfTheGame=false;
-	private boolean winOfTheGame=false;
 	public final int nbActionsmax=5;
 	public int nbActions = nbActionsmax;
 	public Joueur[] joueurs = new Joueur[this.nbJoueurs];
@@ -143,13 +142,13 @@ public class Model extends Observable {
 			}		
 			nbActions=nbActionsmax;		
 			//currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;
-			winGame();
+			
 			
 			currentPlayerV2=changePlayer(currentPlayerV2);
 			notifyObservers();	
+			winPlayers();
 			purgePlayers();
 			endGame();
-			winOfTheGame=false;
 			notifyObservers();
 			
 		}
@@ -286,21 +285,24 @@ public class Model extends Observable {
 
 	private void endGame() {
 		int count=0;
+		int count2=0;
 		for (Joueur j :joueurs) {
 			if(j.estElimine())count++;
 		}
-		if(count==nbJoueurs)endOfTheGame=true;
+		for (Joueur j :joueurs) {
+			if(j.aGagne())count2++;
+		}
+		if(count==nbJoueurs || count2==nbJoueurs)endOfTheGame=true;
 	}
 	/**
 	 * booleen vrai si les conditions pour gagner la partie sont réunies:
 	 * avoir (au moins) 1 artefact et etre sur la case de l'heliport.
 	 */
-	private void winGame() {		
+	private void winPlayers() {		
 		if(joueurs[currentPlayerV2].getAbsc()==dimGrilleAbsc/2 && joueurs[currentPlayerV2].getOrd()==dimGrilleOrd/2) {
 			for(Artefact a : artefacts) {
 			if(joueurs[currentPlayerV2]==a.getProprio())
 				joueurs[currentPlayerV2].setIn();
-				winOfTheGame=true;
 			}
 		}		
 	}
@@ -403,8 +405,4 @@ public class Model extends Observable {
 	public boolean ending() {
 		return endOfTheGame;
 	}
-	public boolean winning() {
-		return winOfTheGame;
-	}
-
 }

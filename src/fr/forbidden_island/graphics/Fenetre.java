@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import fr.forbidden_island.core.Model;
 import fr.forbidden_island.core.Observer;
+import fr.forbidden_island.data.Artefact;
 import fr.forbidden_island.data.Ressources;
 import fr.forbidden_island.data.typeTerrain;
 
@@ -80,23 +81,28 @@ public class Fenetre extends JFrame implements Observer{
 		}
 	}
 	
-	private void winInfo() {
-		if (view.getModele().winning()) {
-			JOptionPane.showMessageDialog(null, "Le joueur n°"+view.getModele().currentPlayerV2+" s'en est sorti !", "Game Over pour les autres ?", JOptionPane.INFORMATION_MESSAGE);
-		}
+	private void winInfo(String nbJ) {
+			JOptionPane.showMessageDialog(null, "Le joueur n°"+nbJ+" s'en est sorti !", "Un joueur a réussi à s'enfuir!", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 
 	public void update() {
 		int nbJ=view.getModele().getNbJoueurs();
 		for(int i=0;i<nbJ;i++) {
-			if(!(view.getModele().joueurs[i].estElimine())) {
+			if(!(view.getModele().joueurs[i].estElimine())) {//teste les joueurs qui n'ont pas déjà perdu
 				if(view.getModele().getGrille()[view.getModele().joueurs[i].getAbsc()][view.getModele().joueurs[i].getOrd()].getTypeTerrain()==typeTerrain.mer )//Rajouter une condition pour ne pas tester les joueurs e'limine's
 					purgeInfo(Integer.toString(i+1));
 			}
+			if(!(view.getModele().joueurs[i].aGagne())) {//teste les joueurs qui n'ont pas déjà gagné
+				if(view.getModele().joueurs[i].getAbsc()==view.getModele().getDimGrilleAbsc()/2 && view.getModele().joueurs[i].getOrd()==view.getModele().getDimGrilleOrd()/2) {
+					for(Artefact a : view.getModele().artefacts) {
+						if(view.getModele().joueurs[view.getModele().currentPlayerV2]==a.getProprio())
+							winInfo(Integer.toString(i+1));
+					}
+				}
+			}
+			endInfo();
+			this.repaint();
 		}
-		endInfo();
-		winInfo();
-		this.repaint();
 	}
 }
