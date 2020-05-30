@@ -29,6 +29,7 @@ public class Artefact {
 	
 	public void setProprio(Joueur joueur) {
 		this.proprio=joueur;
+		System.out.println(joueur.getName());
 	}
 	
 	public boolean getProprio() {

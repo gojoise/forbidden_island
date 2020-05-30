@@ -87,7 +87,7 @@ public class Model extends Observable {
 		
 		initJoueursV2(this.nbJoueurs);
 		currentPlayerV2=0;
-		initArtefacts(nbArtefacts);
+		initArtefacts();
 		//System.out.println("le j0 absc:"+joueurs[0].getAbsc());
 		//System.out.println("ord:"+joueurs[0].getOrd());
 
@@ -326,14 +326,16 @@ public class Model extends Observable {
 		}
 	}
 	
-	private void initArtefacts(int nbA) {				
-		for(int i= 0;i<nbA;i++) {		
+	private void initArtefacts() {				
+		for(int i= 0;i<nbArtefacts;i++) {		
 			int x = r.nextInt((CarreCentralAbscMax-1)-(CarreCentralAbscMin+1));
 			int absc = (x+(CarreCentralAbscMin+1));		
 			int y = r.nextInt((CarreCentralOrdMax-1)-(CarreCentralOrdMin+1));
 			int ord = (y+(CarreCentralOrdMin+1));					
 			if((absc!=dimGrilleAbsc/2 || ord!=dimGrilleOrd/2) && !grille[absc][ord].getJoueurV2() && grille[absc][ord].getTypeTerrain()==typeTerrain.terre)			
-				this.artefacts[i]=new Artefact(absc,ord);	
+				this.artefacts[i]=new Artefact(absc,ord);
+			else
+				i--;
 		}
 			
 		
@@ -344,11 +346,13 @@ public class Model extends Observable {
 		Cellule v=grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()];
 		if(v.getArtefact() && nbActions>0) {
 			for (Artefact a : artefacts) {
-				if(a.getAbsc()==joueurs[currentPlayerV2].getAbsc() && a.getOrd()==joueurs[currentPlayerV2].getOrd()){
+				if(a.getAbsc()==joueurs[currentPlayerV2].getAbsc() && a.getOrd()==joueurs[currentPlayerV2].getOrd() && !a.getProprio()){
 					a.setProprio(joueurs[currentPlayerV2]);					
 					nbActions--;	
 				}
-			}			
+				
+			}
+			notifyObservers();			
 		}
 	}
 	
