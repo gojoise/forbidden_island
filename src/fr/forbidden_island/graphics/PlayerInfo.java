@@ -68,7 +68,9 @@ public class PlayerInfo extends JPanel implements Observer{
 		items[3]=new JLabel();
 		items[2]=new JLabel();
 		for(JLabel labels:items) {
+			labels.setPreferredSize(new Dimension(30, 60));
 			this.info3.add(labels);
+			
 		}
 		
 	}
@@ -79,7 +81,7 @@ public class PlayerInfo extends JPanel implements Observer{
 		int count=0;
 		for(Artefact a : modele.artefacts) {
 			if(modele.joueurs[modele.currentPlayerV2]==a.getProprio()) {
-				items[count].setIcon(new ImageIcon(ress.getImage(5)));
+				items[count].setIcon(new ImageIcon(ress.getImage(13)));
 				count++;
 			}
 		}

@@ -18,7 +18,7 @@ public class Ressources {
 	 */
 	public Ressources() {
 		Image image = null;
-		images = new Image[13];
+		images = new Image[17];
 		for(int i=0;i<images.length;i++) {
 			try {
 				File fichier = new File("src/images/"+i+".png");
