@@ -48,4 +48,7 @@ public class Joueur {
 		return isOut;
 	}
 	
+	public Artefact[] getArtefacts() {
+		return this.artefactList;
+	}
 }
