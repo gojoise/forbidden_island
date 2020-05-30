@@ -326,8 +326,7 @@ public class Model extends Observable {
 		}
 	}
 	
-	private void initArtefacts(int nbA) {
-				
+	private void initArtefacts(int nbA) {				
 		for(int i= 0;i<nbA;i++) {		
 			int x = r.nextInt((CarreCentralAbscMax-1)-(CarreCentralAbscMin+1));
 			int absc = (x+(CarreCentralAbscMin+1));		
@@ -340,6 +339,10 @@ public class Model extends Observable {
 		
 	}
 
+	
+	public int ramasseArtefact() {
+		if()
+	}
 	public int getDimGrilleAbsc() {
 		return this.dimGrilleAbsc;
 	}

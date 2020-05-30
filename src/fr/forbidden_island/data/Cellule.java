@@ -69,7 +69,13 @@ public class Cellule{
 		return false;
 	}
 	
-	
+	public boolean getArtefact(){
+		for(Artefact artefact : modele.artefacts) {
+			if(artefact.getAbsc()==this.x && artefact.getOrd()==this.y)			
+				return true;
+		}
+		return false;
+	}
 	
 	// je ne sais plus a' quoi devait servir cette fonction ...
 	//>> Re'cupe're l'objet joueur sur une cellule :)
