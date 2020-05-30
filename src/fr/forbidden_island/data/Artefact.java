@@ -32,10 +32,14 @@ public class Artefact {
 		System.out.println(joueur.getName());
 	}
 	
-	public boolean getProprio() {
+	public boolean hasProprio() {
 		if(this.proprio==null)
 			return false;
 		else
 			return true;
+	}
+	
+	public Joueur getProprio() {
+		return this.proprio;
 	}
 }

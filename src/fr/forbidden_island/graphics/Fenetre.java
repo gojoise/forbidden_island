@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import fr.forbidden_island.core.Model;
 import fr.forbidden_island.core.Observer;
+import fr.forbidden_island.data.Ressources;
 import fr.forbidden_island.data.typeTerrain;
 
 /**
@@ -26,15 +27,16 @@ public class Fenetre extends JFrame implements Observer{
 	private PlayerInfo Pview;
 	private JPanel PlayerInterface = new JPanel();
 	private JPanel Game = new JPanel();
+	private Ressources r=new Ressources();
 
 	/**
 	 * Constructeur de la Fenetre
 	 */
 	public Fenetre(Model mod) {
 		// Init des composants
-		this.view = new IslandView(mod);
+		this.view = new IslandView(mod,r);
 		this.bouton = new CommandsView(mod);
-		this.Pview = new PlayerInfo(mod, "");
+		this.Pview = new PlayerInfo(mod, "",r);
 		this.Pview.update();
 		mod.addObserver(this);
 

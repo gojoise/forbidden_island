@@ -8,10 +8,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import fr.forbidden_island.core.Observer;
+import fr.forbidden_island.data.Artefact;
+import fr.forbidden_island.data.Ressources;
 import fr.forbidden_island.core.Model;
 /*
  * Correspond a' VueGrille ou autre e'lement de la vue, nom a' modifier pour e'tre plus explicite*
@@ -22,8 +26,11 @@ public class PlayerInfo extends JPanel implements Observer{
 	private Model modele;
 	private JLabel info1;
 	private JLabel info2;
+	private JPanel info3;
+	private JLabel [] items= new JLabel[4];
+	private Ressources ress;
 	
-	public PlayerInfo(Model mod,String initial) {
+	public PlayerInfo(Model mod,String initial,Ressources r) {
 		this.modele = mod;
 		this.setLayout(new FlowLayout());
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
@@ -45,14 +52,36 @@ public class PlayerInfo extends JPanel implements Observer{
 	     */
 	    this.add(info1);
 	    this.add(info2);
+	    createPanel();
+	    this.add(info3);
 	    this.setBorder(BorderFactory.createTitledBorder("Informations du personnage"));
 	    this.setPreferredSize(new Dimension(220, 30));
+	    ress=r;
 	}
-	//remplace par "int num=modele.getNumJoueurV2();"
+	
+	public void createPanel() {
+		this.info3= new JPanel(new FlowLayout());
+		this.info3.setBorder(BorderFactory.createTitledBorder("Inventaire :"));
+		this.info3.setPreferredSize(new Dimension(200, 80));
+		items[0]=new JLabel();
+		items[1]=new JLabel();
+		items[3]=new JLabel();
+		items[2]=new JLabel();
+		for(JLabel labels:items) {
+			this.info3.add(labels);
+		}
+		
+	}
 	public void update() {
 		int num=modele.getNumJoueurV2();
 		this.info1.setText(modele.joueurs[num].getName()); //change le "nom" du joueur a' chaque fin de tour.
-		
-		this.info2.setText("Actions restantes: "+ modele.getNbActionsString()); //affiche le nbActions du joueur 
+		this.info2.setText("Actions restantes: "+ modele.getNbActionsString()); //affiche le nbActions du joueur
+		int count=0;
+		for(Artefact a : modele.artefacts) {
+			if(modele.joueurs[modele.currentPlayerV2]==a.getProprio()) {
+				items[count].setIcon(new ImageIcon(ress.getImage(5)));
+				count++;
+			}
+		}
 	}
 }

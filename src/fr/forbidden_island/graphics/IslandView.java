@@ -21,14 +21,14 @@ import fr.forbidden_island.data.typeTerrain;;
  */
 public class IslandView extends JPanel implements Observer{
 	private Model modele;
-	private Ressources r;
+	private Ressources ress;
 
-	public IslandView(Model mod) {
+	public IslandView(Model mod,Ressources r) {
 		this.modele = mod;
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
 		modele.addObserver(this); //ajoute a' observers 
 		this.setPreferredSize(new Dimension(1080, 620));
-		r=new Ressources();
+		this.ress=r;
 	}
 	
 	public Model getModele() {return this.modele;}
@@ -41,27 +41,27 @@ public class IslandView extends JPanel implements Observer{
 		for(int x=0;x<modele.getDimGrilleAbsc();x++) {
 			for(int y=0;y<modele.getDimGrilleOrd();y++) {
 				if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.mer) {
-					g.drawImage(r.getImage(0), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
+					g.drawImage(ress.getImage(0), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
 				else if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.terre) {
-					g.drawImage(r.getImage(1), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
+					g.drawImage(ress.getImage(1), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
 				
 				else if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.inonde) {
-					g.drawImage(r.getImage(2), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
+					g.drawImage(ress.getImage(2), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
 				if(modele.getGrille()[x][y].getAbsc()==modele.getDimGrilleAbsc()/2 && modele.getGrille()[x][y].getOrd() == modele.getDimGrilleOrd()/2) {
-					g.drawImage(r.getImage(4), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
+					g.drawImage(ress.getImage(4), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
 			}
 		}
 		for(int j=0;j<modele.getNbArtefacts();j++) {
-			if(!modele.artefacts[j].getProprio() && modele.getGrille()[modele.artefacts[j].getAbsc()][modele.artefacts[j].getOrd()].getTypeTerrain()!=typeTerrain.mer)
-			g.drawImage(r.getImage(j+5), modele.artefacts[j].getAbsc()*modele.getSize(), modele.artefacts[j].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
+			if(!modele.artefacts[j].hasProprio() && modele.getGrille()[modele.artefacts[j].getAbsc()][modele.artefacts[j].getOrd()].getTypeTerrain()!=typeTerrain.mer)
+			g.drawImage(ress.getImage(j+5), modele.artefacts[j].getAbsc()*modele.getSize(), modele.artefacts[j].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 		}
 		for(int i=0;i<modele.getNbJoueurs();i++) {
 			if(modele.getGrille()[modele.joueurs[i].getAbsc()][modele.joueurs[i].getOrd()].getTypeTerrain()!=typeTerrain.mer)
-				g.drawImage(r.getImage(i+9), modele.joueurs[i].getAbsc()*modele.getSize(), modele.joueurs[i].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);	
+				g.drawImage(ress.getImage(i+9), modele.joueurs[i].getAbsc()*modele.getSize(), modele.joueurs[i].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);	
 		}
 	}
 

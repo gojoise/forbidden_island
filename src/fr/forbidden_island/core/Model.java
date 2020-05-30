@@ -346,7 +346,7 @@ public class Model extends Observable {
 		Cellule v=grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()];
 		if(v.getArtefact() && nbActions>0) {
 			for (Artefact a : artefacts) {
-				if(a.getAbsc()==joueurs[currentPlayerV2].getAbsc() && a.getOrd()==joueurs[currentPlayerV2].getOrd() && !a.getProprio()){
+				if(a.getAbsc()==joueurs[currentPlayerV2].getAbsc() && a.getOrd()==joueurs[currentPlayerV2].getOrd() && !a.hasProprio()){
 					a.setProprio(joueurs[currentPlayerV2]);					
 					nbActions--;	
 				}
