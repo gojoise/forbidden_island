@@ -85,10 +85,26 @@ public class PlayerInfo extends JPanel implements Observer{
 				items[count].setIcon(new ImageIcon(ress.getImage(numero+13)));
 				count++;
 			}
-			if(count==0) {
-				for(JLabel j :items) {
+			switch (count) {
+			case 0:
+			for(JLabel j :items) {
 					j.setIcon(null);
+			}
+			break;
+			case 1:
+				for(int i=1;i<items.length;i++) {
+					items[i].setIcon(null);
 				}
+				break;
+			case 2:
+				items[2].setIcon(null);
+				items[3].setIcon(null);
+				break;
+			case 3:
+				items[3].setIcon(null);
+				break;
+			default:
+				break;
 			}
 		}
 	}
