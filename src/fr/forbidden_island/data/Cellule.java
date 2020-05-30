@@ -61,7 +61,7 @@ public class Cellule{
 	
 	public typeTerrain getTypeTerrain () {return this.typeTerrainC;}
 	
-	public boolean getJoueurV2(){
+	public boolean hasJoueur(){
 		for(Joueur joueur : modele.joueurs) {
 			if(joueur.getAbsc()==this.x && joueur.getOrd()==this.y)			
 				return true;
@@ -77,10 +77,19 @@ public class Cellule{
 		return false;
 	}
 	
-	// je ne sais plus a' quoi devait servir cette fonction ...
-	//>> Re'cupe're l'objet joueur sur une cellule :)
+	
+	/**
+	 * Re'cupe're l'objet joueur sur une cellule :)
+	 * @return le joueur sur cette cellule
+	 */
 	public Joueur getJoueurInfo(){
-		//TODO
+		for(int i= 0;i<modele.getNbJoueurs();i++) {
+			if(modele.joueurs[i].getAbsc()==this.x && modele.joueurs[i].getOrd()==this.y) {
+			this.jx= modele.joueurs[i];
+			return this.jx;
+			}
+		}
+		
 		return this.jx;
 	}
 	

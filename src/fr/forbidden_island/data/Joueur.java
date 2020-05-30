@@ -60,5 +60,12 @@ public class Joueur {
 		return this.artefactList;
 	}
 	
+	public boolean hasArtefacts() {
+		if(this.artefactList==null)
+			return false;
+		else
+			return true;
+	}
+	
 	
 }
