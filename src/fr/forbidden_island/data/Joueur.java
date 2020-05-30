@@ -52,8 +52,5 @@ public class Joueur {
 		return this.artefactList;
 	}
 	
-	//pas sur de moi
-	public void setArtefact(int x, int y) {
-		artefactList[artefactList.length]= new Artefact(x, y);
-	}
+	
 }
