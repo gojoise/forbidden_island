@@ -340,8 +340,12 @@ public class Model extends Observable {
 	}
 
 	
-	public int ramasseArtefact() {
-		if()
+	public void ramasseArtefact() {
+		Cellule v=grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()];
+		if(v.getArtefact() && nbActions>0) {
+			
+			nbActions--;
+		}
 	}
 	public int getDimGrilleAbsc() {
 		return this.dimGrilleAbsc;
