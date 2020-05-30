@@ -18,8 +18,8 @@ public class Ressources {
 	 */
 	public Ressources() {
 		Image image = null;
-		images = new Image[9];
-		for(int i=0;i<9;i++) {
+		images = new Image[13];
+		for(int i=0;i<images.length;i++) {
 			try {
 				File fichier = new File("src/images/"+i+".png");
 				image = ImageIO.read(fichier);

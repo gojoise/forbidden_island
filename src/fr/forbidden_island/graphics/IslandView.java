@@ -58,7 +58,10 @@ public class IslandView extends JPanel implements Observer{
 					g.drawImage(r.getImage(j+5), modele.artefacts[j].getAbsc()*modele.getSize(), modele.artefacts[j].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
 				for(int i=0;i<modele.getNbJoueurs();i++) {
-					g.drawImage(r.getImage(3), modele.joueurs[i].getAbsc()*modele.getSize(), modele.joueurs[i].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
+					for(int c=0;c<modele.getNbJoueurs();c++) {
+						g.drawImage(r.getImage(i+9), modele.joueurs[i].getAbsc()*modele.getSize(), modele.joueurs[i].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
+					}
+					
 				}
 			}
 		}
