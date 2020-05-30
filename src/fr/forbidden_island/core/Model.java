@@ -241,26 +241,26 @@ public class Model extends Observable {
 			//System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"   ord joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
 			switch (d) {
 			case up:
-				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()-1].getTypeTerrain()!=typeTerrain.mer && !v[0].getJoueurV2()) {  
+				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()-1].getTypeTerrain()!=typeTerrain.mer && (!v[0].getJoueurV2() || (v[0].getAbsc()==this.dimGrilleAbsc/2 && v[0].getOrd()==this.dimGrilleOrd/2))) {  
 					this.joueurs[currentPlayerV2].setOrd(joueurs[currentPlayerV2].getOrd()-1);
 					nbActions--;
 				}	
 
 				break;
 			case right:
-				if(grille[joueurs[currentPlayerV2].getAbsc()+1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=typeTerrain.mer && !v[1].getJoueurV2()) {
+				if(grille[joueurs[currentPlayerV2].getAbsc()+1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=typeTerrain.mer && (!v[1].getJoueurV2() || (v[1].getAbsc()==this.dimGrilleAbsc/2 && v[1].getOrd()==this.dimGrilleOrd/2))) {
 					this.joueurs[currentPlayerV2].setAbsc(joueurs[currentPlayerV2].getAbsc()+1);
 					nbActions--;
 				}
 				break;
 			case down:
-				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()+1].getTypeTerrain()!=typeTerrain.mer && !v[2].getJoueurV2()) {
+				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()+1].getTypeTerrain()!=typeTerrain.mer && (!v[2].getJoueurV2() || (v[2].getAbsc()==this.dimGrilleAbsc/2 && v[2].getOrd()==this.dimGrilleOrd/2))) {
 					this.joueurs[currentPlayerV2].setOrd(joueurs[currentPlayerV2].getOrd()+1);
 					nbActions--;
 				}
 				break;
 			case left:
-				if(grille[joueurs[currentPlayerV2].getAbsc()-1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=typeTerrain.mer && !v[3].getJoueurV2()) {
+				if(grille[joueurs[currentPlayerV2].getAbsc()-1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=typeTerrain.mer && (!v[3].getJoueurV2() || (v[3].getAbsc()==this.dimGrilleAbsc/2 && v[3].getOrd()==this.dimGrilleOrd/2))) {
 					this.joueurs[currentPlayerV2].setAbsc(joueurs[currentPlayerV2].getAbsc()-1);
 					nbActions--;
 				}
