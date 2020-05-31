@@ -136,7 +136,8 @@ public class Model extends Observable {
 			changePlayer();
 			if(endOfTheGame)
 				nbActions=0;
-			
+			float t = r.nextFloat();
+			if (t < 0.12)joueurs[currentPlayerV2].setClef(true);
 		}
 	}
 	/**
@@ -152,7 +153,7 @@ public class Model extends Observable {
 				cpt++;
 		}
 		if(grille[x][y].getTypeTerrain() != TypeTerrain.mer && cpt>0)
-			if (t < 0.09)grille[x][y].setTypeTerrain(TypeTerrain.inonde);
+			if (t < 0.12)grille[x][y].setTypeTerrain(TypeTerrain.inonde);
 	}
 
 	/**
@@ -394,11 +395,12 @@ public class Model extends Observable {
 	
 	public void ramasseArtefact() {
 		Cellule v=grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()];
-		if(v.hasArtefact() && nbActions>0) {
+		if(v.hasArtefact() && nbActions>0 && joueurs[currentPlayerV2].getClef()) {
 			for (Artefact a : artefacts) {
 				if(a.getAbsc()==joueurs[currentPlayerV2].getAbsc() && a.getOrd()==joueurs[currentPlayerV2].getOrd() && !a.hasProprio()){
 					a.setProprio(joueurs[currentPlayerV2]);					
-					nbActions--;	
+					nbActions--;
+					joueurs[currentPlayerV2].setClef(false);
 				}
 				
 			}

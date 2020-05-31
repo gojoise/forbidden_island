@@ -38,12 +38,12 @@ public class Joueur {
 		return this.ord;
 	}
 	
-	public void setClef(int y) {
-		this.ord=y;
+	public void setClef(boolean t) {
+		this.clef=t;
 	}
 	
-	public int getClef() {
-		return this.ord;
+	public boolean getClef() {
+		return clef;
 	}
 	
 	public void setOrd(int y) {
