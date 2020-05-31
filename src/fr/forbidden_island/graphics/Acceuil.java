@@ -21,9 +21,9 @@ import fr.forbidden_island.data.Ressources;
 
 public class Acceuil extends JDialog{
 
-	private JLabel nomLabel,JoueurLabel,IconLabel;
+	private JLabel presetLabel,JoueurLabel,IconLabel;
 	private JComboBox<Integer> choixJoueur;
-	  private JTextField nom;
+	private JComboBox<String> choixPreset;
 	  private Fenetre fen;
 	  private Ressources ress;
 
@@ -48,16 +48,18 @@ public class Acceuil extends JDialog{
 		
 		
 
-	    //Le nom du joueur
-	    JPanel panNom = new JPanel();
-	    panNom.setBackground(Color.white);
-	    panNom.setPreferredSize(new Dimension(220, 60));
-	    nom = new JTextField();
-	    nom.setPreferredSize(new Dimension(100, 25));
-	    panNom.setBorder(BorderFactory.createTitledBorder("Nom du personnage"));
-	    nomLabel = new JLabel("Saisir un nom :");
-	    panNom.add(nomLabel);
-	    panNom.add(nom);
+	    //Le preset de taille d'ile
+	    JPanel panPreset = new JPanel();
+	    panPreset.setBackground(Color.white);
+	    panPreset.setPreferredSize(new Dimension(220, 60));
+	    panPreset.setBorder(BorderFactory.createTitledBorder("Preset de taille d'ile"));
+	    choixPreset = new JComboBox<String>();
+	    choixPreset.addItem("petite");
+	    choixPreset.addItem("moyenne");
+	    choixPreset.addItem("grande");
+	    presetLabel = new JLabel("Choisir un preset :");
+	    panPreset.add(presetLabel);
+	    panPreset.add(choixPreset);
 
 
 
@@ -77,15 +79,14 @@ public class Acceuil extends JDialog{
 
 	    JPanel content = new JPanel();
 	    content.setBackground(Color.white);
-	    content.add(panNom);
-
+	    content.add(panPreset);
 	    content.add(panChoix);
 
 	    JPanel control = new JPanel();
 	    JButton okBouton = new JButton("OK");
 	    okBouton.addActionListener(new ActionListener(){
 	      public void actionPerformed(ActionEvent arg0) {        
-	        nom.getText();
+	    	  System.out.println(choixPreset.getSelectedItem());
 	    	//ici init la partie
 			fen.initGame(new Model((int)choixJoueur.getSelectedItem()));
 			fen.setVisible(true);
