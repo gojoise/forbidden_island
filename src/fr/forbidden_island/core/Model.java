@@ -58,6 +58,8 @@ public class Model extends Observable {
 	/**
 	 * Fonction utilitaire pour le constructeur:
 	 * initialise la grille du mode'le plus particulie'rement le mode'le entier
+	 * initialise les joueurs
+	 * initialise les artefacts
 	 */
 	private void init() {
 
@@ -70,61 +72,39 @@ public class Model extends Observable {
 					grille[x][y].setTypeTerrain(TypeTerrain.terre);
 				}
 				else grille[x][y].setTypeTerrain(TypeTerrain.mer);
-				// rend plus "aleatoire les contours de l'ile  (carre' central)
-				//			    float t = r.nextFloat();
-				//                for (float i = 2; i >= 0; i--) {
-				//                    if (!(x > (CarreCentralAbscMin + i) && x < (CarreCentralAbscMax - i) && y > (CarreCentralOrdMin + i) && y < (CarreCentralOrdMax - i))) {
-				//                        
-				//
-				//                            if (t < (0.2 + (1 / (i + 1))))
-				//                                grille[x][y].setTypeTerrain(typeTerrain.mer); // redessine ale'atoirement les contours de l'ile
-				//                    
-				//                    }
-				//                }
+				 //rend plus "aleatoire les contours de l'ile  (carre' central)
+							    float t = r.nextFloat();
+				                for (float i = 1; i >= 0; i--) {
+				                    if (!(x > (CarreCentralAbscMin + i) && x < (CarreCentralAbscMax - i) && y > (CarreCentralOrdMin + i) && y < (CarreCentralOrdMax - i))) {
+				                            if (t < (0.2 + (1 / (i + 1))))
+				                                grille[x][y].setTypeTerrain(TypeTerrain.mer); // redessine ale'atoirement les contours de l'ile
+				                            
+				                            
+//				                            int voisineMer=0;
+//				                            for(Cellule c : grille[x][y].voisines(grille)) {
+//				                            	if (c.getTypeTerrain()==TypeTerrain.mer)
+//				                            		voisineMer++;
+//				                            	
+//				                            }
+//				                            if(voisineMer==4)
+//				                            	 grille[x][y].setTypeTerrain(TypeTerrain.mer);
+				                    }
+				                }
 			}
 		}
 
-		//initialise les joueurs en les mettant dans les cellules de la grille et les rajoutant dans un tab joueurs[] avec leurs positions respectives.		
 		
+		//initialise les joueurs en les mettant dans les cellules de la grille et les rajoutant dans un tab joueurs[] avec leurs positions respectives.		
 		initJoueursV2(this.nbJoueurs);
 		currentPlayerV2=0;
-		initArtefacts();
+		//initialise les artefacts en les mettant dans les cellules de la grille et les rajoutant dans un tab artefacts[] avec leurs positions respectives.		
+				initArtefacts();
+		
 		//System.out.println("le j0 absc:"+joueurs[0].getAbsc());
 		//System.out.println("ord:"+joueurs[0].getOrd());
 
 	}
-	/**
-	 * Fonction utilitaire pour le constructeur:
-	 * initialise la grille de cellules du mode'le en re'cuperant:
-	 *  -les positions des joueurs(depuis la classe Joueur)
-	 *  -la taille de la grille dans dimGrilleAbsc et dimGrilleOrd (depuis un fichier carte_ileX.txt)
-	 *  -le type de terrain de chacune des cases (depuis un fichier carte_ileX.txt) 
-	 */
-	//	private void initV2() {
-	//		
-	//		
-	//		 int typeTerrainCelFile;
-	//		 
-	//		
-	//		for (int x = 0; x < dimGrilleAbscV2; x++) {
-	//			for (int y = 0; y < dimGrilleOrdV2; y++) {
-	//				typeTerrainCelFile = fluxFichier.read();
-	//				// cre'e et donne des coords a' une cellule
-	//				grille[x][y] = new Cellule(this, x , y );
-	//				// donne sont type de terrain initial a' la cellule
-	//				if(typeTerrainCelFile==0)
-	//				grille[x][y].setTypeTerrain(typeTerrain.mer);
-	//				if(typeTerrainCelFile==1)
-	//					grille[x][y].setTypeTerrain(typeTerrain.terre);
-	//				if(typeTerrainCelFile==2)
-	//					grille[x][y].setTypeTerrain(typeTerrain.inonde);
-	//				// donne un e'tat terre au cellules "centrales"					
-	//			}
-	//		}
-	//		//initialise les joueurs en les mettant dans les cellules de la grille et les rajoutant dans un tab joueurs[] avec leurs positions respectives.		
-	//		initJoueursV2(this.nbJoueurs);
-	//		currentPlayerV2=joueurs[0];
-	//	}
+
 
 	/**
 	 *  pour tout la partie ile de la grille appelle a' la fin du tour:
@@ -390,9 +370,12 @@ public class Model extends Observable {
 			int x = r.nextInt((CarreCentralAbscMax-1)-(CarreCentralAbscMin+1));
 			int absc = (x+(CarreCentralAbscMin+1));		
 			int y = r.nextInt((CarreCentralOrdMax-1)-(CarreCentralOrdMin+1));
-			int ord = (y+(CarreCentralOrdMin+1));					
-			if((absc!=dimGrilleAbsc/2 || ord!=dimGrilleOrd/2) && !grille[absc][ord].hasJoueur() && grille[absc][ord].getTypeTerrain()==TypeTerrain.terre)			
-				this.artefacts[i]=new Artefact(absc,ord);
+			int ord = (y+(CarreCentralOrdMin+1));
+//			int eloignement = 2;
+//			if (!(absc > (CarreCentralAbscMin + eloignement) && absc < (CarreCentralAbscMax - eloignement) && ord > (CarreCentralOrdMin + eloignement) && ord < (CarreCentralOrdMax - eloignement))) {
+				if((absc!=dimGrilleAbsc/2 || ord!=dimGrilleOrd/2) && !grille[absc][ord].hasArtefact() && !grille[absc][ord].hasJoueur() && grille[absc][ord].getTypeTerrain()==TypeTerrain.terre)			
+					this.artefacts[i]=new Artefact(absc,ord);
+			//}
 			else
 				i--;
 		}
@@ -403,7 +386,7 @@ public class Model extends Observable {
 	
 	public void ramasseArtefact() {
 		Cellule v=grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()];
-		if(v.getArtefact() && nbActions>0) {
+		if(v.hasArtefact() && nbActions>0) {
 			for (Artefact a : artefacts) {
 				if(a.getAbsc()==joueurs[currentPlayerV2].getAbsc() && a.getOrd()==joueurs[currentPlayerV2].getOrd() && !a.hasProprio()){
 					a.setProprio(joueurs[currentPlayerV2]);					
