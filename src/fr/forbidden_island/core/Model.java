@@ -33,7 +33,7 @@ public class Model extends Observable {
 	private int nbJoueurs=4;
 	private int nbArtefacts=4;
 	private boolean endOfTheGame=false;
-	public final int nbActionsmax=5;
+	public final int nbActionsmax=3;
 	public int nbActions = nbActionsmax;
 	public Joueur[] joueurs = new Joueur[this.nbJoueurs];
 	public Artefact[] artefacts = new Artefact[this.nbArtefacts];
@@ -262,7 +262,7 @@ public class Model extends Observable {
 
 		return this.currentPlayerV2;
 	}
-
+ 
 	/**
 	 * Change la case du currentplayer on re'cupe're les vosines et on change la case selon la direction
 	 * @param d la direction re'cupe're'e dans le controler

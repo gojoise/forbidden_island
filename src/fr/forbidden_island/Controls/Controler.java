@@ -42,10 +42,10 @@ zone est alors en sursis,
 		case KeyEvent.VK_RIGHT:
 			modele.moveV2(Direction.right);//aller a' droite
 			break;
-		case KeyEvent.VK_ENTER:	//asse'cher
+		case KeyEvent.VK_A:	//asse'cher
 			modele.dry();
 			break;
-		case KeyEvent.VK_E:	//ramasseArtefact
+		case KeyEvent.VK_R:	//ramasseArtefact
 			modele.ramasseArtefact();
 			break;
 		}

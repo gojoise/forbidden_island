@@ -43,16 +43,18 @@ gagnante.
 
 -------------------------------------------------------------------------------------------------
 -bugs potentiels (alembiquage)
-		-artefact.getProprio()
-		-deplacements sur heliport
-		
+		-artefact.getProprio() //ca passe
 
 		
 -affichage (rendu)
+  
   -affichage Infojoueur
+  	-commandes
+  	
+ 
   -topologie ile
-  -disparition heliport
-  -fenetres fin partie...
+
+ 
 
   
 -nettoyer code
@@ -70,6 +72,7 @@ gagnante.
 	-taille carte
 	-choix carte
 	-aller l'ecran d'accueil quand la partie est finie
+	
 	
 -bonus tests unitaires...
 

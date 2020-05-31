@@ -51,7 +51,8 @@ public class IslandView extends JPanel implements Observer{
 				else if(modele.getGrille()[x][y].getTypeTerrain()==TypeTerrain.inonde) {
 					g.drawImage(ress.getImage(2), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
-				if(modele.getGrille()[x][y].getAbsc()==modele.getDimGrilleAbsc()/2 && modele.getGrille()[x][y].getOrd() == modele.getDimGrilleOrd()/2) {
+				//rajout image heliport au centre
+				if(modele.getGrille()[x][y].getAbsc()==modele.getDimGrilleAbsc()/2 && modele.getGrille()[x][y].getOrd() == modele.getDimGrilleOrd()/2 && modele.getGrille()[x][y].getTypeTerrain()!=TypeTerrain.mer) {
 					g.drawImage(ress.getImage(4), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
 			}
