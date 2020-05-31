@@ -28,7 +28,6 @@ public class Model extends Observable {
 	private  int CarreCentralOrdMin;
 	//	private final int dimGrilleOrdV2;
 	private Cellule[][] grille;
-
 	public int currentPlayerV2;
 	private int nbJoueurs;
 	private int nbArtefacts;

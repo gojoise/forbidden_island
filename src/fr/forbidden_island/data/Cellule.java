@@ -70,7 +70,7 @@ public class Cellule{
 		}
 		return false;
 	}
-	
+	 
 	public boolean hasArtefact(){
 			for(Artefact artefact : modele.artefacts) {
 				if(artefact!=null) {
