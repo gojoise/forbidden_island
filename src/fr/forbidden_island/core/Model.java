@@ -242,7 +242,7 @@ public class Model extends Observable {
 					joueurs[currentPlayerV2].setStatut(Statut.fuyant);	
 					notifyObservers();
 					joueurs[currentPlayerV2].setStatut(Statut.sauf);
-			
+					break;
 				}
 			}
 		//System.out.println("Un joueur a e'te' e'limine'!");
