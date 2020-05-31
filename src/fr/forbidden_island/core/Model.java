@@ -192,22 +192,23 @@ public class Model extends Observable {
 		notifyObservers();
 		}
 	}
-//	private int changePlayer(int current) {
-//		if(current==nbJoueurs-1) {
-//			if(joueurs[0].getStatut()!=Statut.vivant) {
-//				return changePlayer(0);
-//			}else {
-//				return 0;
-//			}
-//		}else {
-//			if(joueurs[current+1].getStatut()!=Statut.vivant) {
-//				return changePlayer(current+1);
-//			}else {
-//				return (++current);
-//			}
-//		}
-//   notifyObservers();	
-//	}
+	/*
+	private int changePlayer(int current) {
+		if(current==nbJoueurs-1) {
+			if(joueurs[0].getStatut()!=Statut.vivant) {
+				return changePlayer(0);
+			}else {
+				return 0;
+			}
+		}else {
+			if(joueurs[current+1].getStatut()!=Statut.vivant) {
+				return changePlayer(current+1);
+			}else {
+				return (++current);
+			}
+		}
+   notifyObservers();	
+	}*/
 	
 	/**
 	 * fonction utilitaire a' endTurn, rend tout les joueurs dans la mer e'limine's
