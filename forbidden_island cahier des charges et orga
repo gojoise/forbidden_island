@@ -6,39 +6,6 @@ ARTHUR : rendre opérationelle la lecture du fichier
 Mathieu : Tests unitaires  (sur le long terme)
 
 
--WARNING ! corriger bug "Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException" qui arrive de temps en temps..
-
--condition mer sur heliport= perdu ! game over
-
--transparence artefacts ok !
-
--ramasser artefacts !!!!!!!!
-
--info sur joueur, nb artefacts poss�d�
-
--joueurs avec gueules de bg (differentes)!
-
-
-
-
-PARTIE 3
-
-Pour finir de rendre le jeu opérationnel, nous allons ajouter les zones spéciales, la recherche de clé
-et l’action de récupérer un artefact, ainsi que la fin de partie.
-
-1. Etendre le modèle pour inclure les zones sp´eciales, les clés que peut posséder un joueur, 
-et l’action de récupérer un artefact. Etendre l’effet du bouton « fin de tour » pour que le
-joueur dont c’´etait le tour reçoive, aléatoirement, une clé ou rien.
-
-
-
-2. Etendre la vue d’un nouveau panneau représentant les joueurs, et y indiquer pour chacun 
-les clés et artefacts qu’il possède.
-
-
-3. Etendre le contrˆoleur pour inclure l’action de récupérer un artefact et la fin de partie 
-gagnante.
-
 
 
 -------------------------------------------------------------------------------------------------
@@ -46,43 +13,38 @@ gagnante.
 		-artefact.getProprio() //ca passe
 
 		
--affichage (rendu)
-  
-  -affichage Infojoueur
-  	-commandes
-  	
- 
-  -topologie ile
 
- 
 
-  
--nettoyer code
+
+  arthur-topologie ile
+  mathieu-debut ecran d'accueil
+
+
+-nettoyer code (relecture)
 	-noms
 	-doc
 	-supprimer l'inutile
 	-ordre
+	-tests unitaires faciles a faire
 
-
-
--bonus fonctionement
-	-clefs
 	
 	
 -bonus affichage ecran d'accueil
 	-nbjoueurs
 	-nom des joueurs
-	-taille carte
+	(clefs si beaucoup temps)
+	
 	-choix carte(taille, ou sinon voir bonus carte)
 	-aller l'ecran d'accueil quand la partie est finie
+
 	
+-bonus fonctionement
+	-clefs
 	
--bonus tests unitaires...
+-bonus tests unitaires... //  chiant a faire (voir tres laborieux pour modele)
 
 
-
-
--bonus carte(fichier)
+-bonus carte(fichier) //trop dur
 
 
 
