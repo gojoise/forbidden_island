@@ -27,7 +27,9 @@ public class PlayerInfo extends JPanel implements Observer{
 	private JLabel info1;
 	private JLabel info2;
 	private JPanel info3;
+	private JPanel info4;
 	private JLabel [] items= new JLabel[4];
+	private JLabel [] helps= new JLabel[8];
 	private Ressources ress;
 	
 	public PlayerInfo(Model mod,String initial,Ressources r) {
@@ -52,14 +54,16 @@ public class PlayerInfo extends JPanel implements Observer{
 	     */
 	    this.add(info1);
 	    this.add(info2);
-	    createPanel();
+	    createInv();
 	    this.add(info3);
+	    createHelp();
+	    this.add(info4);
 	    this.setBorder(BorderFactory.createTitledBorder("Informations du personnage"));
 	    this.setPreferredSize(new Dimension(220, 30));
 	    ress=r;
 	}
 	
-	public void createPanel() {
+	public void createInv() {
 		this.info3= new JPanel(new FlowLayout());
 		this.info3.setBorder(BorderFactory.createTitledBorder("Inventaire :"));
 		this.info3.setPreferredSize(new Dimension(200, 80));
@@ -68,11 +72,30 @@ public class PlayerInfo extends JPanel implements Observer{
 		items[3]=new JLabel();
 		items[2]=new JLabel();
 		for(JLabel labels:items) {
-			labels.setPreferredSize(new Dimension(30, 60));
+			labels.setPreferredSize(new Dimension(35, 60));
 			this.info3.add(labels);
-			
 		}
-		
+	}
+	public void createHelp() {
+		this.info4= new JPanel(new FlowLayout());
+		this.info4.setBorder(BorderFactory.createTitledBorder("Commandes :"));
+		helps[0]=new JLabel("Deplacements :");
+		helps[1]=new JLabel("Fleches directionelles");
+		helps[2]=new JLabel("Assecher :");
+		helps[3]=new JLabel("A");
+		helps[4]=new JLabel("Ramasser :");
+		helps[5]=new JLabel("R");
+		helps[6]=new JLabel("Fin de tour :");
+		helps[7]=new JLabel("Bouton ou Espace");
+		this.info4.setPreferredSize(new Dimension(200, 300));
+			for(JLabel labels:helps) {
+				labels.setPreferredSize(new Dimension(200,20));
+				labels.setFont(new Font("Arial", Font.ITALIC, 16));
+				this.info4.add(labels);
+			}
+		for(int i=0;i<helps.length;i=i+2) {
+			helps[i].setFont(new Font("Cambria", Font.CENTER_BASELINE, 16));
+		}
 	}
 	public void update() {
 		int num=modele.getNumJoueurV2();
