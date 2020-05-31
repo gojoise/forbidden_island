@@ -35,20 +35,31 @@ public class Fenetre extends JFrame implements Observer{
 	 * Constructeur de la Fenetre
 	 */
 	public Fenetre(Model mod) {
-		// Init des composants
-		this.view = new IslandView(mod,r);
-		this.bouton = new CommandsView(mod);
-		this.Pview = new PlayerInfo(mod, "",r);
-		this.Pview.update();
-		mod.addObserver(this);
-
 		// Init fenetre
 		this.setTitle("L'ile interdite");
 		this.setSize(1280, 720);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
+		
+		
+		new Acceuil(mod, this);
+		
+		
+		
 
+	}
+	/**
+	 * Initialise les comosants de la fenetre pour le jeu
+	 * @param mod le modele passé en paramètre du constructeur
+	 */
+	public void initGame(Model mod) {
+		// Init des composants
+		this.view = new IslandView(mod,r);
+		this.bouton = new CommandsView(mod);
+		this.Pview = new PlayerInfo(mod, "",r);
+		this.Pview.update();
+		mod.addObserver(this);
 
 		// Init composants pour fenetre
 		container.setBackground(Color.white);
@@ -67,8 +78,7 @@ public class Fenetre extends JFrame implements Observer{
 		PlayerInterface.add(Pview, BorderLayout.CENTER);
 
 		this.setContentPane(container);
-		this.setVisible(true);
-
+		
 	}
 
 
@@ -79,6 +89,7 @@ public class Fenetre extends JFrame implements Observer{
 	private void endInfo() {
 		if (view.getModele().getEndOfTheGame()) {
 			JOptionPane.showMessageDialog(null, "La partie est finie !!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+			//new Acceuil(new Model(),this); //Idée pour relancer la partie 
 		}
 	}
 	
@@ -87,14 +98,16 @@ public class Fenetre extends JFrame implements Observer{
 	}
 
 
-	public void update() {		
-		for(int i=0;i<view.getModele().getNbJoueurs();i++) {
-			if(view.getModele().joueurs[i].getStatut()==Statut.mourant) 				
-				purgeInfo(Integer.toString(i+1));//quand le joueur est en train de mourir, affiche un message d'information
-			else if(view.getModele().joueurs[i].getStatut()==Statut.fuyant)
-				winInfo(Integer.toString(i+1));//quand le joueur est en train de ganger, affiche un message d'information
-		}			
+	public void update() {
+		if(view!=null) {
+			for(int i=0;i<view.getModele().getNbJoueurs();i++) {
+				if(view.getModele().joueurs[i].getStatut()==Statut.mourant) 				
+					purgeInfo(Integer.toString(i+1));//quand le joueur est en train de mourir, affiche un message d'information
+				else if(view.getModele().joueurs[i].getStatut()==Statut.fuyant)
+					winInfo(Integer.toString(i+1));//quand le joueur est en train de ganger, affiche un message d'information
+			}			
 			this.repaint();
-		endInfo();
+			endInfo();
+		}	
 	}
 }
