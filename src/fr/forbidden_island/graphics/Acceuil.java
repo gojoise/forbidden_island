@@ -82,7 +82,7 @@ public class Acceuil extends JDialog{
 	    panChoix.add(JoueurLabel);
 	    panChoix.add(choixJoueur);
 	    /*
-	     * Initialise le contenant de toutes les zones de choix
+	     * Initialise le conteneur de toutes les zones de choix
 	     */
 	    JPanel content = new JPanel();
 	    content.setBackground(Color.white);
@@ -116,7 +116,7 @@ public class Acceuil extends JDialog{
 	    control.add(cancelBouton);
 	    /*
 	     * Ajoute l'enselble des elements qui composent notreboite de dialogue
-	     * i.e l'icone , le contenant des choix et le panneau de validation
+	     * i.e l'icone , le conteneur des choix et le panneau de validation
 	     */
 	    this.getContentPane().add(panIcon,BorderLayout.WEST);
 	    this.getContentPane().add(content, BorderLayout.CENTER);
