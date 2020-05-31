@@ -34,20 +34,13 @@ public class Fenetre extends JFrame implements Observer{
 	/**
 	 * Constructeur de la Fenetre
 	 */
-	public Fenetre(Model mod) {
+	public Fenetre() {
 		// Init fenetre
 		this.setTitle("L'ile interdite");
 		this.setSize(1280, 720);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
-		
-		
-		new Acceuil(mod, this);
-		
-		
-		
-
 	}
 	/**
 	 * Initialise les comosants de la fenetre pour le jeu

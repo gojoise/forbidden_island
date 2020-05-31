@@ -4,9 +4,8 @@ import fr.forbidden_island.graphics.*;
 
 public class Main {
 	public static void main(String[] args) {
-		
-		Fenetre window = new Fenetre(new Model()); //new Vue
-			window.update();//test game over			
+		Fenetre f=new Fenetre();
+		Acceuil a = new Acceuil(f, "Lancer la partie", true); //new Vue	
 		
 		
 	}
