@@ -89,15 +89,15 @@ public class Model extends Observable {
 					grille[x][y].setTypeTerrain(TypeTerrain.terre);
 				}
 				else grille[x][y].setTypeTerrain(TypeTerrain.mer);
-				 //rend plus "aleatoire les contours de l'ile  (carre' central)
-							    float t = r.nextFloat();
-				                for (float i = 1; i >= 0; i--) {
-				                    if (!(x > (CarreCentralAbscMin + i) && x < (CarreCentralAbscMax - i) && y > (CarreCentralOrdMin + i) && y < (CarreCentralOrdMax - i))) {
-				                            if (t < (0.2 + (1 / (i + 1))))
-				                                grille[x][y].setTypeTerrain(TypeTerrain.mer); // redessine ale'atoirement les contours de l'ile
-				                            
-				                    }
-				                }
+				//rend plus "aleatoire les contours de l'ile  (carre' central)
+				float t = r.nextFloat();
+				for (float i = 1; i >= 0; i--) {
+					if (!(x > (CarreCentralAbscMin + i) && x < (CarreCentralAbscMax - i) && y > (CarreCentralOrdMin + i) && y < (CarreCentralOrdMax - i))) {
+						if (t < (0.2 + (1 / (i + 1))))
+							grille[x][y].setTypeTerrain(TypeTerrain.mer); // redessine ale'atoirement les contours de l'ile
+
+					}
+				}
 			}
 		}
 
@@ -136,9 +136,7 @@ public class Model extends Observable {
 			changePlayer();
 			if(endOfTheGame)
 				nbActions=0;
-			float t = r.nextFloat();
-			if (t < 0.12)joueurs[currentPlayerV2].setClef(true);
-		}
+			}
 	}
 	/**
 	 * Inonde plusieurs cellules ale'atoirement apre's clic sur le bouton fin de tour, fonction utilitaire a' endTurn
@@ -153,7 +151,7 @@ public class Model extends Observable {
 				cpt++;
 		}
 		if(grille[x][y].getTypeTerrain() != TypeTerrain.mer && cpt>0)
-			if (t < 0.12)grille[x][y].setTypeTerrain(TypeTerrain.inonde);
+			if (t < 0.09)grille[x][y].setTypeTerrain(TypeTerrain.inonde);
 	}
 
 	/**
@@ -186,7 +184,11 @@ public class Model extends Observable {
 		currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;						
 		while(joueurs[currentPlayerV2].getStatut()!=Statut.vivant ) {
 			currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;			
-		}	
+		}
+		float t = r.nextFloat();
+		if (t < 0.45 && !joueurs[currentPlayerV2].getClef()) {
+			joueurs[currentPlayerV2].setClef(true);
+		}
 		notifyObservers();
 		}
 	}
@@ -344,8 +346,11 @@ public class Model extends Observable {
 	private void initJoueursV2(int nbJ) {
 		if(nbJ>0) {			
 			this.joueurs[0]=new Joueur(dimGrilleAbsc/2,(dimGrilleOrd/2)-1);
-			//			System.out.println("j0 absc:"+joueurs[0].getAbsc()); // absc du joueur 1
-			//			System.out.println("ord:"+joueurs[0].getOrd()); // ord du joueur 1
+			float t = r.nextFloat();
+			if (t < 0.45 ) {
+				joueurs[0].setClef(true);
+			}
+
 		}
 		if(nbJ>1) {			
 			this.joueurs[1]=new Joueur(dimGrilleAbsc/2,(dimGrilleOrd/2)+1);
@@ -355,18 +360,6 @@ public class Model extends Observable {
 		}
 		if(nbJ>3) {			
 			this.joueurs[3]=new Joueur((dimGrilleAbsc/2)-1,dimGrilleOrd/2);			
-		}
-		if(nbJ>4) {		
-			this.joueurs[3]=new Joueur((dimGrilleAbsc/2)+1,(dimGrilleOrd/2)+1);	
-		}
-		if(nbJ>5) {			
-			this.joueurs[3]=new Joueur((dimGrilleAbsc/2)-1,(dimGrilleOrd/2)-1);				
-		}
-		if(nbJ>6) {
-			this.joueurs[3]=new Joueur((dimGrilleAbsc/2)-1,(dimGrilleOrd/2)+1);			
-		}
-		if(nbJ>7) {
-			this.joueurs[3]=new Joueur((dimGrilleAbsc/2)+1,(dimGrilleOrd/2)-1);	
 		}
 		for(int i=0;i<nbJ;i++) {
 			this.joueurs[i].setName("joueur n°"+(i+1));

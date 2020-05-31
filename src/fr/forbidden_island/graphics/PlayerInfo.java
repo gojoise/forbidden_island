@@ -28,8 +28,10 @@ public class PlayerInfo extends JPanel implements Observer{
 	private JLabel info2;
 	private JPanel info3;
 	private JPanel info4;
+	private JPanel info5;
 	private JLabel [] items= new JLabel[4];
 	private JLabel [] helps= new JLabel[8];
+	private JLabel key;
 	private Ressources ress;
 	
 	public PlayerInfo(Model mod,String initial,Ressources r) {
@@ -57,6 +59,8 @@ public class PlayerInfo extends JPanel implements Observer{
 	    createInv();
 	    this.add(info3);
 	    createHelp();
+	    createBoxKey();
+	    this.add(info5);
 	    this.add(info4);
 	    this.setBorder(BorderFactory.createTitledBorder("Informations du personnage"));
 	    this.setPreferredSize(new Dimension(220, 30));
@@ -75,6 +79,13 @@ public class PlayerInfo extends JPanel implements Observer{
 			labels.setPreferredSize(new Dimension(35, 60));
 			this.info3.add(labels);
 		}
+	}
+	public void createBoxKey() {
+			this.info5= new JPanel(new FlowLayout());
+			this.info5.setBorder(BorderFactory.createTitledBorder("Clef :"));
+			this.info5.setPreferredSize(new Dimension(120,60));
+			key=new JLabel();
+			this.info5.add(key);
 	}
 	public void createHelp() {
 		this.info4= new JPanel(new FlowLayout());
@@ -99,6 +110,11 @@ public class PlayerInfo extends JPanel implements Observer{
 	}
 	public void update() {
 		int num=modele.getNumJoueurV2();
+		if(modele.joueurs[num].getClef()) {
+			key.setIcon(new ImageIcon(ress.getImage(3)));
+		}else {
+			key.setIcon(null);
+		}
 		this.info1.setText(modele.joueurs[num].getName()); //change le "nom" du joueur a' chaque fin de tour.
 		this.info1.setIcon(new ImageIcon(ress.getImage(num+17)));
 		this.info2.setText("Actions restantes: "+ modele.getNbActionsString()); //affiche le nbActions du joueur
