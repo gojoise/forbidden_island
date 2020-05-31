@@ -8,7 +8,7 @@ public class Cellule{
 	
 	private final int x, y; //position de la cellule sur la grille
 	private Model modele;
-	public final static int size=30;
+	public  static int size;
 	private TypeTerrain typeTerrainC;
 	//attribut image;
 	private Joueur jx;
@@ -58,6 +58,8 @@ public class Cellule{
 	public static int getSize () {return size;}
 
 	public void setTypeTerrain (TypeTerrain t) {this.typeTerrainC=t;}
+	
+	public static void setSize (int s) {size=s;}
 	
 	public TypeTerrain getTypeTerrain () {return this.typeTerrainC;}
 	

@@ -18,14 +18,14 @@ import java.util.Random;
 //
 public class Model extends Observable {
 
-	private final int dimGrilleAbsc = 35;
-	private final int CarreCentralAbscMax =(dimGrilleAbsc * 3) / 4;
-	private final int CarreCentralAbscMin =dimGrilleAbsc / 4;
+	private  int dimGrilleAbsc;
+	private  int CarreCentralAbscMax;
+	private  int CarreCentralAbscMin;
 
 	//	private final int dimGrilleAbscV2;
-	private final int dimGrilleOrd = 21;
-	private final int CarreCentralOrdMax =(dimGrilleOrd * 3) / 4;
-	private final int CarreCentralOrdMin =dimGrilleOrd / 4;
+	private  int dimGrilleOrd;
+	private  int CarreCentralOrdMax;
+	private  int CarreCentralOrdMin;
 	//	private final int dimGrilleOrdV2;
 	private Cellule[][] grille;
 
@@ -33,16 +33,18 @@ public class Model extends Observable {
 	private int nbJoueurs;
 	private int nbArtefacts;
 	private boolean endOfTheGame=false;
-	public final int nbActionsmax=30;
+	public final int nbActionsmax=3;
 	public int nbActions = nbActionsmax;
 	public Joueur[] joueurs;
 	public Artefact[] artefacts;
+	private String carteSize;
 	Random r = new Random();
 
 	//remplacer par initV2
-	public Model(int nbJ) {
+	public Model(int nbJ,String cSize) {
+		this.carteSize=cSize;
 		this.nbJoueurs=nbJ;
-		this.grille = new Cellule[dimGrilleAbsc][dimGrilleOrd];
+		
 		init();//Lance l'initialisation
 		
 	}
@@ -54,9 +56,31 @@ public class Model extends Observable {
 	 * initialise les artefacts
 	 */
 	private void init() {
+		
+		if(carteSize=="petite") {
+			this.dimGrilleAbsc=25;
+			this.dimGrilleOrd=16;
+			Cellule.setSize(42);
+		}
+		if(carteSize=="moyenne") {
+			this.dimGrilleAbsc=35;
+			this.dimGrilleOrd=21;
+			Cellule.setSize(30);
+		}
+		if(carteSize=="grande") {
+			this.dimGrilleAbsc=42;
+			this.dimGrilleOrd=29;
+			Cellule.setSize(25);
+		}
+		CarreCentralAbscMax =(dimGrilleAbsc * 3) / 4;
+		CarreCentralAbscMin =dimGrilleAbsc / 4;
+		CarreCentralOrdMax =(dimGrilleOrd * 3) / 4;
+		CarreCentralOrdMin =dimGrilleOrd / 4;
+		this.grille = new Cellule[dimGrilleAbsc][dimGrilleOrd];
 		this.joueurs = new Joueur[this.nbJoueurs];
 		nbArtefacts=nbJoueurs;
 		this.artefacts = new Artefact[this.nbArtefacts];
+		
 		for (int x = 0; x < dimGrilleAbsc; x++) {
 			for (int y = 0; y < dimGrilleOrd; y++) {
 				// donne des coords aux cellules
@@ -73,15 +97,6 @@ public class Model extends Observable {
 				                            if (t < (0.2 + (1 / (i + 1))))
 				                                grille[x][y].setTypeTerrain(TypeTerrain.mer); // redessine ale'atoirement les contours de l'ile
 				                            
-				                            
-//				                            int voisineMer=0;
-//				                            for(Cellule c : grille[x][y].voisines(grille)) {
-//				                            	if (c.getTypeTerrain()==TypeTerrain.mer)
-//				                            		voisineMer++;
-//				                            	
-//				                            }
-//				                            if(voisineMer==4)
-//				                            	 grille[x][y].setTypeTerrain(TypeTerrain.mer);
 				                    }
 				                }
 			}
