@@ -79,14 +79,14 @@ public class PlayerInfo extends JPanel implements Observer{
 	public void createHelp() {
 		this.info4= new JPanel(new FlowLayout());
 		this.info4.setBorder(BorderFactory.createTitledBorder("Commandes :"));
-		helps[0]=new JLabel("Deplacements :");
-		helps[1]=new JLabel("Fleches directionelles");
-		helps[2]=new JLabel("Assecher :");
-		helps[3]=new JLabel("A");
-		helps[4]=new JLabel("Ramasser :");
-		helps[5]=new JLabel("R");
-		helps[6]=new JLabel("Fin de tour :");
-		helps[7]=new JLabel("Bouton ou Espace");
+		helps[0]=new JLabel("  Deplacements :");
+		helps[1]=new JLabel("  Fleches directionelles");
+		helps[2]=new JLabel("  Assecher :");
+		helps[3]=new JLabel("  A");
+		helps[4]=new JLabel("  Ramasser :");
+		helps[5]=new JLabel("  R");
+		helps[6]=new JLabel("  Fin de tour :");
+		helps[7]=new JLabel("  Bouton ou Espace");
 		this.info4.setPreferredSize(new Dimension(200, 300));
 			for(JLabel labels:helps) {
 				labels.setPreferredSize(new Dimension(200,20));
