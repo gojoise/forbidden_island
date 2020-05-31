@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -16,17 +17,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import fr.forbidden_island.core.Model;
+import fr.forbidden_island.data.Ressources;
 
 public class Acceuil extends JDialog{
 
-	private JLabel nomLabel,JoueurLabel;
+	private JLabel nomLabel,JoueurLabel,IconLabel;
 	private JComboBox<Integer> choixJoueur;
 	  private JTextField nom;
 	  private Fenetre fen;
+	  private Ressources ress;
 
-	  public Acceuil(Fenetre f, String title, boolean modal) {
-		super((JFrame)f,"Fenetre d'acceuil",true);
+	  public Acceuil(Fenetre f, String title, boolean modal,Ressources r) {
+		super((JFrame)f,title,true);
 		this.fen=f;
+		this.ress=r;
 		this.setSize(600, 400);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -35,6 +39,14 @@ public class Acceuil extends JDialog{
 	}
 
 	private void initAcceuil() {
+	    //Icône
+	    IconLabel = new JLabel(new ImageIcon(ress.getImage(21)));
+	    JPanel panIcon = new JPanel();
+	    panIcon.setBackground(Color.white);
+	    panIcon.setLayout(new BorderLayout());
+	    panIcon.add(IconLabel);
+		
+		
 
 	    //Le nom du joueur
 	    JPanel panNom = new JPanel();
@@ -53,13 +65,13 @@ public class Acceuil extends JDialog{
 	    JPanel panChoix = new JPanel();
 	    panChoix.setBackground(Color.white);
 	    panChoix.setPreferredSize(new Dimension(220, 60));
-	    panChoix.setBorder(BorderFactory.createTitledBorder("Couleur de cheveux du personnage"));
+	    panChoix.setBorder(BorderFactory.createTitledBorder("Nombre de joueurs"));
 	    choixJoueur = new JComboBox<Integer>();
 	    choixJoueur.addItem(1);
 	    choixJoueur.addItem(2);
 	    choixJoueur.addItem(3);
 	    choixJoueur.addItem(4);
-	    JoueurLabel = new JLabel("Joueur");
+	    JoueurLabel = new JLabel("Choisir un nombre :");
 	    panChoix.add(JoueurLabel);
 	    panChoix.add(choixJoueur);
 
@@ -93,24 +105,11 @@ public class Acceuil extends JDialog{
 
 	    control.add(okBouton);
 	    control.add(cancelBouton);
-
+	    
+	    this.getContentPane().add(panIcon,BorderLayout.WEST);
 	    this.getContentPane().add(content, BorderLayout.CENTER);
 	    this.getContentPane().add(control, BorderLayout.SOUTH);
 	}  
-
-	//		JPanel panJoueurs = new JPanel();
-	//	    panJoueurs.setBackground(Color.white);
-	//	    panJoueurs.setPreferredSize(new Dimension(220, 60));
-	//	    panJoueurs.setBorder(BorderFactory.createTitledBorder("Nombre de joueurs à affecter"));
-	//	    choixJoueurs = new JComboBox<Integer>();
-	//		int[] choix = {1,2,3,4};
-	//		for(int i : choix) {
-	//			choixJoueurs.addItem(i);
-	//		}
-	//		panJoueurs.add(choixJoueurs);
-	//		this.add(panJoueurs);
-
-
 
 }
 

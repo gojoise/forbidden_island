@@ -29,18 +29,20 @@ public class Fenetre extends JFrame implements Observer{
 	private PlayerInfo Pview;
 	private JPanel PlayerInterface = new JPanel();
 	private JPanel Game = new JPanel();
-	private Ressources r=new Ressources();
+	private Ressources ress;
 
 	/**
 	 * Constructeur de la Fenetre
 	 */
-	public Fenetre() {
+	public Fenetre(Ressources r) {
 		// Init fenetre
 		this.setTitle("L'ile interdite");
 		this.setSize(1280, 720);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.ress=r;
 		this.setResizable(true);
+		this.setIconImage(ress.getImage(21));
 	}
 	/**
 	 * Initialise les comosants de la fenetre pour le jeu
@@ -48,9 +50,9 @@ public class Fenetre extends JFrame implements Observer{
 	 */
 	public void initGame(Model mod) {
 		// Init des composants
-		this.view = new IslandView(mod,r);
+		this.view = new IslandView(mod,ress);
 		this.bouton = new CommandsView(mod);
-		this.Pview = new PlayerInfo(mod, "",r);
+		this.Pview = new PlayerInfo(mod, "",ress);
 		this.Pview.update();
 		mod.addObserver(this);
 
