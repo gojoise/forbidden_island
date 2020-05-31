@@ -30,29 +30,21 @@ public class Model extends Observable {
 	private Cellule[][] grille;
 
 	public int currentPlayerV2;
-	private int nbJoueurs=4;
-	private int nbArtefacts=4;
+	private int nbJoueurs;
+	private int nbArtefacts;
 	private boolean endOfTheGame=false;
 	public final int nbActionsmax=30;
 	public int nbActions = nbActionsmax;
-	public Joueur[] joueurs = new Joueur[this.nbJoueurs];
-	public Artefact[] artefacts = new Artefact[this.nbArtefacts];
+	public Joueur[] joueurs;
+	public Artefact[] artefacts;
 	Random r = new Random();
 
 	//remplacer par initV2
-	public Model() {
+	public Model(int nbJ) {
+		this.nbJoueurs=nbJ;
 		this.grille = new Cellule[dimGrilleAbsc][dimGrilleOrd];
-//		Ressources.getOutpout()
-//		String  DimAbscCarteFile;
-//		DimAbscCarteFile = fluxFichier.readLine();
-//		this.dimGrilleAbscV2= Integer.parseInt(DimAbscCarteFile);	 
-//		String  DimOrdCarteFile;
-//		DimOrdCarteFile = fluxFichier.readLine();
-//		this.dimGrilleOrdV2= Integer.parseInt(DimOrdCarteFile);	
-
 		init();//Lance l'initialisation
-		//initV2();//Lance l'initialisation
-		//  	fluxFichier.close();
+		
 	}
 
 	/**
@@ -62,7 +54,9 @@ public class Model extends Observable {
 	 * initialise les artefacts
 	 */
 	private void init() {
-
+		this.joueurs = new Joueur[this.nbJoueurs];
+		nbArtefacts=nbJoueurs;
+		this.artefacts = new Artefact[this.nbArtefacts];
 		for (int x = 0; x < dimGrilleAbsc; x++) {
 			for (int y = 0; y < dimGrilleOrd; y++) {
 				// donne des coords aux cellules
