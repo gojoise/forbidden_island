@@ -65,21 +65,22 @@ gagnante.
 
 
 
-
+-bonus fonctionement
+	-clefs
+	
+	
 -bonus affichage ecran d'accueil
 	-nbjoueurs
 	-nom des joueurs
 	-taille carte
-	-choix carte
+	-choix carte(taille, ou sinon voir bonus carte)
 	-aller l'ecran d'accueil quand la partie est finie
 	
 	
 -bonus tests unitaires...
 
 
--bonus fonctionement
-	-clefs
-	-deplacements sur heliport
+
 
 -bonus carte(fichier)
 

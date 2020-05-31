@@ -33,7 +33,7 @@ public class Model extends Observable {
 	private int nbJoueurs=4;
 	private int nbArtefacts=4;
 	private boolean endOfTheGame=false;
-	public final int nbActionsmax=3;
+	public final int nbActionsmax=30;
 	public int nbActions = nbActionsmax;
 	public Joueur[] joueurs = new Joueur[this.nbJoueurs];
 	public Artefact[] artefacts = new Artefact[this.nbArtefacts];
@@ -141,18 +141,11 @@ public class Model extends Observable {
 					inonde(x, y);
 				}
 			}		
-			nbActions=nbActionsmax;		
-			
-			
-			
-							
-			
-					
+			nbActions=nbActionsmax;					
 			updateStatutPlayers();
 			//currentPlayerV2=changePlayer(currentPlayerV2);
+			setEndOfTheGame();
 			changePlayer();
-			setEndOfTheGame();	
-			//notifyObservers();
 			if(endOfTheGame)
 				nbActions=0;
 			
@@ -200,10 +193,13 @@ public class Model extends Observable {
 
 	
 	private void changePlayer() {
+		if(!endOfTheGame) {
 		currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;						
-		while(joueurs[currentPlayerV2].getStatut()!=Statut.vivant)
-			currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;
+		while(joueurs[currentPlayerV2].getStatut()!=Statut.vivant ) {
+			currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;			
+		}	
 		notifyObservers();
+		}
 	}
 //	private int changePlayer(int current) {
 //		if(current==nbJoueurs-1) {
@@ -339,15 +335,14 @@ public class Model extends Observable {
 		}
 		if(countArte==0)
 			endOfTheGame=true;		
-		//si tout les joueurs sont elimine's
-		else {
+		//si tout les joueurs sont elimine's	 
 			int count=0;
 			for (Joueur j :joueurs) {
-				if(j.getStatut()==Statut.mort || j.getStatut()==Statut.mourant)count++;
+				if(j.getStatut()!=Statut.vivant)count++;
 			}
 			if(count==nbJoueurs)
 				endOfTheGame=true;
-		}
+		
 	notifyObservers();
 	}
 	

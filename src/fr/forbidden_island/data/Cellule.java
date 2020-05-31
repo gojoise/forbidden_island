@@ -12,7 +12,7 @@ public class Cellule{
 	private TypeTerrain typeTerrainC;
 	//attribut image;
 	private Joueur jx;
-	/*classe cellule :
+	/**classe cellule :
 	 *attribut terrain/joueur/special(artefact clef/element/heliport)
 	 * 
 	 * sous classe terrain:
