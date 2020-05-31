@@ -82,7 +82,7 @@ public class Cellule{
 	 * Re'cupe're l'objet joueur sur une cellule :)
 	 * @return le joueur sur cette cellule
 	 */
-	public Joueur getJoueurInfo(){
+	public Joueur getJoueur(){
 		for(int i= 0;i<modele.getNbJoueurs();i++) {
 			if(modele.joueurs[i].getAbsc()==this.x && modele.joueurs[i].getOrd()==this.y) {
 			this.jx= modele.joueurs[i];

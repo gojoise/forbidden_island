@@ -46,16 +46,7 @@ gagnante.
 		-artefact.getProprio()
 		-deplacements sur heliport
 		
-		
-		
--gerer la fin de partie
-	-conditions de fin (win)
-		-heliport
-		-fenetres you win
-	
-	-condition de fin (lose)
-		-heliport (ou artefacts) se noient
-		
+
 		
 -affichage (rendu)
   -affichage Infojoueur
