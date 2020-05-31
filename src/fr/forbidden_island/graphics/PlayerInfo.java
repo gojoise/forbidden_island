@@ -80,11 +80,12 @@ public class PlayerInfo extends JPanel implements Observer{
 		this.info2.setText("Actions restantes: "+ modele.getNbActionsString()); //affiche le nbActions du joueur
 		int count=0;
 		
-		for(int numero=0;numero<modele.artefacts.length;numero++) {
-			if(modele.joueurs[modele.currentPlayerV2]==modele.artefacts[numero].getProprio()) {
-				items[count].setIcon(new ImageIcon(ress.getImage(numero+13)));
-				count++;
-			}
+		for(int numero=0;numero<modele.getNbArtefacts();numero++) {
+			if(modele.artefacts[numero].hasProprio())
+				if(modele.joueurs[modele.currentPlayerV2]==modele.artefacts[numero].getProprio()) {
+					items[count].setIcon(new ImageIcon(ress.getImage(numero+13)));
+					count++;
+				}
 			switch (count) {
 			case 0:
 			for(JLabel j :items) {

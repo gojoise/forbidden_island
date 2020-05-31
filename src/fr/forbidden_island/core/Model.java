@@ -4,8 +4,9 @@ import fr.forbidden_island.Controls.Direction;
 import fr.forbidden_island.data.Artefact;
 import fr.forbidden_island.data.Cellule;
 import fr.forbidden_island.data.Joueur;
-import fr.forbidden_island.data.typeTerrain;
+import fr.forbidden_island.data.TypeTerrain;
 import fr.forbidden_island.data.Ressources;
+import fr.forbidden_island.data.Statut;
 
 //pour la partie lecture fichier
 import java.io.BufferedReader;
@@ -66,9 +67,9 @@ public class Model extends Observable {
 				grille[x][y] = new Cellule(this, x , y );
 				// donne un e'tat terre au cellules "centrales" (l'ile)
 				if (x > CarreCentralAbscMin && x < CarreCentralAbscMax && y > CarreCentralOrdMin && y < CarreCentralOrdMax) {
-					grille[x][y].setTypeTerrain(typeTerrain.terre);
+					grille[x][y].setTypeTerrain(TypeTerrain.terre);
 				}
-				else grille[x][y].setTypeTerrain(typeTerrain.mer);
+				else grille[x][y].setTypeTerrain(TypeTerrain.mer);
 				// rend plus "aleatoire les contours de l'ile  (carre' central)
 				//			    float t = r.nextFloat();
 				//                for (float i = 2; i >= 0; i--) {
@@ -141,15 +142,19 @@ public class Model extends Observable {
 				}
 			}		
 			nbActions=nbActionsmax;		
-			//currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;
 			
 			
-			currentPlayerV2=changePlayer(currentPlayerV2);
-			notifyObservers();	
-			winPlayers();
-			purgePlayers();
-			endGame();
-			notifyObservers();
+			
+							
+			
+					
+			updateStatutPlayers();
+			//currentPlayerV2=changePlayer(currentPlayerV2);
+			changePlayer();
+			setEndOfTheGame();	
+			//notifyObservers();
+			if(endOfTheGame)
+				nbActions=0;
 			
 		}
 	}
@@ -162,11 +167,11 @@ public class Model extends Observable {
 		float t = r.nextFloat();
 		int cpt = 0;
 		for (Cellule c : grille[x][y].voisines(grille)) {
-			if (c.getTypeTerrain()== typeTerrain.mer )
+			if (c.getTypeTerrain()== TypeTerrain.mer )
 				cpt++;
 		}
-		if(grille[x][y].getTypeTerrain() != typeTerrain.mer && cpt>0)
-			if (t < 0.09)grille[x][y].setTypeTerrain(typeTerrain.inonde);
+		if(grille[x][y].getTypeTerrain() != TypeTerrain.mer && cpt>0)
+			if (t < 0.09)grille[x][y].setTypeTerrain(TypeTerrain.inonde);
 	}
 
 	/**
@@ -175,8 +180,8 @@ public class Model extends Observable {
 	 * @param y = coord Ord
 	 */
 	private void submerge(int x,int y) {
-		if(grille[x][y].getTypeTerrain() == typeTerrain.inonde)
-			grille[x][y].setTypeTerrain(typeTerrain.mer);
+		if(grille[x][y].getTypeTerrain() == TypeTerrain.inonde)
+			grille[x][y].setTypeTerrain(TypeTerrain.mer);
 
 	}
 	
@@ -192,32 +197,63 @@ public class Model extends Observable {
 	 * @param current le joueur en cours
 	 * @return le nouveau joueur courant
 	 */
-	private int changePlayer(int current) {
-		if(current==nbJoueurs-1) {
-			if(joueurs[0].estElimine() || joueurs[0].aGagne()) {
-				return changePlayer(0);
-			}else {
-				return 0;
-			}
-		}else {
-			if(joueurs[current+1].estElimine() || joueurs[current+1].aGagne()) {
-				return changePlayer(current+1);
-			}else {
-				return (++current);
-			}
-		}
+
+	
+	private void changePlayer() {
+		currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;						
+		while(joueurs[currentPlayerV2].getStatut()!=Statut.vivant)
+			currentPlayerV2=(currentPlayerV2+1)%nbJoueurs;
+		notifyObservers();
 	}
+//	private int changePlayer(int current) {
+//		if(current==nbJoueurs-1) {
+//			if(joueurs[0].getStatut()!=Statut.vivant) {
+//				return changePlayer(0);
+//			}else {
+//				return 0;
+//			}
+//		}else {
+//			if(joueurs[current+1].getStatut()!=Statut.vivant) {
+//				return changePlayer(current+1);
+//			}else {
+//				return (++current);
+//			}
+//		}
+//   notifyObservers();	
+//	}
+	
 	/**
 	 * fonction utilitaire a' endTurn, rend tout les joueurs dans la mer e'limine's
 	 */
-	private void purgePlayers() {
+	private void updateStatutPlayers() {				
 		for(Joueur j : joueurs) {
-			if(grille[j.getAbsc()][j.getOrd()].getTypeTerrain()==typeTerrain.mer && !(j.estElimine())) {
-				j.setOut();
-				System.out.println("Un joueur a e'te' e'limine'!");
+			//si un joueur remplit les condition pour mourir
+			if(grille[j.getAbsc()][j.getOrd()].getTypeTerrain()==TypeTerrain.mer && j.getStatut()!=Statut.mort ) {
+					j.setStatut(Statut.mourant);
+					notifyObservers();
+					j.setStatut(Statut.mort);
 			}
+			//si un joueur remplit les condition pour s'enfuir
+		}
+		if(joueurs[currentPlayerV2].getAbsc()==dimGrilleAbsc/2 && joueurs[currentPlayerV2].getOrd()==dimGrilleOrd/2 && joueurs[currentPlayerV2].getStatut()!=Statut.sauf) {
+			for(Artefact a : artefacts) {
+			if(a.hasProprio())
+				if(joueurs[currentPlayerV2]==a.getProprio()) {
+					joueurs[currentPlayerV2].setStatut(Statut.fuyant);	
+					notifyObservers();
+					joueurs[currentPlayerV2].setStatut(Statut.sauf);
+			
+				}
+			}
+		//System.out.println("Un joueur a e'te' e'limine'!");
 		}
 	}
+	
+	/**
+	 * booleen vrai si les conditions pour gagner la partie sont réunies:
+	 * avoir (au moins) 1 artefact et etre sur la case de l'heliport.
+	 */
+	
 	/**
 	 * Recherche dans la liste quel est le joueur correspondant a' currentPlayer
 	 * @return le nume'ro du joueur en cours
@@ -231,39 +267,39 @@ public class Model extends Observable {
 	 * Change la case du currentplayer on re'cupe're les vosines et on change la case selon la direction
 	 * @param d la direction re'cupe're'e dans le controler
 	 */
-
 	// attention !! les joueurs peuvent se passer dessus les uns les autres
 	public void moveV2(Direction d) {
-
+		if(joueurs[currentPlayerV2].getStatut()!=Statut.vivant)
+			nbActions=0;
 		if(nbActions>0) {
 			Cellule [] v=grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()].voisines(grille); //on re'cupe're les voisines !!
 			//System.out.println("absc joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getAbsc()+"   ord joueur"+currentPlayerV2+"est :"+joueurs[currentPlayerV2].getOrd());
 			switch (d) {
 			case up:
-				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()-1].getTypeTerrain()!=typeTerrain.mer)
-					if(!v[0].hasJoueur() || (v[0].getAbsc()==this.dimGrilleAbsc/2 && v[0].getOrd()==this.dimGrilleOrd/2 && v[0].getJoueurInfo().hasArtefacts())) {  
+				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()-1].getTypeTerrain()!=TypeTerrain.mer)
+					if(!v[0].hasJoueur() || (v[0].getAbsc()==this.dimGrilleAbsc/2 && v[0].getOrd()==this.dimGrilleOrd/2)) {  
 					this.joueurs[currentPlayerV2].setOrd(joueurs[currentPlayerV2].getOrd()-1);
 					nbActions--;
 				}	
 
 				break;
 			case right:
-				if(grille[joueurs[currentPlayerV2].getAbsc()+1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=typeTerrain.mer)
-					if(!v[1].hasJoueur() || (v[1].getAbsc()==this.dimGrilleAbsc/2 && v[1].getOrd()==this.dimGrilleOrd/2 && v[1].getJoueurInfo().hasArtefacts())) {
+				if(grille[joueurs[currentPlayerV2].getAbsc()+1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=TypeTerrain.mer)
+					if(!v[1].hasJoueur() || (v[1].getAbsc()==this.dimGrilleAbsc/2 && v[1].getOrd()==this.dimGrilleOrd/2 )) {
 					this.joueurs[currentPlayerV2].setAbsc(joueurs[currentPlayerV2].getAbsc()+1);
 					nbActions--;
 				}
 				break;
 			case down:
-				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()+1].getTypeTerrain()!=typeTerrain.mer)
-					if(!v[2].hasJoueur() || (v[2].getAbsc()==this.dimGrilleAbsc/2 && v[2].getOrd()==this.dimGrilleOrd/2 && v[2].getJoueurInfo().hasArtefacts())) {
+				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()+1].getTypeTerrain()!=TypeTerrain.mer)
+					if(!v[2].hasJoueur() || (v[2].getAbsc()==this.dimGrilleAbsc/2 && v[2].getOrd()==this.dimGrilleOrd/2 )) {
 					this.joueurs[currentPlayerV2].setOrd(joueurs[currentPlayerV2].getOrd()+1);
 					nbActions--;
 				}
 				break;
 			case left:
-				if(grille[joueurs[currentPlayerV2].getAbsc()-1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=typeTerrain.mer)
-					if(!v[3].hasJoueur() || (v[3].getAbsc()==this.dimGrilleAbsc/2 && v[3].getOrd()==this.dimGrilleOrd/2 && v[3].getJoueurInfo().hasArtefacts())) {
+				if(grille[joueurs[currentPlayerV2].getAbsc()-1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=TypeTerrain.mer)
+					if(!v[3].hasJoueur() || (v[3].getAbsc()==this.dimGrilleAbsc/2 && v[3].getOrd()==this.dimGrilleOrd/2)) {
 					this.joueurs[currentPlayerV2].setAbsc(joueurs[currentPlayerV2].getAbsc()-1);
 					nbActions--;
 				}
@@ -279,36 +315,40 @@ public class Model extends Observable {
 	 * Asseche la cellule du currentPlayer
 	 */
 	public void dry() {
-		if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()==typeTerrain.inonde && nbActions>0) {
-			grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()].setTypeTerrain(typeTerrain.terre);
+		if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()==TypeTerrain.inonde && nbActions>0) {
+			grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()].setTypeTerrain(TypeTerrain.terre);
 			nbActions--;
 		}
 		notifyObservers();
 		// else met un message "vous pouvez pas assecher ici" ?
 	}
-
-	private void endGame() {
-		int count=0;
-		int count2=0;
-		for (Joueur j :joueurs) {
-			if(j.estElimine())count++;
-		}
-		for (Joueur j :joueurs) {
-			if(j.aGagne())count2++;
-		}
-		if(count==nbJoueurs || count2==nbJoueurs)endOfTheGame=true;
-	}
 	/**
-	 * booleen vrai si les conditions pour gagner la partie sont réunies:
-	 * avoir (au moins) 1 artefact et etre sur la case de l'heliport.
+	 * donne les differentes condition pour finir la partie (lose) en mettant endOfTheGame=true.
 	 */
-	private void winPlayers() {		
-		if(joueurs[currentPlayerV2].getAbsc()==dimGrilleAbsc/2 && joueurs[currentPlayerV2].getOrd()==dimGrilleOrd/2) {
-			for(Artefact a : artefacts) {
-			if(joueurs[currentPlayerV2]==a.getProprio())
-				joueurs[currentPlayerV2].setIn();
+	private void setEndOfTheGame() {
+		//si l'heliport est sous l'eau
+		if(grille[dimGrilleAbsc/2][dimGrilleOrd/2].getTypeTerrain()==TypeTerrain.mer)
+			endOfTheGame=true;
+		//si il n'y a plus d'artefacts
+		int countArte=nbArtefacts;
+		for(Artefact a: artefacts) {			
+			if((grille[a.getAbsc()][a.getOrd()].getTypeTerrain()==TypeTerrain.mer && !a.hasProprio()))//l'artefact est dans l'eau sans proprio
+				countArte--;
+			if(a.hasProprio() && (a.getProprio().getStatut()!=Statut.vivant))// l'artefact a un proprio qui a gagne' ou perdu
+				countArte--;
+		}
+		if(countArte==0)
+			endOfTheGame=true;		
+		//si tout les joueurs sont elimine's
+		else {
+			int count=0;
+			for (Joueur j :joueurs) {
+				if(j.getStatut()==Statut.mort || j.getStatut()==Statut.mourant)count++;
 			}
-		}		
+			if(count==nbJoueurs)
+				endOfTheGame=true;
+		}
+	notifyObservers();
 	}
 	
 	/** 
@@ -356,7 +396,7 @@ public class Model extends Observable {
 			int absc = (x+(CarreCentralAbscMin+1));		
 			int y = r.nextInt((CarreCentralOrdMax-1)-(CarreCentralOrdMin+1));
 			int ord = (y+(CarreCentralOrdMin+1));					
-			if((absc!=dimGrilleAbsc/2 || ord!=dimGrilleOrd/2) && !grille[absc][ord].hasJoueur() && grille[absc][ord].getTypeTerrain()==typeTerrain.terre)			
+			if((absc!=dimGrilleAbsc/2 || ord!=dimGrilleOrd/2) && !grille[absc][ord].hasJoueur() && grille[absc][ord].getTypeTerrain()==TypeTerrain.terre)			
 				this.artefacts[i]=new Artefact(absc,ord);
 			else
 				i--;
@@ -406,7 +446,7 @@ public class Model extends Observable {
 	public int getSize() {
 		return Cellule.getSize();
 	}
-	public boolean ending() {
+	public boolean getEndOfTheGame() {
 		return endOfTheGame;
 	}
 }

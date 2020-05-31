@@ -9,7 +9,7 @@ public class Cellule{
 	private final int x, y; //position de la cellule sur la grille
 	private Model modele;
 	public final static int size=30;
-	private typeTerrain typeTerrainC;
+	private TypeTerrain typeTerrainC;
 	//attribut image;
 	private Joueur jx;
 	/*classe cellule :
@@ -57,9 +57,9 @@ public class Cellule{
 	
 	public static int getSize () {return size;}
 
-	public void setTypeTerrain (typeTerrain t) {this.typeTerrainC=t;}
+	public void setTypeTerrain (TypeTerrain t) {this.typeTerrainC=t;}
 	
-	public typeTerrain getTypeTerrain () {return this.typeTerrainC;}
+	public TypeTerrain getTypeTerrain () {return this.typeTerrainC;}
 	
 	public boolean hasJoueur(){
 		for(Joueur joueur : modele.joueurs) {
@@ -91,6 +91,5 @@ public class Cellule{
 		}
 		
 		return this.jx;
-	}
-	
+	}	
 }

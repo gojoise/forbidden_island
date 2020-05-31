@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import fr.forbidden_island.data.Cellule;
-import fr.forbidden_island.data.typeTerrain;
+import fr.forbidden_island.data.TypeTerrain;
 
 
 public class TestsUnitaires {
@@ -27,8 +27,8 @@ public class TestsUnitaires {
 	
 	@Test
 	public void testTerrain() {
-		typeTerrain t = typeTerrain.mer;
-		c.setTypeTerrain(typeTerrain.mer);
+		TypeTerrain t = TypeTerrain.mer;
+		c.setTypeTerrain(TypeTerrain.mer);
 		assertEquals(t,c.getTypeTerrain());
 		}
 	

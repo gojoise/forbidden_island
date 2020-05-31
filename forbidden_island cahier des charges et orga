@@ -41,3 +41,60 @@ gagnante.
 
 
 
+-------------------------------------------------------------------------------------------------
+-bugs potentiels (alembiquage)
+		-artefact.getProprio()
+		-deplacements sur heliport
+		
+		
+		
+-gerer la fin de partie
+	-conditions de fin (win)
+		-heliport
+		-fenetres you win
+	
+	-condition de fin (lose)
+		-heliport (ou artefacts) se noient
+		
+		
+-affichage (rendu)
+  -affichage joueur
+  -topologie ile
+  -disparition heliport
+  -fenetres fin partie...
+
+  
+-nettoyer code
+	-noms
+	-doc
+	-supprimer l'inutile
+	-ordre
+
+
+
+
+-bonus affichage ecran d'accueil
+	-nbjoueurs
+	-nom des joueurs
+	-taille carte
+	-choix carte
+	-aller l'ecran d'accueil quand la partie est finie
+	
+-bonus tests unitaires...
+
+
+-bonus fonctionement
+	-clefs
+	-deplacements sur heliport
+
+-bonus carte(fichier)
+
+
+
+
+
+
+
+
+
+

@@ -14,7 +14,8 @@ import javax.swing.JPanel;
 import fr.forbidden_island.core.Observer;
 import fr.forbidden_island.core.Model;
 import fr.forbidden_island.data.Ressources;
-import fr.forbidden_island.data.typeTerrain;;
+import fr.forbidden_island.data.Statut;
+import fr.forbidden_island.data.TypeTerrain;;
 /*
  * Correspond a' VueGrille ou autre e'lement de la vue, nom a' modifier pour e'tre plus explicite*
  *
@@ -40,14 +41,14 @@ public class IslandView extends JPanel implements Observer{
 		super.repaint();
 		for(int x=0;x<modele.getDimGrilleAbsc();x++) {
 			for(int y=0;y<modele.getDimGrilleOrd();y++) {
-				if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.mer) {
+				if(modele.getGrille()[x][y].getTypeTerrain()==TypeTerrain.mer) {
 					g.drawImage(ress.getImage(0), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
-				else if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.terre) {
+				else if(modele.getGrille()[x][y].getTypeTerrain()==TypeTerrain.terre) {
 					g.drawImage(ress.getImage(1), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
 				
-				else if(modele.getGrille()[x][y].getTypeTerrain()==typeTerrain.inonde) {
+				else if(modele.getGrille()[x][y].getTypeTerrain()==TypeTerrain.inonde) {
 					g.drawImage(ress.getImage(2), modele.getGrille()[x][y].getAbsc()*modele.getSize(), modele.getGrille()[x][y].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 				}
 				if(modele.getGrille()[x][y].getAbsc()==modele.getDimGrilleAbsc()/2 && modele.getGrille()[x][y].getOrd() == modele.getDimGrilleOrd()/2) {
@@ -56,11 +57,11 @@ public class IslandView extends JPanel implements Observer{
 			}
 		}
 		for(int j=0;j<modele.getNbArtefacts();j++) {
-			if(!modele.artefacts[j].hasProprio() && modele.getGrille()[modele.artefacts[j].getAbsc()][modele.artefacts[j].getOrd()].getTypeTerrain()!=typeTerrain.mer)
+			if(!modele.artefacts[j].hasProprio() && modele.getGrille()[modele.artefacts[j].getAbsc()][modele.artefacts[j].getOrd()].getTypeTerrain()!=TypeTerrain.mer)
 			g.drawImage(ress.getImage(j+5), modele.artefacts[j].getAbsc()*modele.getSize(), modele.artefacts[j].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);
 		}
 		for(int i=0;i<modele.getNbJoueurs();i++) {
-			if(!modele.joueurs[i].aGagne() && modele.getGrille()[modele.joueurs[i].getAbsc()][modele.joueurs[i].getOrd()].getTypeTerrain()!=typeTerrain.mer)
+			if(modele.joueurs[i].getStatut()==Statut.vivant)
 				g.drawImage(ress.getImage(i+9), modele.joueurs[i].getAbsc()*modele.getSize(), modele.joueurs[i].getOrd()*modele.getSize(), modele.getSize(), modele.getSize(),this);	
 		}
 	}

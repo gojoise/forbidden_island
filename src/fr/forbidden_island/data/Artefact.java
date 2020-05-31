@@ -40,6 +40,10 @@ public class Artefact {
 	}
 	
 	public Joueur getProprio() {
+		if(this.hasProprio())
+			return this.proprio;
+		else
+			System.out.println("artefact sans proprio !!");
 		return this.proprio;
 	}
 }

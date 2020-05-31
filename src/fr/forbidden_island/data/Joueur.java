@@ -8,14 +8,14 @@ public class Joueur {
 	private int ord;
 	private Artefact [] artefactList;
 	
-	private boolean isOut; //pour savoir si il est e'limine'
-	private boolean isIn; //pour savoir si il a gagne'
+	private Statut statut;
+	
 	
 	
 	public Joueur(int x,int y) {
 		this.absc=x;
 		this.ord=y;
-		this.isOut=false;
+		this.statut=Statut.vivant;
 	}
 	
 	public String getName() {
@@ -41,21 +41,15 @@ public class Joueur {
 		this.ord=y;
 	}
 	
-	public void setOut() {
-		this.isOut=true;
+	public void setStatut(Statut t) {
+		this.statut=t;
 	}
 	
-	public boolean estElimine() {
-		return isOut;
+	public Statut getStatut() {
+		return this.statut;
 	}
 	
-	public void setIn() {
-		this.isIn=true;
-	}
-	
-	public boolean aGagne() {
-		return isIn;
-	}
+
 	public Artefact[] getArtefacts() {
 		return this.artefactList;
 	}

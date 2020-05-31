@@ -13,7 +13,8 @@ import fr.forbidden_island.core.Model;
 import fr.forbidden_island.core.Observer;
 import fr.forbidden_island.data.Artefact;
 import fr.forbidden_island.data.Ressources;
-import fr.forbidden_island.data.typeTerrain;
+import fr.forbidden_island.data.Statut;
+import fr.forbidden_island.data.TypeTerrain;
 
 /**
  * 
@@ -76,7 +77,7 @@ public class Fenetre extends JFrame implements Observer{
 	}
 	
 	private void endInfo() {
-		if (view.getModele().ending()) {
+		if (view.getModele().getEndOfTheGame()) {
 			JOptionPane.showMessageDialog(null, "La partie est finie !!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
@@ -86,23 +87,15 @@ public class Fenetre extends JFrame implements Observer{
 	}
 
 
-	public void update() {
-		int nbJ=view.getModele().getNbJoueurs();
-		for(int i=0;i<nbJ;i++) {
-			if(!(view.getModele().joueurs[i].estElimine())) {//teste les joueurs qui n'ont pas déjà perdu
-				if(view.getModele().getGrille()[view.getModele().joueurs[i].getAbsc()][view.getModele().joueurs[i].getOrd()].getTypeTerrain()==typeTerrain.mer )//Rajouter une condition pour ne pas tester les joueurs e'limine's
-					purgeInfo(Integer.toString(i+1));
-			}
-			if(!(view.getModele().joueurs[i].aGagne())) {//teste les joueurs qui n'ont pas déjà gagné
-				if(view.getModele().joueurs[i].getAbsc()==view.getModele().getDimGrilleAbsc()/2 && view.getModele().joueurs[i].getOrd()==view.getModele().getDimGrilleOrd()/2) {
-					for(Artefact a : view.getModele().artefacts) {
-						if(view.getModele().joueurs[view.getModele().currentPlayerV2]==a.getProprio())
-							winInfo(Integer.toString(i+1));
-					}
-				}
-			}
-			endInfo();
+	public void update() {		
+	
+		for(int i=0;i<view.getModele().getNbJoueurs();i++) {
+			if(view.getModele().joueurs[i].getStatut()==Statut.mourant) 				
+				purgeInfo(Integer.toString(i+1));//quand le joueur est en train de mourir, affiche un message d'information
+			else if(view.getModele().joueurs[i].getStatut()==Statut.fuyant)
+				winInfo(Integer.toString(i+1));//quand le joueur est en train de ganger, affiche un message d'information
+		}			
 			this.repaint();
-		}
+		endInfo();
 	}
 }
