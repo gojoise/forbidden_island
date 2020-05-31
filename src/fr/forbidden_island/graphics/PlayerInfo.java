@@ -105,8 +105,7 @@ public class PlayerInfo extends JPanel implements Observer{
 		int count=0;
 		
 		for(int numero=0;numero<modele.getNbArtefacts();numero++) {
-			if(modele.artefacts[numero].hasProprio())
-				if(modele.joueurs[modele.currentPlayerV2]==modele.artefacts[numero].getProprio()) {
+			if(modele.artefacts[numero].hasProprio() && modele.joueurs[modele.currentPlayerV2]==modele.artefacts[numero].getProprio()) {
 					items[count].setIcon(new ImageIcon(ress.getImage(numero+13)));
 					count++;
 				}

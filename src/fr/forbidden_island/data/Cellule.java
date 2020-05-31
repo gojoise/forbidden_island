@@ -69,10 +69,12 @@ public class Cellule{
 		return false;
 	}
 	
-	public boolean getArtefact(){
-		for(Artefact artefact : modele.artefacts) {
-			if(artefact.getAbsc()==this.x && artefact.getOrd()==this.y)			
-				return true;
+	public boolean hasArtefact(){
+			for(Artefact artefact : modele.artefacts) {
+				if(artefact!=null) {
+				if(artefact.getAbsc()==this.x && artefact.getOrd()==this.y && !artefact.hasProprio())			
+					return true;
+			}
 		}
 		return false;
 	}
