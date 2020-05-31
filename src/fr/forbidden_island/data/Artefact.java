@@ -43,7 +43,7 @@ public class Artefact {
 		if(this.hasProprio())
 			return this.proprio;
 		else
-			System.out.println("artefact sans proprio !!");
+			System.out.println("dans Artefact.getProrio, artefact sans proprio (null)!!");
 		return this.proprio;
 	}
 }

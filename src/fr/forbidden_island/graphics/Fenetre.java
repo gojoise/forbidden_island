@@ -88,7 +88,6 @@ public class Fenetre extends JFrame implements Observer{
 
 
 	public void update() {		
-	
 		for(int i=0;i<view.getModele().getNbJoueurs();i++) {
 			if(view.getModele().joueurs[i].getStatut()==Statut.mourant) 				
 				purgeInfo(Integer.toString(i+1));//quand le joueur est en train de mourir, affiche un message d'information
