@@ -63,8 +63,8 @@ public class Cellule{
 	
 	public boolean hasJoueur(){
 		for(Joueur joueur : modele.joueurs) {
-			if(joueur.getAbsc()==this.x && joueur.getOrd()==this.y)			
-				return true;
+			if(joueur.getAbsc()==this.x && joueur.getOrd()==this.y && joueur.getStatut()==Statut.vivant)	
+					return true;
 		}
 		return false;
 	}
@@ -77,19 +77,4 @@ public class Cellule{
 		return false;
 	}
 	
-	
-	/**
-	 * Re'cupe're l'objet joueur sur une cellule :)
-	 * @return le joueur sur cette cellule
-	 */
-	public Joueur getJoueur(){
-		for(int i= 0;i<modele.getNbJoueurs();i++) {
-			if(modele.joueurs[i].getAbsc()==this.x && modele.joueurs[i].getOrd()==this.y) {
-			this.jx= modele.joueurs[i];
-			return this.jx;
-			}
-		}
-		
-		return this.jx;
-	}	
 }

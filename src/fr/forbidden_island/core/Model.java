@@ -277,7 +277,7 @@ public class Model extends Observable {
 			switch (d) {
 			case up:
 				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()-1].getTypeTerrain()!=TypeTerrain.mer)
-					if(!v[0].hasJoueur() || (v[0].getAbsc()==this.dimGrilleAbsc/2 && v[0].getOrd()==this.dimGrilleOrd/2)) {  
+					if(!v[0].hasJoueur() || (v[0].getAbsc()==this.dimGrilleAbsc/2 && v[0].getOrd()==this.dimGrilleOrd/2 && !v[0].hasJoueur())) {  
 					this.joueurs[currentPlayerV2].setOrd(joueurs[currentPlayerV2].getOrd()-1);
 					nbActions--;
 				}	
@@ -285,21 +285,21 @@ public class Model extends Observable {
 				break;
 			case right:
 				if(grille[joueurs[currentPlayerV2].getAbsc()+1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=TypeTerrain.mer)
-					if(!v[1].hasJoueur() || (v[1].getAbsc()==this.dimGrilleAbsc/2 && v[1].getOrd()==this.dimGrilleOrd/2 )) {
+					if(!v[1].hasJoueur() || (v[1].getAbsc()==this.dimGrilleAbsc/2 && v[1].getOrd()==this.dimGrilleOrd/2  && !v[1].hasJoueur())) {
 					this.joueurs[currentPlayerV2].setAbsc(joueurs[currentPlayerV2].getAbsc()+1);
 					nbActions--;
 				}
 				break;
 			case down:
 				if(grille[joueurs[currentPlayerV2].getAbsc()][joueurs[currentPlayerV2].getOrd()+1].getTypeTerrain()!=TypeTerrain.mer)
-					if(!v[2].hasJoueur() || (v[2].getAbsc()==this.dimGrilleAbsc/2 && v[2].getOrd()==this.dimGrilleOrd/2 )) {
+					if(!v[2].hasJoueur() || (v[2].getAbsc()==this.dimGrilleAbsc/2 && v[2].getOrd()==this.dimGrilleOrd/2  && !v[2].hasJoueur())) {
 					this.joueurs[currentPlayerV2].setOrd(joueurs[currentPlayerV2].getOrd()+1);
 					nbActions--;
 				}
 				break;
 			case left:
 				if(grille[joueurs[currentPlayerV2].getAbsc()-1][joueurs[currentPlayerV2].getOrd()].getTypeTerrain()!=TypeTerrain.mer)
-					if(!v[3].hasJoueur() || (v[3].getAbsc()==this.dimGrilleAbsc/2 && v[3].getOrd()==this.dimGrilleOrd/2)) {
+					if(!v[3].hasJoueur() || (v[3].getAbsc()==this.dimGrilleAbsc/2 && v[3].getOrd()==this.dimGrilleOrd/2 && !v[3].hasJoueur())) {
 					this.joueurs[currentPlayerV2].setAbsc(joueurs[currentPlayerV2].getAbsc()-1);
 					nbActions--;
 				}
