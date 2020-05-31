@@ -6,7 +6,20 @@ ARTHUR : rendre opérationelle la lecture du fichier
 Mathieu : Tests unitaires  (sur le long terme)
 
 
+petite:
+absc:25
+ord:16
+size:42
 
+moyenne:
+absc:35
+ord:21
+size:30
+
+grande:
+absc:35
+ord:21
+size:30
 
 -------------------------------------------------------------------------------------------------
 -bugs potentiels (alembiquage)

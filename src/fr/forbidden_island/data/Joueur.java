@@ -7,6 +7,7 @@ public class Joueur {
 	private int absc;
 	private int ord;
 	private Artefact [] artefactList;
+	private boolean clef=false;
 	
 	private Statut statut;
 	
@@ -34,6 +35,14 @@ public class Joueur {
 	}
 	
 	public int getOrd() {
+		return this.ord;
+	}
+	
+	public void setClef(int y) {
+		this.ord=y;
+	}
+	
+	public int getClef() {
 		return this.ord;
 	}
 	
