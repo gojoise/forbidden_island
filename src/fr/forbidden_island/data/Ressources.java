@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 public class Ressources {
 	private Image[] images; //attribut tableau d'image
+	private File dossier;
 //	private  String FILENAME = "src/carte_ileX.txt";
 //	private FileOutputStream fOutpout;
 	
@@ -17,8 +18,10 @@ public class Ressources {
 	 * CONSTRUCT: charge les images dans un tableau a partir des fichiers.
 	 */
 	public Ressources() {
+		dossier = new File("src/images/");
+		System.out.println("Nombre de fichiers dans le dossier images :"+Integer.toString(dossier.listFiles().length));
 		Image image = null;
-		images = new Image[17];
+		images = new Image[dossier.listFiles().length];
 		for(int i=0;i<images.length;i++) {
 			try {
 				File fichier = new File("src/images/"+i+".png");
