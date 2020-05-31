@@ -86,9 +86,10 @@ public class Acceuil extends JDialog{
 	    JButton okBouton = new JButton("OK");
 	    okBouton.addActionListener(new ActionListener(){
 	      public void actionPerformed(ActionEvent arg0) {        
-	    	  System.out.println(choixPreset.getSelectedItem());
 	    	//ici init la partie
-			fen.initGame(new Model((int)choixJoueur.getSelectedItem()));
+	    	int nbJ=(int)choixJoueur.getSelectedItem();
+	    	String preset=choixPreset.getSelectedItem().toString();
+			fen.initGame(new Model(nbJ,preset));
 			fen.setVisible(true);
 	        setVisible(false);
 	      }     
