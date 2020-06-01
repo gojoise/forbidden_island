@@ -10,11 +10,10 @@ import fr.forbidden_island.data.TypeTerrain;
 public class TestsUnitaires {
 	
 	public Model modele;
-	/**
-	 * 
-	 * 
-	 * Tests de Cellule
-	 */
+	
+	
+	 //////////////début de Tests de Cellule///////////////:
+	 
 	public Cellule c = new Cellule(modele, 15, 51);
 	
 	@Test
@@ -32,10 +31,5 @@ public class TestsUnitaires {
 		assertEquals(t,c.getTypeTerrain());
 		}
 	
-	@Test 
-	public void testVoisines() {
-		Cellule [][] grille = new Cellule[3][3];
-
-	}
 	
 }

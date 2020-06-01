@@ -30,16 +30,16 @@ public class Controler implements ActionListener,KeyListener{
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			modele.moveV2(Direction.up); //aller en haut 
+			modele.move(Direction.up); //aller en haut 
 			break;
 		case KeyEvent.VK_DOWN:
-			modele.moveV2(Direction.down);//aller en bas
+			modele.move(Direction.down);//aller en bas
 			break;
 		case KeyEvent.VK_LEFT:
-			modele.moveV2(Direction.left);//aller a' gauche
+			modele.move(Direction.left);//aller a' gauche
 			break;
 		case KeyEvent.VK_RIGHT:
-			modele.moveV2(Direction.right);//aller a' droite
+			modele.move(Direction.right);//aller a' droite
 			break;
 		case KeyEvent.VK_A:	//asse'cher
 			modele.dry();

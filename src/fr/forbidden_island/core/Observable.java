@@ -3,12 +3,12 @@ package fr.forbidden_island.core;
 import java.util.ArrayList;
 
 /**
- * Classe des objets pouvant e'tre observe's.
+ * Classe des objets pouvant être observés.
  */
 abstract class Observable {
 	/**
-	 * On a une liste [observers] d'observateurs, initialement vide, a' laquelle
-	 * viennent s'inscrire les observateurs via la me'thode [addObserver].
+	 * On a une liste [observers] d'observateurs, initialement vide, à laquelle
+	 * viennent s'inscrire les observateurs via la méthode [addObserver].
 	 */
 	private ArrayList<Observer> observers;
 	public Observable() {
@@ -19,10 +19,9 @@ abstract class Observable {
 	}
 
 	/**
-	 * Lorsque l'e'tat de l'objet observe' change, il est convenu d'appeler la
-	 * me'thode [notifyObservers] pour pre'venir l'ensemble des observateurs
-	 * enregistre's.
-	 * On le fait ici concre'tement en appelant la me'thode [update] de chaque
+	 * Lorsque l'état de l'objet observé change, il est convenu d'appeler la
+	 * méthode [notifyObservers] pour prévenir l'ensemble des observateurs enregistrés.
+	 * On le fait ici concrètement en appelant la méthode [update] de chaque
 	 * observateur.
 	 */
 	public void notifyObservers() {
