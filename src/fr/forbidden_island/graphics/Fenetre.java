@@ -20,7 +20,7 @@ public class Fenetre extends JFrame implements Observer{
 	private IslandView view;//Vue du plateau
 	private CommandsView bouton;//Vue du bouton
 	private JPanel container = new JPanel();//Conteneur de toute la fenetre
-	private PlayerInfo Pview;//Vu de la GUI du joueur
+	private PlayerInfo Pview;//Vue de la GUI du joueur
 	private JPanel PlayerInterface = new JPanel(); //Conteneur du bouton et de l'interface du joueur
 	private JPanel Game = new JPanel();
 	private Ressources ress;
