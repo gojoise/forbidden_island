@@ -1,6 +1,6 @@
 package fr.forbidden_island.data;
 
-public enum Statut {
-	
+//concerne les joueurs
+public enum Statut {	
 		vivant,mourant,mort,fuyant,sauf 
 }
