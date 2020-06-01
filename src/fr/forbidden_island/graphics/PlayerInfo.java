@@ -32,7 +32,7 @@ public class PlayerInfo extends JPanel implements Observer{
 		this.modele = mod; //pointeur vers le modele
 		this.setLayout(new FlowLayout());
 		/** On enregistre la vue [this] en tant qu'observateur de [modele]. */
-		modele.addObserver(this); //ajoute a' observers
+		modele.addObserver(this); //ajoute cette vue aux observers du modele
 		//Construction des 2 premiers labels d'information
 		Font police = new Font("Arial", Font.BOLD, 30);
 		Font police2 = new Font("Arial", Font.BOLD, 18);
