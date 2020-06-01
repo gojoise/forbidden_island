@@ -37,6 +37,7 @@ public class Fenetre extends JFrame implements Observer{
 		this.ress=r;
 		this.setResizable(true);
 		this.setIconImage(ress.getImage(21));
+		//ajout aux observers dans initGame !
 	}
 	/**
 	 * Initialise les composants de la fenetre pour le jeu
@@ -48,7 +49,7 @@ public class Fenetre extends JFrame implements Observer{
 		this.bouton = new CommandsView(mod);
 		this.Pview = new PlayerInfo(mod, "",ress);
 		this.Pview.update();
-		mod.addObserver(this);
+		mod.addObserver(this);//ajoute cette vue aux observers du modele
 		
 		// Init composants pour fenetre
 		container.setBackground(Color.white);
