@@ -6,28 +6,27 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import fr.forbidden_island.core.Model;
-import fr.forbidden_island.data.Joueur;
+
 
 public class Controler implements ActionListener,KeyListener{
 	Model modele;
-	//
+
 	public Controler(Model mod) {
 		this.modele=mod;
 	}
-	/*
-	 *Bouton : Inonder trois zones tire'es au hasard, avec deux cas a' conside'rer :
-- Si la zone correspondante est dans la situation "normale" , elle devient "inonde'e". Cette
-zone est alors en sursis, 
-- Si la zone correspondante est de'ja' dans l'e'tat "inonde'e" ou "submerge'e", elle devient
-"submerge'e".
-	 */
+	
+	
 	public void actionPerformed(ActionEvent e) {
 		modele.endTurn();
 	}
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	
+	//demandé par l'interface
+	public void keyTyped(KeyEvent e) {		
 	}
+	
+	/**
+	 * ici se trouve les différentes touches utilisées dans le jeu
+	 */
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
@@ -51,9 +50,9 @@ zone est alors en sursis,
 		}
 		
 	}
+	
+	//demandé par l'interface
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
