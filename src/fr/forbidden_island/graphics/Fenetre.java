@@ -3,39 +3,33 @@ package fr.forbidden_island.graphics;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import fr.forbidden_island.core.Model;
 import fr.forbidden_island.core.Observer;
-import fr.forbidden_island.data.Artefact;
 import fr.forbidden_island.data.Ressources;
 import fr.forbidden_island.data.Statut;
-import fr.forbidden_island.data.TypeTerrain;
 
 /**
- * 
- * @author Mathieu & Arthur Correspond a' CVue de Conway.java
- *
+ * La classe Fenetre est la classe principale d'affichage de l'application
+ * Dans celle ci se trouve touts les élements composants l'GUI ,Graphic User Interface 
  */
 
 public class Fenetre extends JFrame implements Observer{
-	private IslandView view;
-	private CommandsView bouton;
-	private JPanel container = new JPanel();
-	private PlayerInfo Pview;
-	private JPanel PlayerInterface = new JPanel();
+	private IslandView view;//Vue du plateau
+	private CommandsView bouton;//Vue du bouton
+	private JPanel container = new JPanel();//Conteneur de toute la fenetre
+	private PlayerInfo Pview;//Vu de la GUI du joueur
+	private JPanel PlayerInterface = new JPanel(); //Conteneur du bouton et de l'interface du joueur
 	private JPanel Game = new JPanel();
 	private Ressources ress;
 
 	/**
-	 * Constructeur de la Fenetre
+	 * Construit une Fenetre vide ( non initialisée)
+	 * @param r les ressources chargées dans le main 
 	 */
 	public Fenetre(Ressources r) {
-		// Init fenetre
 		this.setTitle("L'ile interdite");
 		this.setSize(1280, 720);
 		this.setLocationRelativeTo(null);
@@ -45,17 +39,17 @@ public class Fenetre extends JFrame implements Observer{
 		this.setIconImage(ress.getImage(21));
 	}
 	/**
-	 * Initialise les comosants de la fenetre pour le jeu
-	 * @param mod le modele passé en paramètre du constructeur
+	 * Initialise les composants de la fenetre pour le jeu
+	 * @param mod le modele passé en paramètre via un appel (Dans acceuil)
 	 */
 	public void initGame(Model mod) {
-		// Init des composants
+		// Instanciation des composants
 		this.view = new IslandView(mod,ress);
 		this.bouton = new CommandsView(mod);
 		this.Pview = new PlayerInfo(mod, "",ress);
 		this.Pview.update();
 		mod.addObserver(this);
-
+		
 		// Init composants pour fenetre
 		container.setBackground(Color.white);
 		container.setLayout(new BorderLayout());
@@ -72,27 +66,34 @@ public class Fenetre extends JFrame implements Observer{
 		PlayerInterface.add(bouton, BorderLayout.SOUTH);
 		PlayerInterface.add(Pview, BorderLayout.CENTER);
 
-		this.setContentPane(container);
-		
+		this.setContentPane(container);//Le Conteneur est defini comme conteneur de la fenetre	
 	}
-
-
-	private void purgeInfo(String nbJ) {
-		JOptionPane.showMessageDialog(null, "Le joueur N°"+nbJ+" a perdu RIP !", "Un joueur a perdu !", JOptionPane.INFORMATION_MESSAGE);
+	/**
+	 * Informe le numéro du joueur passé en paramètre de son elimination
+	 * @param numJ le numero du joueur à informer
+	 */
+	private void purgeInfo(String numJ) {
+		JOptionPane.showMessageDialog(null, "Le joueur N°"+numJ+" a perdu RIP !", "Un joueur a perdu !", JOptionPane.INFORMATION_MESSAGE);
 	}
-	
+	/**
+	 * Informe tous les joueurs de la fin de la partie
+	 */
 	private void endInfo() {
 		if (view.getModele().getEndOfTheGame()) {
 			JOptionPane.showMessageDialog(null, "La partie est finie !!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
-			//new Acceuil(new Model(),this); //Idée pour relancer la partie 
 		}
 	}
-	
-	private void winInfo(String nbJ) {
-			JOptionPane.showMessageDialog(null, "Le joueur n°"+nbJ+" s'en est sorti !", "Un joueur a réussi à s'enfuir!", JOptionPane.INFORMATION_MESSAGE);
+	/**
+	 * Informe le numéro du joueur passé en paramètre de sa victoire
+	 * @param numJ le numero du joueur à informer
+	 */
+	private void winInfo(String numJ) {
+			JOptionPane.showMessageDialog(null, "Le joueur n°"+numJ+" s'en est sorti !", "Un joueur a réussi à s'enfuir!", JOptionPane.INFORMATION_MESSAGE);
 	}
-
-
+	/**
+	 * Lorsque notifyObservers est appelé dans model, ce update est lancé
+	 * Utilise les fonctions winInfo,endInfo et purgeInfo
+	 */
 	public void update() {
 		if(view!=null) {
 			for(int i=0;i<view.getModele().getNbJoueurs();i++) {
